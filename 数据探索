@@ -4,6 +4,7 @@
 3σ原则（符合正态分布）判断异常值：P(x ) <= 0.003 ，|x - μ|>3σ
 不符合正态分布判断异常值：远离平均值的多少倍标准差
 正态分布 excel 同名函数：NORM.DIST
+相关性 excel同名函数：CORREL
 箱线图异常值标准：  <Ql - 1.5IQR 或者 > Qu + 1.5IQR
 python 描述统计函数：.describe（）
 python 查看数据长度：len(data)
