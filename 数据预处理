@@ -7,3 +7,6 @@
 
 重点
 data[(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回dataframe，data[u'销量'][(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回series
+format： http://www.runoob.com/python/att-string-format.html
+                a = format(0.85003330225123219, '.4%')
+                a = "{:.2f}".format(0.85003330225123219)
