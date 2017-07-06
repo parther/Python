@@ -19,4 +19,7 @@ format： http://www.runoob.com/python/att-string-format.html
 列表可以相加 a = [1,2,3] + [4,5,6]
 s2 = s.notnull() notnull()返回布尔值
      s2 = s.isnull()
-      
+
+ 
+ 
+ 
