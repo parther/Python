@@ -1,1 +1,19 @@
+#!/usr/bin/python3
+是什么 为什么 怎么办
+ 
+实例：
+ 
+问题：
+牛顿插值 拉格朗日插值法
 
+重点：
+data[(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回dataframe，data[u'销量'][(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回series
+format： http://www.runoob.com/python/att-string-format.html
+     a = format(0.85003330225123219, '.4%')
+     a = "{:.2f}".format(0.85003330225123219)
+格拉朗日插值 使用的数据不允许有空值
+格拉朗日插值函数 lagrange(y.index, list(y))(n)
+列表可以相加 a = [1,2,3] + [4,5,6]
+s2 = s.notnull() notnull()返回布尔值
+     s2 = s.isnull()
+      
