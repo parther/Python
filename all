@@ -5,6 +5,9 @@
  
 问题：
 牛顿插值 拉格朗日插值法
+sep=' '
+if (s.isnull())[i]:  if s[i]==None为何不行
+使用if格式，第一行打印出空值
 
 重点：
 data[(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回dataframe，data[u'销量'][(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回series
