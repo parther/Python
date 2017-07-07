@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-是什么 为什么 怎么办
+#是什么 为什么 怎么办
  
-实例：
+#实例：
  
-问题：
+#问题：
 牛顿插值 拉格朗日插值法
 sep=' '
 if (s.isnull())[i]:  if s[i]==None为何不行
 使用if格式，第一行打印出空值
-
-重点：
+ 
+#重点：
 data[(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回dataframe，data[u'销量'][(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回series
 format： http://www.runoob.com/python/att-string-format.html
      a = format(0.85003330225123219, '.4%')
