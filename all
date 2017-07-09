@@ -15,6 +15,11 @@
      d.max() - d.min()求出的是单列的极值，是否有整组数据的极值
  
 #重点：
+     牛顿插值法以后，对插值数据进行整理，对比原始值和插入值
+     对于异常值，先寻找异常值出现的原因
+     数据集成。解决的是统一性的问题，冗余属性识别
+     数据变换对数据规范化处理。函数变化，将数据变成正态分布
+    
      data[(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回dataframe，data[u'销量'][(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回series
      format 的用法： http://www.runoob.com/python/att-string-format.html
           a = format(0.85003330225123219, '.4%')
@@ -24,6 +29,11 @@
      列表可以相加 a = [1,2,3] + [4,5,6]
      s2 = s.notnull() s2 = s.isnull() 返回布尔值
      copy() 返回拷贝
+     2**3 表示多少次方
+     np.log10(x) 表示 求对数 放到专门位置
+     np.ceil 返回不小于x的最小整数
+     df.sort_index(axis=1) ，dataframe排序
+          http://www.open-open.com/lib/view/open1402477162868.html
  
  
  
