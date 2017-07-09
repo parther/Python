@@ -2,24 +2,28 @@
 #是什么 为什么 怎么办
  
 #实例：
+     拉格朗日插值
  
 #问题：
-牛顿插值 拉格朗日插值法
-sep=' '
-if (s.isnull())[i]:  if s[i]==None为何不行
-使用if格式，第一行打印出空值
+     牛顿插值 拉格朗日插值法是什么
+     sep=' '
+     拉格朗日插值案例中，if (s.isnull())[i]:  if s[i]==None为何不行
+     拉格朗日插值案例中，使用if格式，第一行打印出空值
+     平稳序列 时间序列 是什么
+     ID3算法、Apriori算法 是什么
+     pd.read_excel 如何设置索引，列名
+     d.max() - d.min()求出的是单列的极值，是否有整组数据的极值
  
 #重点：
-data[(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回dataframe，data[u'销量'][(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回series
-format： http://www.runoob.com/python/att-string-format.html
-     a = format(0.85003330225123219, '.4%')
-     a = "{:.2f}".format(0.85003330225123219)
-格拉朗日插值 使用的数据不允许有空值
-格拉朗日插值函数 lagrange(y.index, list(y))(n)
-列表可以相加 a = [1,2,3] + [4,5,6]
-s2 = s.notnull() notnull()返回布尔值
-     s2 = s.isnull()
-
+     data[(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回dataframe，data[u'销量'][(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回series
+     format 的用法： http://www.runoob.com/python/att-string-format.html
+          a = format(0.85003330225123219, '.4%')
+          a = "{:.2f}".format(0.85003330225123219)
+     格拉朗日插值 使用的数据不允许有空值
+     格拉朗日插值函数 lagrange(y.index, list(y))(n)
+     列表可以相加 a = [1,2,3] + [4,5,6]
+     s2 = s.notnull() s2 = s.isnull() 返回布尔值
+     copy() 返回拷贝
  
  
  
