@@ -10,6 +10,7 @@
      pandas作图与matplot作图的区别：matplot更多定制化
      创建字典：a = dict(a = 1, b = 2)
      series数据结构排序：sort_values()按值排序，sort_values()按索引排序
+     pi_2, err = integrate.quad(g, -1, 1) pi_2*2 为什么要乘以2 http://old.sebug.net/paper/books/scipydoc/scipy_intro.html#id4
 
      numpy：数组功能，完爆list
      scipy：多维数组，矩阵，数据分析，需先安装numpy
@@ -23,3 +24,7 @@
      data.plot(kind = 'box') plt.figure(figsize=(10,20), edgecolor= 'yellow') 不适用，p2 = data.boxplot()能用
      a4 = dict(a='b',b='a')，与array相结合：没啥屌用
      c2 = DataFrame(a, index = ['A', 'B', 'C'], columns =['a2', 'b2', 'c2', 'd2'])，显示为空值。需要有列名相同
+
+     
+     
+     
