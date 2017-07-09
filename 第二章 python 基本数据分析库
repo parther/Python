@@ -1,23 +1,25 @@
-是什么 为什么 怎么办
+#! user/bin/python3
+# 是什么 为什么 怎么办
  
-实例
+# 实例
  
-问题
+# 问题
  
-重点
-图表分离：pandas，matplotlib
-pandas作图与matplot作图的区别：matplot更多定制化
-创建字典：a = dict(a = 1, b = 2)
-series数据结构排序：sort_values()按值排序，sort_values()按索引排序
+# 重点
+     图表分离：pandas，matplotlib
+     pandas作图与matplot作图的区别：matplot更多定制化
+     创建字典：a = dict(a = 1, b = 2)
+     series数据结构排序：sort_values()按值排序，sort_values()按索引排序
 
-numpy：数组功能，完爆list
-scipy：多维数组，矩阵，数据分析，需先安装numpy
-matplotlib：数据可视化
-pandas：最强大的数据分析和探索工具 sql 部分功能
-statsmodels：类似于R 与pandas结合
-skit-learn：深度学习
-keras：人工神经网络
-gensim：语言处理
-data.plot(kind = 'box') plt.figure(figsize=(10,20), edgecolor= 'yellow') 不适用，p2 = data.boxplot()能用
-a4 = dict(a='b',b='a')，与array相结合：没啥屌用
-c2 = DataFrame(a, index = ['A', 'B', 'C'], columns =['a2', 'b2', 'c2', 'd2'])，显示为空值。需要有列名相同
+     numpy：数组功能，完爆list
+     scipy：多维数组，矩阵，数据分析，需先安装numpy
+     matplotlib：数据可视化
+     pandas：最强大的数据分析和探索工具 sql 部分功能
+     statsmodels：类似于R 与pandas结合
+     skit-learn：深度学习
+     keras：人工神经网络
+     gensim：语言处理
+     
+     data.plot(kind = 'box') plt.figure(figsize=(10,20), edgecolor= 'yellow') 不适用，p2 = data.boxplot()能用
+     a4 = dict(a='b',b='a')，与array相结合：没啥屌用
+     c2 = DataFrame(a, index = ['A', 'B', 'C'], columns =['a2', 'b2', 'c2', 'd2'])，显示为空值。需要有列名相同
