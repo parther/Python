@@ -2,7 +2,6 @@
 # 是什么 为什么 怎么办
 
 # 问题：
-     pi_2, err = integrate.quad(g, -1, 1) pi_2*2 为什么要乘以2 http://old.sebug.net/paper/books/scipydoc/scipy_intro.html#id4
      "$sin(x)$" $是什么意思
      plt.plot(x,y,label="$sin(x)$",color="red",linewidth=2) 标签无法显示中文
      adf检验：单位根是n次方为1的数，序列中存在单位根就不平稳了
