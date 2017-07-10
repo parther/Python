@@ -18,24 +18,25 @@
      进行数据预处理的原因：保证数据完整和准确，提高数据建模的效率
      删除异常值会造成大量的数据浪费，丢失隐藏在其中的信息
      牛顿插值法以后，对插值数据进行整理，对比原始值和插入值
+          data[(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回dataframe，data[u'销量'][(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回series
+          format 的用法： http://www.runoob.com/python/att-string-format.html
+               a = format(0.85003330225123219, '.4%')
+               a = "{:.2f}".format(0.85003330225123219)
+          格拉朗日插值 使用的数据不允许有空值
+          格拉朗日插值函数 lagrange(y.index, list(y))(n)
+          列表可以相加 a = [1,2,3] + [4,5,6]
+          s2 = s.notnull() s2 = s.isnull() 返回布尔值
+          copy() 返回拷贝
+          2**3 表示多少次方
+          np.log10(x) 表示 求对数 放到专门位置
+          np.ceil 返回不小于x的最小整数
+          df.sort_index(axis=1) ，dataframe排序
+               http://www.open-open.com/lib/view/open1402477162868.html
      对于异常值，先寻找异常值出现的原因
-     数据集成。解决的是统一性的问题，冗余属性识别
-     数据变换对数据规范化处理。函数变化，将数据变成正态分布
+     数据集成。将多个数据源（数据表格）统一规范，就是整合的意思
+     数据变换对数据规范化处理，将数据转换成适当的形式，挖掘和算法的需要
     
-     data[(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回dataframe，data[u'销量'][(data[u'销量'] < 400) | (data[u'销量'] > 5000)]返回series
-     format 的用法： http://www.runoob.com/python/att-string-format.html
-          a = format(0.85003330225123219, '.4%')
-          a = "{:.2f}".format(0.85003330225123219)
-     格拉朗日插值 使用的数据不允许有空值
-     格拉朗日插值函数 lagrange(y.index, list(y))(n)
-     列表可以相加 a = [1,2,3] + [4,5,6]
-     s2 = s.notnull() s2 = s.isnull() 返回布尔值
-     copy() 返回拷贝
-     2**3 表示多少次方
-     np.log10(x) 表示 求对数 放到专门位置
-     np.ceil 返回不小于x的最小整数
-     df.sort_index(axis=1) ，dataframe排序
-          http://www.open-open.com/lib/view/open1402477162868.html
+ 
  
  
  
