@@ -40,6 +40,8 @@
      
      python 描述统计函数：.describe（）
      python 查看数据长度：len(data)
+     corr 指列之间的相关性
+     d.corr().loc[['百合酱蒸凤爪', '翡翠蒸香茜饺']] 获取两行
      
  
 
