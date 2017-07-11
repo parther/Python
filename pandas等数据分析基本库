@@ -1,4 +1,8 @@
-series 的筛选 d1[d1==0]
+# 问题：
+     plt.plot属性
+     
+# 重点：
+     series 的筛选 d1[d1==0]
 
 
 
