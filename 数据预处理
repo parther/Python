@@ -40,7 +40,7 @@
           格拉朗日插值函数 lagrange(y.index, list(y))(n)
           列表可以相加 a = [1,2,3] + [4,5,6]
           s2 = s.notnull() s2 = s.isnull() 返回布尔值
-          copy() 返回拷贝
+          copy() 返回拷贝 使用copy，不使用复合查询 s2 = s.copy()
           2**3 表示多少次方
           np.log10(x) 表示 求对数 放到专门位置
           np.ceil 返回不小于x的最小整数
