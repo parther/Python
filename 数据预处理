@@ -13,14 +13,19 @@
      sep=' '
      拉格朗日插值案例中，if (s.isnull())[i]:  if s[i]==None为何不行
      拉格朗日插值案例中，使用if格式，第一行打印出空值
+     聚类分析，簇
+          DataFrame.rolling w = DataFrame.rolling(window=2,center=False).mean(c, 2)
+          sort_index() 
+          d3 = pd.cut(s2, w, labels = range(k)) ValueError: bins must increase monotonically
      ID3算法、Apriori算法 是什么
      pd.read_excel 如何设置索引，列名
      d.max() - d.min()求出的是单列的极值，是否有整组数据的极值
      小波变换
-     聚类 簇
      中心极限定理
      平稳序列和非平稳序列
      时间序列
+     使用拉格朗日出现e形式 s_lagrange(s2, 0) 如果不规定选择插值位置的话，空值会出现e，运行也缓慢，并且报警
+
  
 #重点：
      进行数据预处理的原因：保证数据完整和准确，提高数据建模的效率
@@ -65,3 +70,6 @@
           数值规约 减小行数据量
                有参数方法，使用模型评估数据，如回归和对数线性模式
                无参数方法 直方图、聚类、抽样
+
+          
+          
