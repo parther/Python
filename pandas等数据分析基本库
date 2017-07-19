@@ -1,3 +1,6 @@
+# 参考：
+     http://www.open-open.com/lib/view/open1402477162868.html
+     
 # 问题：
      plt.plot属性
      sort_index()
@@ -5,6 +8,75 @@
      
 # 重点：
      series 的筛选 d1[d1==0]
+     
+# numpy的用法：
+     创建数组
+          b = np.array([4, 5, 6])#创建数组
+          b = np.arange(15)#创建0-14的整数数组
+          b = np.arange(10,100,10)#创建分割数组
+     创建矩阵
+          b = b2.reshape((3,5))
+               b.T#转置
+          np.ones((2,3))#创建全1矩阵
+          np.zeros((5,5),int)#创建全0矩阵
+     查询     
+          b.dtype#查询数据类型
+          b[2]#数组索引查询
+     修改
+          b = b2.astype('str')#转换数据格式
+          b[1] = 1#修改数组
+     数组的运算
+          b + 1#
+          b*2
+          b+b2
+          np.dot(b8,b8.T)#矩阵点积,矩阵的乘法
+
+# Series 用法
+     import pandas as pd
+     from pandas import Series,DataFrame
+     新建
+          b = pd.Series([1, 2, 3, 4], index = [1, 2, 3, 4])
+          b = pd.Series({'a2':1, 'b2':2})
+     查询     
+          b.index#查询索引
+          b.values#查询value
+          b[1]# 查询value
+          条件查询
+               b[a==1]
+               b[a>1]
+     排序
+          sort_values()#按值排序
+          sort_index()#按索引排序
+     修改
+          b.name = 'a_series'#Series命名
+          b.index.name = 'the_index'#索引命名
+          b['a'] = 5#修改value值
+
+#pandas DataFram的用法
+     from pandas import Series,DataFrame
+     新建
+          b = DataFrame(np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
+          b = DataFrame([[1,2,3,4],[5,6,7,8],[9,10,11,12]])
+          b = DataFrame({'a':[1,2,3], 'b':[4,5,6], 'c':[7,8,9], 'd':[10,11,12]},index = ['A', 'B', 'C'], columns =['a2', 'b2', 'c2'])
+     查询
+          c.index#查询索引
+          c.columns#查询列名
+          c['a'] c.a #查询列名下的值
+          c[['a', 'b']]#获取两行数据
+          c[c.a>13]#获取大于13的行 ，格式依然为dataframe
+          c[c.a==13]#d多重条件
+          c[(c.a>13) & (c.d!=11)]#d多重条件
+          c[(c.a>13) | (c.d!=11)]#d多重条件 或
+          c.loc[2:]#表示从第3行开始
+          c.iloc[1]#同loc，一个数字，一个标签
+          c.iloc[:,1:2]#行列组合查询
+     修改
+          c.a.astype('str')#修改series类型，dataframe每一列都是series类型
+          c.a=[13, 14, 15]#修改整列数据，但索引不能修改
+     排序
+          c.sort_values(by = 'b')#按值排序
+          c.sort_index(axis=1, ascending=False)#列的顺序排列，axis表示列是否排序
+ 
 
 
 
