@@ -37,6 +37,7 @@
      新建
           b = pd.Series([1, 2, 3, 4], index = [1, 2, 3, 4])
           b = pd.Series({'a2':1, 'b2':2})
+          
      查询     
           b.index#查询索引
           b.values#查询value
@@ -58,6 +59,7 @@
           b = DataFrame(np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
           b = DataFrame([[1,2,3,4],[5,6,7,8],[9,10,11,12]])
           b = DataFrame({'a':[1,2,3], 'b':[4,5,6], 'c':[7,8,9], 'd':[10,11,12]},index = ['A', 'B', 'C'], columns =['a2', 'b2', 'c2'])
+          b.iloc[:,:3].as_matrix()，将pd变成 array 矩阵
      查询
           c.index#查询索引
           c.columns#查询列名
@@ -76,7 +78,9 @@
      排序
           c.sort_values(by = 'b')#按值排序
           c.sort_index(axis=1, ascending=False)#列的顺序排列，axis表示列是否排序
- 
+
+# pandas plot的用法
+     kind='kde' 是正态分布图，hist是直方图
 
 
 
