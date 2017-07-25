@@ -1,14 +1,7 @@
 # 参考：
      http://www.open-open.com/lib/view/open1402477162868.html
      
-# 问题：
-     plt.plot属性
-     sort_index()
-     布尔值和筛选
-     
-# 重点：
-     series 的筛选 d1[d1==0]
-     
+# 重点:     
 # numpy的用法：
      创建数组
           b = np.array([4, 5, 6])#创建数组
@@ -53,7 +46,7 @@
           b.index.name = 'the_index'#索引命名
           b['a'] = 5#修改value值
 
-#pandas DataFram的用法
+# pandas DataFram的用法
      from pandas import Series,DataFrame
      新建
           b = DataFrame(np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
