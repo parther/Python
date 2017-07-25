@@ -1,24 +1,19 @@
-
 # 重点
-     图表分离：pandas，matplotlib
-     pandas作图与matplot作图的区别：matplot更多定制化
-     创建字典：a = dict(a = 1, b = 2)
-     series数据结构排序：sort_values()按值排序，sort_values()按索引排序
-     pi_2, err = integrate.quad(g, -1, 1) pi_2*2 为什么要乘以2 http://old.sebug.net/paper/books/scipydoc/scipy_intro.html#id4
-
-     numpy：数组功能，完爆list
-     scipy：多维数组，矩阵，数据分析，需先安装numpy
-     matplotlib：数据可视化
-     pandas：最强大的数据分析和探索工具 sql 部分功能
-     statsmodels：类似于R 与pandas结合
-     skit-learn：深度学习
-     keras：人工神经网络
-     gensim：语言处理
+# 数据挖掘
+是什么：
+     从大量数据中挖掘出隐含的，未知的，对决策有潜在价值的关系、模式和趋势，并用这些知识建立用于决策支持的模型，提供预测性决策支持的方法，工具和过程
+     利用各种分析工具在大量数据中寻找其规律和发现模型与数据之间关系的过程，是统计学，数据库技术和人工智能技术的综合
+     避免人治的随意性，避免企业管理仅仅依赖个人领导力的风险和不确定性，实现精细化营销和经营管理
      
-     data.plot(kind = 'box') plt.figure(figsize=(10,20), edgecolor= 'yellow') 不适用，p2 = data.boxplot()能用
-     a4 = dict(a='b',b='a')，与array相结合：没啥屌用
-     c2 = DataFrame(a, index = ['A', 'B', 'C'], columns =['a2', 'b2', 'c2', 'd2'])，显示为空值。需要有列名相同
-
-     
+# 定义挖掘目标
+是什么：
+     挖掘的目标是什么，目标完成能达到怎样的效果
+# 数据抽样
+是什么：
+     从总体中抽取代表性样本。样本数据子集
+     减少数据处理量，节约系统资源
+分层随机抽样：
+     将调查对象的总体单位按照一定的标准分成各种不同的类别(或组)
+     然后根据各类别(或组)的单位数与总体单位数的比例确定从各类别(或组)中抽取样本的数量，最后按照随机原则从各类(或组)中抽取样本
      
      
