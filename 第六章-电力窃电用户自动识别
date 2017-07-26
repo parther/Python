@@ -4,6 +4,8 @@
           https://www.zhihu.com/question/36883196/answer/138939089
           分类模型预测结果的情形表
      tree.predict_proba(test[:,:3])[:,1]
+     net.fit(train[:,:3], train[:,3], epochs=1000, batch_size=1) #训练模型，循环1000次
+          ValueError: Invalid argument "class_mode" passed to K.function with Theano backend
      
 # 重点：     
      train = data[:int(len(data)*p),:] array 处理
