@@ -1,7 +1,11 @@
 # 参考：
      http://www.open-open.com/lib/view/open1402477162868.html
      
-# 重点:     
+# 重点:
+# 使用技巧：
+获得文档帮助：
+     ?pd
+     d.(tab键)
 # Series 用法
      import pandas as pd
      from pandas import Series,DataFrame
