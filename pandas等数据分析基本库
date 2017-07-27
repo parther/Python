@@ -72,7 +72,13 @@
      排序
           c.sort_values(by = 'b')#按值排序
           c.sort_index(axis=1, ascending=False)#列的顺序排列，axis表示列是否排序
-
+     数据读取
+          读取excel 文件：
+               d = pd.read_excel()
+          读取csv 文件：
+               path = '数据源\\test.csv'
+               f = open(path, encoding='utf-8')
+               d = pd.read_csv(f, names=['a','b','c','d'], index_col=0,encoding='utf-8')
 # pandas plot的用法
      kind='kde' 是正态分布图，hist是直方图
 
