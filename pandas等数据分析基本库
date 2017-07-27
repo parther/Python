@@ -34,10 +34,12 @@
      查询     
           b.index#查询索引
           b.values#查询value
-          b[1]# 查询value
+          
+          b[1]# 查询索引为1的值 
           条件查询
-               b[a==1]
-               b[a>1]
+               b[b==1]
+               b[b>1]
+               b>1 # 返回的是布尔值
      排序
           sort_values()#按值排序
           sort_index()#按索引排序
@@ -45,7 +47,9 @@
           b.name = 'a_series'#Series命名
           b.index.name = 'the_index'#索引命名
           b['a'] = 5#修改value值
-
+     常用属性和方法
+          b.unique() #查询不重复值
+          d['girls'].value_counts() #每个值计数
 # pandas DataFram的用法
      from pandas import Series,DataFrame
      新建
@@ -87,6 +91,8 @@
           del d['animals'] # 删除列
           
           d.fillna(-1) #填充空值
+          
+          pd.DataFrame.from_dict(a, orient='index') #转换行列
      排序
           c.sort_values(by = 'b')#按值排序
           c.sort_index(axis=1, ascending=False)#列的顺序排列，axis表示列是否排序
