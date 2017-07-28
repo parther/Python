@@ -1,0 +1,16 @@
+import pandas as pd
+from pandas import Series, DataFrame
+from scipy.interpolate import lagrange
+
+f = '数据源\\图书配套数据、代码\\chapter6\\test\\data\\missing_data.xls'
+d = pd.read_excel(f, header = None)
+
+def d_lagrange(s, n, k=5):
+    y = s[list(range(n-k, n)) + list(range(n+1, n+1+k))]
+    y = y[y.notnull()]
+    return lagrange(y.index,list(y))(n)
+    
+for i in d.columns:
+    for j in range(len(d[i])):
+        if (d[i].isnull())[j]: #返回布尔值，true or false
+            d[i][j] = d_lagrange(d[i], j) # ij一致，如果上面条件成立
