@@ -1,3 +1,9 @@
+# 问题：
+     net.fit(train[:,:3], train[:,3], epochs=1000, batch_size=1) #训练模型，循环1000次
+     ValueError: Invalid argument "class_mode" passed to K.function with Theano backend
+          https://stackoverflow.com/questions/36812548/error-in-keras-invalid-argument-metrics-passed-to-k-function
+ 
+# 重点：
 import pandas as pd
 from random import shuffle
 
