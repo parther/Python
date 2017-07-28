@@ -92,11 +92,19 @@
           乘法：
           
      分组
-          d_g = d.groupby(['Type 1'])
+          d_g.first()
+          d_g = d.groupby(['Type 1'])#返回的是数据框，group类型
           d_g.size()
           d_g.describe()
           d_g.groups # 获得分组数据的索引
           d_g.get_group('Rock')#获得单个分组数据的表格
+          for name,group in d_g: # 获得组名，获得组的所有数据
+              print(name)
+              print(group)
+          d_g2 = d.groupby(['Type 1', 'Type 2'])#多列分组
+          d_g2['HP'].sum()#对单列求和
+          d_g2.agg(np.sum)#求和
+          
           
 # pandas plot的用法
      kind='kde' 是正态分布图，hist是直方图
