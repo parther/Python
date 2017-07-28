@@ -32,6 +32,7 @@
      常用属性和方法
           b.unique() #查询不重复值
           d['girls'].value_counts() #每个值计数
+          
 # pandas DataFram的用法
      from pandas import Series,DataFrame
      新建
@@ -89,6 +90,13 @@
           加法：
                d['animals'] = d['boys'] + d['girls']
           乘法：
+          
+     分组
+          d_g = d.groupby(['Type 1'])
+          d_g.size()
+          d_g.describe()
+          d_g.groups # 获得分组数据的索引
+          d_g.get_group('Rock')#获得单个分组数据的表格
           
 # pandas plot的用法
      kind='kde' 是正态分布图，hist是直方图
