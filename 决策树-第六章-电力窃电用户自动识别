@@ -1,4 +1,3 @@
-
 import pandas as pd #导入数据分析库
 from random import shuffle #导入随机函数shuffle，用来打算数据
 
