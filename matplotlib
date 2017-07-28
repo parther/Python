@@ -5,4 +5,8 @@
 # 文本注释：
      plt.annotate(cm[x,y], xy=(x, y), horizontalalignment='center', verticalalignment='center')
      plt.annotate(format(p[6], '.4%'), xy = (6, p[6]), xytext=(6*0.9, p[6]*0.9), arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2")) 
- 
+    
+# 设定坐标轴的范围值：
+     plt.ylim(0,1.05)
+# 设置图例的位置：
+     plt.legend(loc=8) 
