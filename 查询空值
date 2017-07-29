@@ -1,0 +1,13 @@
+import numpy as np
+import pandas as pd
+from pandas import Series, DataFrame
+
+path = '数据源\\图书配套数据、代码\\chapter7\\demo\\data\\air_data.csv' 
+f = open(path, encoding = 'utf-8')
+d = pd.read_csv(f)
+
+e_d = d.describe(include = 'all').T
+e_d['null'] = len(d) - e_d['count']
+
+e_d2 = e_d[['null','max','min']]
+e_d2.columns = ['空值数','最大值','最小值']
