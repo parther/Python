@@ -32,6 +32,7 @@
      常用属性和方法
           b.unique() #查询不重复值
           d['girls'].value_counts() #每个值计数
+          s.round(1)# 保留小数点后一位
           
 # pandas DataFram的用法
      from pandas import Series,DataFrame
