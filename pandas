@@ -54,6 +54,7 @@
           c.columns#查询列名
           
           c['a'] c.a #查询列名下的值, 返回series类型
+          c[['a', 'b']] # 查询多个列名，返回 dataframe 数据类型
           
           c[c.a>13]#获取大于13的行 ，格式依然为dataframe
           c[c.a==13]#d多重条件
