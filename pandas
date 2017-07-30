@@ -70,6 +70,9 @@
           c.iloc[:,1:2]#行列组合查询
      修改
           c.a.astype('str')#修改series类型，dataframe每一列都是series类型
+          d['LOAD_TIME'] = pd.to_datetime(d['LOAD_TIME'])#修改成日期类型
+          
+          
           c.a=[13, 14, 15]#修改整列数据，但索引不能修改
           d.columns = ['id', 'year', 'boys', 'girls', 'animals']#修改列名
           
@@ -106,6 +109,8 @@
           d_g2 = d.groupby(['Type 1', 'Type 2'])#多列分组
           d_g2['HP'].sum()#对单列求和
           d_g2.agg(np.sum)#求和
+          
+        
           
           
 # pandas plot的用法
