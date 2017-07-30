@@ -1,0 +1,2 @@
+# 问题：
+     d['L'] = (d['LOAD_TIME'] - d['FFP_DATE'])/30 timedelta64[ns] 转换成 int 格式
