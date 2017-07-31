@@ -1,1 +1,10 @@
-
+# 问题：
+     饼图
+# 用法
+     d.plot()
+     
+# 散点图
+     d.plot(x=0, y=1, kind='scatter')
+# 直方图
+     s.hist()
+     d.hist()
