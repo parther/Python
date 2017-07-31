@@ -1,12 +1,27 @@
 # 参考：
      http://blog.csdn.net/panda1234lee/article/details/52311593
+# 问题：
+     plt.annotate
      
 # 重点：
+# 用法
+     plt.plot(x,y,s)
+     
+# 饼图
+# 直方图
+     plt.hist(x,10)
+     
+# 引入模块 正常显示中文
+     import matplotlib.pyplot as plt
+     plt.rcParams['font.sans-serif'] = ['SimHei']
+     plt.rcParams['axes.unicode_minus'] = False
 # 文本注释：
-     plt.annotate(cm[x,y], xy=(x, y), horizontalalignment='center', verticalalignment='center')
-     plt.annotate(format(p[6], '.4%'), xy = (6, p[6]), xytext=(6*0.9, p[6]*0.9), arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2")) 
-    
+     plt.annotate(cm[x,y], xy=(x, y), horizontalalignment='center', verticalalignment='center')#依次y值，xy值，显示的位置
+     plt.annotate(format(p[6], '.4%'), xy = (6, p[6]), xytext=(6*0.9, p[6]*0.9), arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"))     
 # 设定坐标轴的范围值：
      plt.ylim(0,1.05)
 # 设置图例的位置：
-     plt.legend(loc=8) 
+     plt.legend(loc=8)
+# 设置刻度标签
+     plt.ylabel('rio')
+ 
