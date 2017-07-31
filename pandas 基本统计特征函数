@@ -1,1 +1,7 @@
+# cumsum 累计求和
+d.cumsum()
+s.cumsum()
 
+# rolling(2).sum() 滚动求和
+s.rolling(3).sum()
+d.rolling(3).sum()
