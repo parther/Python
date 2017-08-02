@@ -1,0 +1,7 @@
+# 参考：
+     http://blog.csdn.net/ly_ysys629/article/details/73822716
+     http://blog.csdn.net/qq_22238533/article/details/70050748
+
+# 时间函数
+     s2=pd.to_datetime(s) #转换成时间格式
+     s2.dt.days #获取天数
