@@ -1,5 +1,6 @@
 # 问题：
      d['L'] = (d['LOAD_TIME'] - d['FFP_DATE'])/30 timedelta64[ns] 转换成 int 格式
+     转换后的标准差数据貌似有问题
 
 import numpy as np
 import pandas as pd
