@@ -1,3 +1,4 @@
+# 删除空值，不合规则数据 
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
@@ -14,3 +15,31 @@ b2 = d2['SUM_YR_2'] != 0
 b3 = (d2['SEG_KM_SUM'] ==0) & (d2['avg_discount']==0)
 
 d3 = d2[b | b2 | b3]
+
+===
+# 构建新属性
+# 问题：
+     d['L'] = (d['LOAD_TIME'] - d['FFP_DATE'])/30 timedelta64[ns] 转换成 int 格式
+     转换后的标准差数据貌似有问题
+
+import numpy as np
+import pandas as pd
+from pandas import Series, DataFrame
+
+path = '数据源\\图书配套数据、代码\\chapter7\\demo\\tmp\\data_cleaned.csv'
+f = open(path, encoding = 'utf-8')
+d = pd.read_csv(f)
+del d['Unnamed: 0']
+
+d['LOAD_TIME'] = pd.to_datetime(d['LOAD_TIME'])
+d['FFP_DATE'] = pd.to_datetime(d['FFP_DATE'])
+d['L']= (d['LOAD_TIME'] - d['FFP_DATE'])/30
+d['L'] = d['L'].dt.days
+
+d['R'] = d['LAST_TO_END']
+d['F'] = d['FLIGHT_COUNT']
+d['M'] = d['SEG_KM_SUM']
+d['C'] = d['avg_discount'].round(2)
+d2 = d[['L','R','F','M','C']]
+
+d2.to_csv(f2)
