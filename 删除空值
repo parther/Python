@@ -1,51 +1,43 @@
-# 删除空值，不合规则数据 
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
 
+# 数据质量分析，取得极值，取得空值的数量
 path = '数据源\\图书配套数据、代码\\chapter7\\demo\\data\\air_data.csv' 
 f = open(path, encoding = 'utf-8')
-f2 = '数据源\\图书配套数据、代码\\chapter7\\demo\\tmp\\data_cleaned.csv'
-z_f2 = '数据源\\图书配套数据、代码\\chapter7\\demo\\tmp\\z_data_cleaned.csv'
 d = pd.read_csv(f)
 
 d2 = d[d['SUM_YR_1'].notnull() & d['SUM_YR_2'].notnull()]
-
 b = d2['SUM_YR_1'] != 0
 b2 = d2['SUM_YR_2'] != 0
 b3 = (d2['SEG_KM_SUM'] ==0) & (d2['avg_discount']==0)
-
 d3 = d2[b | b2 | b3]
-
 ===
-# 构建新属性
-# 问题：
-     d['L'] = (d['LOAD_TIME'] - d['FFP_DATE'])/30 timedelta64[ns] 转换成 int 格式
-     转换后的标准差数据貌似有问题
 
-import numpy as np
-import pandas as pd
-from pandas import Series, DataFrame
+# 数据变换，构造新的属性
+d4 = d3.copy()
+d4['LOAD_TIME'] = pd.to_datetime(d4['LOAD_TIME'])
+d4['FFP_DATE'] = pd.to_datetime(d4['FFP_DATE'])
+d4['L']= (d4['LOAD_TIME'] - d4['FFP_DATE'])/30
+d4['L'] = d4['L'].dt.days
 
-path = '数据源\\图书配套数据、代码\\chapter7\\demo\\tmp\\data_cleaned.csv'
-f = open(path, encoding = 'utf-8')
-d = pd.read_csv(f)
-del d['Unnamed: 0']
+d4['R'] = d4['LAST_TO_END']
+d4['F'] = d4['FLIGHT_COUNT']
+d4['M'] = d4['SEG_KM_SUM']
+d4['C'] = d4['avg_discount'].round(2)
+d4 = d4[['L','R','F','M','C']]
+===
 
-d['LOAD_TIME'] = pd.to_datetime(d['LOAD_TIME'])
-d['FFP_DATE'] = pd.to_datetime(d['FFP_DATE'])
-d['L']= (d['LOAD_TIME'] - d['FFP_DATE'])/30
-d['L'] = d['L'].dt.days
+# 数据变换，数据归一
+d5 = d4.copy()
+d6 = (d5 - d5.mean(axis=0)) / d5.std(axis=0)
+d6.columns = ['Z' + i for i in d6.columns]
+===
 
-d['R'] = d['LAST_TO_END']
-d['F'] = d['FLIGHT_COUNT']
-d['M'] = d['SEG_KM_SUM']
-d['C'] = d['avg_discount'].round(2)
-d2 = d[['L','R','F','M','C']]
-
-# 离差标准化
+# 数据存储
+f2 = '数据源\\图书配套数据、代码\\chapter7\\demo\\tmp\\data_cleaned.csv'
+z_f2 = '数据源\\图书配套数据、代码\\chapter7\\demo\\tmp\\z_data_cleaned.csv'
+d6.to_csv(f2 )
+d6.to_csv(z_f2 )
 
 
-d3 = (d2 - d2.mean(axis=0)) / d2.std(axis=0)
-d3.columns = ['Z' + i for i in d3.columns]
-d3.to_csv(z_f2 )
