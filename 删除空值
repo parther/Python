@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
 
-# 数据质量分析，取得极值，取得空值的数量
+# 数据清洗，删除空值，删除不合规范的数据
 path = '数据源\\图书配套数据、代码\\chapter7\\demo\\data\\air_data.csv' 
 f = open(path, encoding = 'utf-8')
 d = pd.read_csv(f)
