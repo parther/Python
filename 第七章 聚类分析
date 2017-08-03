@@ -1,3 +1,7 @@
+# 问题：
+     用python画雷达图
+===
+
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
@@ -24,7 +28,7 @@ n2 = len(l_a[l_a == 2])
 n3 = len(l_a[l_a == 3])
 n4 = len(l_a[l_a == 4])
 n_l = [n0,n1,n2,n3,n4]
-c_l = ['客户群1','客户群2','客户群3','客户群4','客户群4']
+c_l = ['客户群1','客户群2','客户群3','客户群4','客户群5']
 
 d3 = pd.DataFrame(c_a)
 d3['聚类个数'] = n_l
