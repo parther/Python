@@ -115,13 +115,23 @@
           
 # 设置索引
      d2 = d.set_index('director_name')
+     d2 = d.set_index(['director_name','duration']) #设置多个索引
+     d2.reset_index('duration')# 将索引放回到列中
 
 # loc 应付标签
      d.loc[['Gore Verbinski','Sam Mendes']]
      d.loc[1:4, ['director_name','duration']] #此时索引需为有规律数字
-     ？d2.loc[d2['duration']>150] # 条件索引 类似于d2[d2['duration']>150]，没啥屌用
+     d2.loc[d2['duration']>150, 'duration'] # 条件索引
+     d2.loc[~(d2['duration']>150), 'duration2'] = 0 # 赋值到新的列，~表示非
      
 # iloc 应付数字，基于位置，只能使用整数
      d.iloc[1:4]
      d.iloc[1:4,:3] #前闭后开
+#
+     d2.query('director_name == "Gore Verbinski"')#只对列条件进行筛选，注意单引号双引号的问题
+     d['actor_2_name'].isin(['Orlando Bloom'])
+     d2.ix['Sam Mendes',1:4] #ix是万能索引，但是已经不鼓励使用了
+
+
+
 
