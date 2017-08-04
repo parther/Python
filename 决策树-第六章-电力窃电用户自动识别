@@ -6,7 +6,6 @@ import pandas as pd
 from pandas import Series, DataFrame
 from random import shuffle #导入随机函数shuffle
 
-
 f = '数据源\\图书配套数据、代码\\chapter6\\demo\\data\\model.xls' 
 d = pd.read_excel(f) #读取数据，数据的前三列是特征，第四列是标签
 
@@ -16,6 +15,7 @@ shuffle(d2) #随机打乱数据
 p = 0.8 #设置训练数据比例
 train = d2[:int(len(d2)*p)] #前80%为训练集
 test = d2[int(len(d2)*p):] #后20%为测试集
+===
 
 #构建CART决策树模型
 from sklearn.tree import DecisionTreeClassifier #导入决策树模型
@@ -29,6 +29,7 @@ tree.fit(train[:,:3], train[:,3]) #训练
 #保存模型
 from sklearn.externals import joblib
 joblib.dump(tree, f_tree)
+===
 
 # 画出混淆矩阵，可以打包到函数里面
 from sklearn.metrics import confusion_matrix #导入混淆矩阵函数
@@ -45,6 +46,7 @@ for x in range(len(cm)): #数据标签
 plt.ylabel('True label') #坐标轴标签
 plt.xlabel('Predicted label') #坐标轴标签
 plt.show()
+===
 
 # 做出ROC曲线
 from sklearn.metrics import roc_curve #导入ROC曲线函数
