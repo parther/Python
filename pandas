@@ -131,6 +131,8 @@
      d2.query('director_name == "Gore Verbinski"')#只对列条件进行筛选，注意单引号双引号的问题
      d['actor_2_name'].isin(['Orlando Bloom'])
      d2.ix['Sam Mendes',1:4] #ix是万能索引，但是已经不鼓励使用了
+     
+     d2[[keys_l[0]]] #将 series 变成 dataframe
 
 
 
