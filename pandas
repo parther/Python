@@ -25,7 +25,7 @@
                b>1 # 返回的是布尔值
      排序
           sort_values()#按值排序
-          sort_index()#按索引排序
+          sort_index(axis = 0)#按索引排序, axis = 0表示按行名排序，1表示按列名排序
      修改
           b.name = 'a_series'#Series命名
           b.index.name = 'the_index'#索引命名
