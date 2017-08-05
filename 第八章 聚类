@@ -1,0 +1,3 @@
+kmodel.fit(g_d2[[u'肝气郁结证型系数']].as_matrix()).as_matrix() # as_matrix()
+     将d或s 转为array类型，适应 fit 参数需要
+     fit 要求 d 的所有数据为 float 或 int 类型
