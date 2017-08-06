@@ -26,6 +26,7 @@
      排序
           sort_values()#按值排序
           sort_index(axis = 0)#按索引排序, axis = 0表示按行名排序，1表示按列名排序
+          d2.sort_index(axis=0, level ='director_name', inplace = True)#多重索引要设置level
      修改
           b.name = 'a_series'#Series命名
           b.index.name = 'the_index'#索引命名
@@ -129,10 +130,21 @@
      d.iloc[1:4,:3] #前闭后开
 #
      d2.query('director_name == "Gore Verbinski"')#只对列条件进行筛选，注意单引号双引号的问题
-     d['actor_2_name'].isin(['Orlando Bloom'])
+     d['actor_2_name'].isin(['Orlando Bloom'])#判断是否在列中
      d2.ix['Sam Mendes',1:4] #ix是万能索引，但是已经不鼓励使用了
      
      d2[[keys_l[0]]] #将 series 变成 dataframe
+     d2.loc[('James Cameron',['UK','USA']),['duration']] #首先排序，对多重索引进行筛选，逗号后面是筛选列，加中括号返回dataframe类型
+     d2.loc[(slice(None),['UK','USA']),['duration']]#对第一列不做筛选
+     d2.set_index('duration', append = True, inplace = True)#append保留之前索引，inplace = True将结果运用到本dataframe中并取代
+     inplace 是个神奇的东西
+     d2.loc[(slice(None), ['UK', 'USA'], slice(100,200)),:] #slice可以选取范围
+     
+     idx = pd.IndexSlice
+     d2.loc[idx[:,['USA'],100:200],:] # idx可以代替slice
+     
+     d2.xs(('James Cameron',100),level=(0,2),drop_level = False) #xs也是索引的一种方式，只是不能查询范围
+     
 
 
 
