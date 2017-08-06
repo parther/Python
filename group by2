@@ -1,0 +1,21 @@
+# 单个分组
+     d2 = d.groupby(['Type 1'])
+     
+# 多个分组
+     d2 = d.groupby(['Type 1','Type 2'])
+     
+# 基本使用方法
+     d2.first()#获得前几行的值
+     d2.size()#获得每个分组值 的数量
+     d2.describe()#获得基本统计量
+          d2[['HP']].sum() # [] 返回数据框
+          d2['HP'].sum() # 返回series
+          d3.agg(np.sum)[['HP']] #效果一样
+     d2.groups # 获得分组数据对应的索引
+     d2.get_group('Bug') #获得单个分组数据对应的索引 及 其他 值 
+     
+     for name,group in d2: # 获得组名，获得组的所有数据
+         print(name) #获得每个分组名称
+         print(group)# 获得所有的分组数据
+         print(group.shape)
+         print('...')
