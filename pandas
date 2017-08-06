@@ -1,154 +1,94 @@
-# 参考：
-     http://www.open-open.com/lib/view/open1402477162868.html
-     
-# 重点:
-# 使用技巧：
-获得文档帮助：
-     ?pd
-     d.(tab键)
-     
 # Series 用法
-     import pandas as pd
-     from pandas import Series,DataFrame
-     新建
-          s = pd.Series([1, 2, 3, 4], index = [1, 2, 3, 4])
-          s = pd.Series({'a2':1, 'b2':2})
-          
-     查询     
-          b.index#查询索引
-          b.values#查询value
-          
-          b[1]# 查询索引为1的值 
-          条件查询
-               b[b==1]
-               b[b>1]
-               b>1 # 返回的是布尔值
-     排序
-          sort_values()#按值排序
-          sort_index(axis = 0)#按索引排序, axis = 0表示按行名排序，1表示按列名排序
-          d2.sort_index(axis=0, level ='director_name', inplace = True)#多重索引要设置level
-     修改
-          b.name = 'a_series'#Series命名
-          b.index.name = 'the_index'#索引命名
-          b['a'] = 5#修改value值
-     常用属性和方法
-          b.unique() #查询不重复值
-          d['girls'].value_counts() #每个值计数
-          s.round(1)# 保留小数点后一位
-          
+新建
+     s = pd.Series([1, 2, 3, 4], index = ['a', 'b', 'c', 'd'])
+     s = pd.Series({'a2':1, 'b2':2})   
+查询索引     
+     s.index
+查询所有的值
+     s.values
+查询指定索引的值          
+     s['a']
+条件查询
+     s[s==1] # s==1 返回的是布尔值
+     s[s>1]
+
+排序
+     s.sort_index()# 按索引排序
+     s.sort_values()# 按值排序
+
+命名
+     s.name = 'a_series'#Series命名
+     s.index.name = 'the_index'#索引命名
+赋值
+     s['a'] = 5#修改value值
+查询和修改数据类型
+     s.dtype()
+     s.astype('str')
+
+常用属性和方法
+     s.unique() #查询不重复值
+     s.value_counts() #每个值计数
+     s.round(1)# 保留小数点后一位
+===
+
 # pandas DataFram的用法
-     from pandas import Series,DataFrame
-     新建
-          b = DataFrame(np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
-          b = DataFrame([[1,2,3,4],[5,6,7,8],[9,10,11,12]])
-          b = DataFrame({'a':[1,2,3], 'b':[4,5,6], 'c':[7,8,9], 'd':[10,11,12]},index = ['A', 'B', 'C'], columns =['a2', 'b2', 'c2'])
-          b.iloc[:,:3].as_matrix()，将pd变成 array 矩阵
+新建
+     d = DataFrame(np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
+     d = DataFrame([[1,2,3,4],[5,6,7,8],[9,10,11,12]],  columns =['a2', 'b2', 'c2','d2'])
+     d = DataFrame({'a':[1,2,3], 'b':[4,5,6], 'c':[7,8,9], 'd':[10,11,12]},index = ['A', 'B', 'C'])
+     
+查询
+     d.index #查询索引
+     d.columns #查询列名
+     
+     d.head(6) #头五行
+     d.tail(6) #尾六行
+     d.shape #查询表格行列大小
+     d.dtypes#查询每列的数据类型 
+
+     d['a'] #查询列名下的值, 返回series类型
+          d[['a']] # 返回dataframe类型
+     d[['a', 'b']] # 查询多个列名，返回 dataframe 数据类型
+      
+条件查询
+     d[d['a']==2] # 返回2所在的行
+     d[(d['a']>1) & (d['a']<3)] # 多重条件，返回条件满足所在的行，&表示和
+          d[(d['a']>1) | (d['a']<3)] # |表示或者
           
-          b['a'] = [1,2,3]# 新建列并且赋值
-     查询
-          d.dtypes#查询每列的数据类型 
+     d[d['b'].isnull()] #布尔值配合查询
           
-          d.head(6)#头五行
-          d.tail(6)
+修改
+     d.as_matrix() # 将pd变成 array 矩阵, 某些算法需要    
+     d['LOAD_TIME'] = pd.to_datetime(d['LOAD_TIME'])# 将 列d['LOAD_TIME']的类型 修改成 日期类型
           
-          d.shape #查询表格行列大小
+     d['a'] = [1,2,3] # 新建列并且赋值
+     d.['a2']=[13, 14, 15] #修改整列数据，但索引不能修改
+     d.columns = ['id', 'year', 'boys', 'girls', 'animals']#修改列名
           
-          c.index#查询索引
-          c.columns#查询列名
+     del d['animals'] # 删除列
           
-          c['a'] c.a #查询列名下的值, 返回series类型
-          c[['a', 'b']] # 查询多个列名，返回 dataframe 数据类型
+     d.fillna(-1) #填充空值
           
-          c[c.a>13]#获取大于13的行 ，格式依然为dataframe
-          c[c.a==13]#d多重条件
-          c[(c.a>13) & (c.d!=11)]#d多重条件
-          c[(c.a>13) | (c.d!=11)]#d多重条件 或
-          c['a'][(c['a'] < 400) | (c['a'] > 5000)]# 返回series
-          
-          d['girls'][d['empty'].isnull()] #结合布尔值查询
-          
-          c.loc[2:]#表示从第3行开始
-          c.iloc[1]#同loc，一个数字，一个标签
-          c.iloc[:,1:2]#行列组合查询
-     修改
-          c.a.astype('str')#修改series类型，dataframe每一列都是series类型
-          d['LOAD_TIME'] = pd.to_datetime(d['LOAD_TIME'])#修改成日期类型
-          
-          
-          c.a=[13, 14, 15]#修改整列数据，但索引不能修改
-          d.columns = ['id', 'year', 'boys', 'girls', 'animals']#修改列名
-          
-          del d['animals'] # 删除列
-          
-          d.fillna(-1) #填充空值
-          
-          pd.DataFrame.from_dict(a, orient='index') #转换行列
+     pd.DataFrame.from_dict(dic, orient='index') # 建立dataframe 时 转换行列
+     
      排序
           c.sort_values(by = 'b')#按值排序
-          c.sort_index(axis=1, ascending=False)#列的顺序排列，axis表示列是否排序
-     数据读取
-          读取excel 文件：
-               d = pd.read_excel()
-          读取csv 文件：
-               path = '数据源\\test.csv'
-               f = open(path, encoding='utf-8')
-               d = pd.read_csv(f, names=['a','b','c','d'], index_col=0,encoding='utf-8')
-     运算
-          加法：
-               d['animals'] = d['boys'] + d['girls']
-          乘法：
+          c.sort_index(axis=1, ascending=False)# axis表示按纵列排序
+ 
+基本运算
+     d['animals'] = d['boys'] + d['girls'] #列相加
+
+===
+
+# 数据读取
+读取excel 文件：
+     d = pd.read_excel()
+读取csv 文件：
+     path = '数据源\\test.csv'
+     f = open(path, encoding='utf-8')
+     d = pd.read_csv(f, names=['a','b','c','d'], index_col=0,encoding='utf-8')
+
           
-     分组
-          d_g.first()
-          d_g = d.groupby(['Type 1'])#返回的是数据框，group类型
-          d_g.size()
-          d_g.describe()
-          d_g.groups # 获得分组数据的索引
-          d_g.get_group('Rock')#获得单个分组数据的表格
-          for name,group in d_g: # 获得组名，获得组的所有数据
-              print(name)
-              print(group)
-          d_g2 = d.groupby(['Type 1', 'Type 2'])#多列分组
-          d_g2['HP'].sum()#对单列求和
-          d_g2.agg(np.sum)#求和
           
         
           
-# 设置索引
-     d2 = d.set_index('director_name')
-     d2 = d.set_index(['director_name','duration']) #设置多个索引
-     d2.reset_index('duration')# 将索引放回到列中
-
-# loc 应付标签
-     d.loc[['Gore Verbinski','Sam Mendes']]
-     d.loc[1:4, ['director_name','duration']] #此时索引需为有规律数字
-     d2.loc[d2['duration']>150, 'duration'] # 条件索引
-     d2.loc[~(d2['duration']>150), 'duration2'] = 0 # 赋值到新的列，~表示非
-     
-# iloc 应付数字，基于位置，只能使用整数
-     d.iloc[1:4]
-     d.iloc[1:4,:3] #前闭后开
-#
-     条件问题
-     d2.query('director_name == "Gore Verbinski"')#只对列条件进行筛选，注意单引号双引号的问题
-     d['actor_2_name'].isin(['Orlando Bloom'])#判断是否在列中
-     d2.ix['Sam Mendes',1:4] #ix是万能索引，但是已经不鼓励使用了
-     
-     d2[[keys_l[0]]] #将 series 变成 dataframe
-     d2.loc[('James Cameron',['UK','USA']),['duration']] #首先排序，对多重索引进行筛选，逗号后面是筛选列，加中括号返回dataframe类型
-     d2.loc[(slice(None),['UK','USA']),['duration']]#对第一列不做筛选
-     d2.set_index('duration', append = True, inplace = True)#append保留之前索引，inplace = True将结果运用到本dataframe中并取代
-     inplace 是个神奇的东西
-     d2.loc[(slice(None), ['UK', 'USA'], slice(100,200)),:] #slice可以选取范围
-     
-     idx = pd.IndexSlice
-     d2.loc[idx[:,['USA'],100:200],:] # idx可以代替slice
-     
-     d2.xs(('James Cameron',100),level=(0,2),drop_level = False) #xs也是索引的一种方式，只是不能查询范围
-     
-     s.value_count()
-     
-
-
-
-
