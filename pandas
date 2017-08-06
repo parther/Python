@@ -129,6 +129,7 @@
      d.iloc[1:4]
      d.iloc[1:4,:3] #前闭后开
 #
+     条件问题
      d2.query('director_name == "Gore Verbinski"')#只对列条件进行筛选，注意单引号双引号的问题
      d['actor_2_name'].isin(['Orlando Bloom'])#判断是否在列中
      d2.ix['Sam Mendes',1:4] #ix是万能索引，但是已经不鼓励使用了
