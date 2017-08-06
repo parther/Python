@@ -145,6 +145,8 @@
      
      d2.xs(('James Cameron',100),level=(0,2),drop_level = False) #xs也是索引的一种方式，只是不能查询范围
      
+     s.value_count()
+     
 
 
 
