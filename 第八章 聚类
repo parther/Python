@@ -1,10 +1,14 @@
+# 问题：
+设置聚类的标签
+ndarray
+===
+
 # 重点：
 
 kmodel.fit(g_d2[[u'肝气郁结证型系数']].as_matrix()).as_matrix() # as_matrix()
-     将d或s 转为array类型，适应 fit 参数需要
+     将d或s 转为ndarray类型，适应 fit 参数需要
      fit 要求 d 的所有数据为 float 或 int 类型
-     g_d2[[u'肝气郁结证型系数']]，一定要为 dataframe 类型，使用as_matrix()才有效
-     
+     g_d2[[u'肝气郁结证型系数']]，一定要为 dataframe 类型，使用as_matrix()才有效   
 SyntaxError: invalid character in identifier 一般是标点符号出了问题
-ndarray
+赋值的时候经常会出现 A value is trying to be set on a copy of a slice from a DataFrame 需要用copy 的方法解决
 
