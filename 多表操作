@@ -1,0 +1,15 @@
+d1 = DataFrame(np.array([['a1','b1','c1','d1'],['a2','b2','c3','d2'],['a3','b3','c2','d1']]), columns = ['a','b','c','d'], index = [3,4,5])
+d2 = DataFrame(np.array([['A1','B1','c1','d1'],['A2','B2','c2','d2'],['A3','B3','c2','d3']]), columns = ['A','B','c','d'])
+
+pd.concat([d2,d1]) # 纵向排列，堆加
+pd.concat([d2,d1],axis = 1) # 基于索引，横向排列
+pd.concat([d2,d1],axis = 1,ignore_index = True) # ignore_index 重排索引，从0开始
+
+pd.merge(d1, d2, how = 'inner', on = 'd', suffixes = ('_left','_rigeht'))
+# suffixes 加后缀，以示区别
+# how = 可选 left，right，outer，表示联接方式。outer 表示显示左边或者右边
+
+pd.merge(d1, d2, how = 'inner', on = ['c','d'], suffixes = ('_left','_rigeht')) # on 可以约束 多个id
+pd.merge(d3, d2, how = 'inner', left_on = 'C', right_on = 'c') # left_on 指定列 联接
+
+pd.merge(d4, d2, how = 'inner', left_index = True, right_on = 'c') # 指定索引列 联接
