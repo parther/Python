@@ -1,6 +1,7 @@
 # 问题：
 设置聚类的标签，默认是从0开始的数组
 ndarray
+ndarray 排序
 ===
 
 # 重点：
@@ -11,4 +12,33 @@ kmodel.fit(g_d2[[u'肝气郁结证型系数']].as_matrix()).as_matrix() # as_mat
      g_d2[[u'肝气郁结证型系数']]，一定要为 dataframe 类型，使用as_matrix()才有效   
 SyntaxError: invalid character in identifier 一般是标点符号出了问题
 赋值的时候经常会出现 A value is trying to be set on a copy of a slice from a DataFrame 需要用copy 的方法解决，赋值之前先copy
+kmodel.labels_ # 对应每个数据的 分组标号，聚类中心与分组标号是对应的
+Exception: Data must be 1-dimensional 多维数组是不行的，无法转成series格式  pd.DataFrame(a)可以
+===
+
+import numpy as np
+import pandas as pd
+from pandas import Series, DataFrame
+
+path = '数据源\\图书配套数据、代码\\chapter8\\demo\\data\\data.csv' 
+f = open(path, encoding = 'utf-8')
+d = pd.read_csv(f)
+d2 = d[['肝气郁结证型系数','热毒蕴结证型系数','冲任失调证型系数','气血两虚证型系数','脾胃虚弱证型系数','肝肾阴虚证型系数','TNM分期']]
+
+from sklearn.cluster import KMeans
+k = 4
+kmodel = KMeans(n_clusters = k, n_jobs = 4)
+kmodel.fit(g_d2[[u'肝气郁结证型系数']].as_matrix())
+
+a = kmodel.cluster_centers_
+a_d = pd.DataFrame(a).sort_values(by = 0)#nd 只能用 dataframe 转换
+a_d2 = a_d.rolling(2).mean()
+a_l = [0] + list(a_d2.iloc[1:][0]) + [g_d2['肝气郁结证型系数'].max()] #series 尽量用 list 转换
+a_l_s = pd.cut(g_d2['肝气郁结证型系数'], a_l, labels = ['a1','a2','a3','a4'])
+
+g_d4 = g_d2.copy()
+g_d4['分组'] = a_l_s
+g_d5 = g_d4[['TNM分期','分组']].set_index('TNM分期')
+
+
 
