@@ -2,6 +2,8 @@
 设置聚类的标签，默认是从0开始的数组
 ndarray
 ndarray 排序
+用 类 解决循环问题
+用函数的方法代替 for in
 ===
 
 # 重点：
@@ -14,6 +16,8 @@ SyntaxError: invalid character in identifier 一般是标点符号出了问题
 赋值的时候经常会出现 A value is trying to be set on a copy of a slice from a DataFrame 需要用copy 的方法解决，赋值之前先copy
 kmodel.labels_ # 对应每个数据的 分组标号，聚类中心与分组标号是对应的
 Exception: Data must be 1-dimensional 多维数组是不行的，无法转成series格式  pd.DataFrame(a)可以
+[ l2[1] + str(i) for i in range(4)]  str(i)类型
+KeyError: '热毒蕴结证型系数' 一般是不存在这个值
 ===
 
 import numpy as np
@@ -39,6 +43,31 @@ a_l_s = pd.cut(g_d2['肝气郁结证型系数'], a_l, labels = ['a1','a2','a3','
 g_d4 = g_d2.copy()
 g_d4['分组'] = a_l_s
 g_d5 = g_d4[['TNM分期','分组']].set_index('TNM分期')
+=
+
+from sklearn.cluster import KMeans #cluster是子库，KMeans是类，用help可以看到
+
+typelabel_dic = {'肝气郁结证型系数':'A','热毒蕴结证型系数':'B','冲任失调证型系数':'C',
+                 '气血两虚证型系数':'D','脾胃虚弱证型系数':'E','肝肾阴虚证型系数':'F'} 
+k = 4
+keys_l = list(typelabel_dic.keys())
+result_d = pd.DataFrame()
+
+if __name__ == '__main__': #判断是否主窗口运行，如果是将代码保存为.py后运行，则需要这句，如果直接复制到命令窗口运行，则不需要这句
+    for i in range(len(keys_l)):
+        kmodel = KMeans(n_clusters = k, n_jobs = 4)
+        kmodel.fit(d2[[keys_l[i]]].as_matrix())
+        
+        a = kmodel.cluster_centers_
+        a_d = pd.DataFrame(a).sort_values(by = 0)#nd 只能用 dataframe 转换
+        a_d2 = a_d.rolling(2).mean()
+        a_l = [0] + list(a_d2.iloc[1:][0]) + [d2[keys_l[i]].max()] #series 尽量用 list 转换
+
+        a_l_s = pd.cut(d2[keys_l[i]], a_l, labels = [ typelabel_dic[keys_l[i]] + str(j) for j in range(4)])
+
+        d3 = d2.copy()
+        d3[typelabel_dic[keys_l[i]]] = a_l_s
+        d3[['TNM分期',typelabel_dic[keys_l[i]]]].to_csv('数据源\\图书配套数据、代码\\chapter8\\demo\\'+ typelabel_dic[keys_l[i]] +'.csv')
 
 
 
