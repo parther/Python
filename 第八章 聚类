@@ -18,8 +18,10 @@ kmodel.labels_ # 对应每个数据的 分组标号，聚类中心与分组标�
 Exception: Data must be 1-dimensional 多维数组是不行的，无法转成series格式  pd.DataFrame(a)可以
 [ l2[1] + str(i) for i in range(4)]  str(i)类型
 KeyError: '热毒蕴结证型系数' 一般是不存在这个值
+TypeError 一般是数据类型错了，比如中括号代表的list
 ===
 
+# 单个数据聚类
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
@@ -45,6 +47,7 @@ g_d4['分组'] = a_l_s
 g_d5 = g_d4[['TNM分期','分组']].set_index('TNM分期')
 =
 
+# 多个数据聚类，用 for in
 from sklearn.cluster import KMeans #cluster是子库，KMeans是类，用help可以看到
 
 typelabel_dic = {'肝气郁结证型系数':'A','热毒蕴结证型系数':'B','冲任失调证型系数':'C',
@@ -68,6 +71,42 @@ if __name__ == '__main__': #判断是否主窗口运行，如果是将代码保�
         d3 = d2.copy()
         d3[typelabel_dic[keys_l[i]]] = a_l_s
         d3[['TNM分期',typelabel_dic[keys_l[i]]]].to_csv('数据源\\图书配套数据、代码\\chapter8\\demo\\'+ typelabel_dic[keys_l[i]] +'.csv')
+=
+
+# 多个数据聚类，用def
+from sklearn.cluster import KMeans #cluster是子库，KMeans是类，用help可以看到
+def f(x):
+    kmodel = KMeans(n_clusters = k, n_jobs = 4)
+    kmodel.fit(d2[[x]].as_matrix())
+        
+    a = kmodel.cluster_centers_
+    a_d = pd.DataFrame(a).sort_values(by = 0)#nd 只能用 dataframe 转换
+    a_d2 = a_d.rolling(2).mean()
+    a_l = [0] + list(a_d2.iloc[1:][0]) + [d2[x].max()] #series 尽量用 list 转换
+
+    a_l_s = pd.cut(d2[x], a_l, labels = [ x + str(j) for j in range(4)]) #灵活处理
+
+    d3 = d2.copy()
+    d3[x+'n'] = a_l_s
+    
+    return d3[[x+'n', 'TNM分期']]
+    
+m_d1 = f('肝气郁结证型系数')
+m_d2 = f('热毒蕴结证型系数')
+m_d3 = f('冲任失调证型系数')
+m_d4 = f('气血两虚证型系数')
+m_d5 = f('脾胃虚弱证型系数')
+m_d6 = f('肝肾阴虚证型系数')
+
+im_d1 = m_d1.set_index('TNM分期')
+im_d2 = m_d2.set_index('TNM分期')
+im_d3 = m_d3.set_index('TNM分期')
+im_d4 = m_d4.set_index('TNM分期')
+im_d5 = m_d5.set_index('TNM分期')
+im_d6 = m_d6.set_index('TNM分期', drop = False) # 保留列表
+
+m_d = pd.concat([im_d1, im_d2, im_d3, im_d4, im_d5, im_d6], axis = 1)
+m_d2 = m_d.reset_index(['TNM分期'])
 
 
 
