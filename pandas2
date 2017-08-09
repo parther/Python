@@ -17,4 +17,6 @@
 unique
 isnull
 
+pd.notnull(s) s.notnull() 是一样的，都返回布尔值series
+
 
