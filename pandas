@@ -1,7 +1,8 @@
 # Series 用法
 新建
      s = pd.Series([1, 2, 3, 4], index = ['a', 'b', 'c', 'd']) # index 可以为数组，series
-     s = pd.Series({'a2':1, 'b2':2}) 
+     s = pd.Series({'a2':1, 'b2':2})
+     s = pd.Series(1, index = range(10)) # 创建值为 1 的数组
      
 查询    
      s.index # 查询索引 
