@@ -1,3 +1,9 @@
+# 问题：
+     多维转1维 a[pd.notnull(a)]
+
+===
+
+# 关联规则
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
@@ -9,33 +15,21 @@ d2 = d[['肝气郁结证型系数n','热毒蕴结证型系数n' ,'冲任失调�
 =
 
 from apriori2 import * #导入自行编写的apriori函数
-import time #导入时间库用来计算用时
 
-start = time.clock() #计时开始
-print(u'\n转换原始数据至0-1矩阵...')
-ct = lambda x : pd.Series(1, index = x[pd.notnull(x)]) #转换0-1矩阵的过渡函数
-b = list( map(ct, d2.as_matrix()) )#用map方式执行
-d3 = pd.DataFrame(b).fillna(0)
-end = time.clock() #计时结束
-print(u'\n转换完毕，用时：%0.2f秒' %(end-start))
-del b #删除中间变量b，节省内存
+s_f = lambda x : pd.Series(1, index = x[pd.notnull(x)]) #转换0-1矩阵的过渡函数，pd.notnull(x) 可以适用于array
+L = list( map(s_f, d2.as_matrix()) )#用map方式执行 接收 iterable 类型数据，所以需要转换 d2.as_matrix() 转成array
+d3 = pd.DataFrame(L).fillna(0) # l 由多个series组成 转成dataframe 会出现空值
+#del l #删除中间变量b，节省内存
 
-support = 0.06 #最小支持度
+support = 0.059 #最小支持度
 confidence = 0.75 #最小置信度
 ms = '---' #连接符，默认'--'，用来区分不同元素，如A--B。需要保证原始表格中不含有该字符
-
-start = time.clock() #计时开始
-print(u'\n开始搜索关联规则...')
 find_rule(d3, support, confidence, ms)
-end = time.clock() #计时结束
-print(u'\n搜索完成，用时：%0.2f秒' %(end-start))
 ===
 
-from __future__ import print_function
+# 链接函数，打包成module
 import pandas as pd
-
-#自定义连接函数，用于实现L_{k-1}到C_k的连接
-def connect_string(x, ms):
+def connect_string(x, ms): #自定义连接函数，用于实现L_{k-1}到C_k的连接
     x = list(map(lambda i:sorted(i.split(ms)), x))
     l = len(x[0])
     r = []
@@ -45,8 +39,7 @@ def connect_string(x, ms):
                 r.append(x[i][:l-1]+sorted([x[j][l-1],x[i][l-1]]))
     return r
 
-#寻找关联规则的函数
-def find_rule(d, support, confidence, ms = u'--'):
+def find_rule(d, support, confidence, ms = u'--'): #寻找关联规则的函数
     result = pd.DataFrame(index=['support', 'confidence']) #定义输出结果
   
     support_series = 1.0*d.sum()/len(d) #支持度序列
