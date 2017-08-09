@@ -59,4 +59,6 @@
 # 将数据强制转换为 同一类型，一般是 str
      a = np.array([1,'a',3])
      a = np.array([1,'a',True]) # True代表1，False 代表0
-   
+===
+
+多维数组可以转换为dataframe格式，可以互转  
