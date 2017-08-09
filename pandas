@@ -1,13 +1,13 @@
 # Series 用法
 新建
-     s = pd.Series([1, 2, 3, 4], index = ['a', 'b', 'c', 'd'])
-     s = pd.Series({'a2':1, 'b2':2})   
-查询索引     
-     s.index
-查询所有的值
-     s.values
-查询指定索引的值          
-     s['a']
+     s = pd.Series([1, 2, 3, 4], index = ['a', 'b', 'c', 'd']) # index 可以为数组，series
+     s = pd.Series({'a2':1, 'b2':2}) 
+     
+查询    
+     s.index # 查询索引 
+     s.values # 查询所有的值          
+     s['a'] # 查询指定索引的值
+     
 条件查询
      s[s==1] # s==1 返回的是布尔值
      s[s>1]
@@ -19,6 +19,7 @@
 命名
      s.name = 'a_series'#Series命名
      s.index.name = 'the_index'#索引命名
+     
 赋值
      s['a'] = 5#修改value值
 查询和修改数据类型
