@@ -1,11 +1,35 @@
 # 参考：
      http://blog.csdn.net/panda1234lee/article/details/52311593
-# 问题：
-     plt.annotate
+===
+
+%matplotlib inline # 可以省略 plt.show()
+
+折线图
+     x = np.linspace(1,2*np.pi, num = 100)
+     y = np.sin(x)
+     plt.plot(x,y)
      
-# 重点：
-# 用法
-     plt.plot(x,y,s)
+柱状图。x y 需一一对应
+     x = np.arange(len(y))
+     y = np.random.randint(0,9,size=(4))
+     plt.bar(x,y)
+     plt.barh(x,y) # 条形图
+
+多维柱状图
+     x = np.arange(len(y))
+     y = np.random.randint(0,9,size=(3,3))
+     
+     plt.bar(x, y[0],color='r',width = 0.25)
+     plt.bar(x+0.25, y[1],color='b',width = 0.25)
+     plt.bar(x+0.5, y[2],color='y',width = 0.25)
+     
+堆积柱状图
+     x = np.arange(len(y))
+     y = np.random.randint(0,9,size=(3,3))
+     
+     plt.bar(x,y[0],color = 'r',width = 0.25)
+     plt.bar(x,y[1], bottom = y[0],color = 'y',width = 0.25)
+     plt.bar(x,y[2], bottom = y[0]+y[1],color = 'b',width = 0.25)
      
 # 饼图
 # 直方图
