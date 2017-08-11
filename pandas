@@ -76,6 +76,7 @@
      排序
           c.sort_values(by = 'b')#按值排序
           c.sort_index(axis=1, ascending=False)# axis表示按纵列排序
+     d.drop_duplicates(subset = [1,2]) # 删除重复值
  
 基本运算
      d['animals'] = d['boys'] + d['girls'] #列相加
