@@ -4,6 +4,7 @@ d2 = DataFrame(np.array([['A1','B1','c1','d1'],['A2','B2','c2','d2'],['A3','B3',
 pd.concat([d2,d1]) # 纵向排列，堆加
 pd.concat([d2,d1],axis = 1) # 基于索引，横向排列
 pd.concat([d2,d1],axis = 1,ignore_index = True) # ignore_index 重排索引，从0开始
+pd.concat([c, s], axis = 1)  # 可以连接 dataframe 和 series
 
 pd.merge(d1, d2, how = 'inner', on = 'd', suffixes = ('_left','_rigeht'))
 # suffixes 加后缀，以示区别
