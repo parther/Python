@@ -1,19 +1,19 @@
 # 参考：http://blog.csdn.net/youngbit007/article/details/54288603
 # 单个分组
-     d2 = d.groupby(['Type 1'])
+     g_d2 = d.groupby(['Type 1'])
      
 # 多个分组
-     d2 = d.groupby(['Type 1','Type 2'])
+     g_d2 = d.groupby(['Type 1','Type 2'])
      
 # 基本使用方法
-     d2.first() # 获得分组的第一个值
-     d2.size()#获得每个分组值 的数量
-     d2.describe()#获得基本统计量
-          d2[['HP']].sum() # [] 返回数据框
-          d2['HP'].sum() # 返回series
-          d3.agg(np.sum)[['HP']] #效果一样
-     d2.groups # 获得分组数据对应的索引
-     d2.get_group('Bug') #获得单个分组数据对应的索引 及 其他 值 
+     g_d2.first() # 获得分组的第一个值
+     g_d2.size()#获得每个分组值 的数量
+     g_d2.describe()#获得基本统计量
+          g_d2[['HP']].sum() # [] 返回数据框
+          g_d2['HP'].sum() # 返回series
+          g_d2.agg(np.sum)[['HP']] #效果一样
+     g_d2.groups # 获得分组数据对应的索引
+     g_d2.get_group('Bug') #获得单个分组数据对应的索引 及 其他 值 
      
      for name,group in g_d1: # name,group 一般配合一起使用，单独使用会打印出整个数据表。name 是分组值，group 是分组对应的其他内容
          print(name)
