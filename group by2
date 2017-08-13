@@ -14,8 +14,19 @@
      d2.groups # 获得分组数据对应的索引
      d2.get_group('Bug') #获得单个分组数据对应的索引 及 其他 值 
      
-     for name,group in g_d1: # name,group 一般配合一起使用，单独使用会打印出整个数据表
+     for name,group in g_d1: # name,group 一般配合一起使用，单独使用会打印出整个数据表。name 是分组值，group 是分组对应的其他内容
          print(name)
          print(group)
+         
+     for (k1,k2),group in g_d2: # 两个分组的情况，内容同上，主要是用于打印显示数据
+         print (k1,k2)
+         print (group)
 
-dict(list(group_d2)) # 将分组用dict的形式 显示出来
+dict(list(g_d1)) # 将分组用dict的形式 显示出来
+dict(list(g_d1))['a'] # 将某个分组值 用表格打印出来
+g_d2[['data1']].mean() # 选择某列 进行聚合
+
+# 按列分组
+dic = {'a':'red','b':'red','c':'blue','d':'blue','e':'red'} # 使用 series 是一样的效果
+g_d1 = d.groupby(dic,axis=1)
+g_d1.count()
