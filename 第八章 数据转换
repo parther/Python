@@ -1,0 +1,24 @@
+import numpy as np
+import pandas as pd
+from pandas import Series, DataFrame
+
+path = '数据源\\图书配套数据、代码\\chapter11\\demo\\data\\discdata.csv' 
+f = open(path, encoding = 'utf-8')
+d = pd.read_csv(f)
+d.head()
+
+d2 = d[d['TARGET_ID'] == 184].copy()
+g_d2 = d2.groupby('COLLECTTIME') #以时间分组
+# d2[d2['ENTITY'] == 'C:\\'][['VALUE','COLLECTTIME']] # 可以做到行列转换
+
+def attr_trans(x): #定义属性变换函数
+    result = pd.Series(index = ['SYS_NAME', 'CWXT_DB:184:C:\\', 'CWXT_DB:184:D:\\', 'COLLECTTIME2'])
+    result = pd.Series(index = ['SYS_NAME', 'CWXT_DB:184:C:\\', 'CWXT_DB:184:D:\\'])
+    result['SYS_NAME'] = x['SYS_NAME'].iloc[0]
+    result['COLLECTTIME2'] = x['COLLECTTIME'].iloc[0]
+    result['CWXT_DB:184:C:\\'] = x['VALUE'].iloc[0]
+    result['CWXT_DB:184:D:\\'] = x['VALUE'].iloc[1]
+    return result
+
+data_processed = group_d2.apply(attr_trans)
+data_processed
