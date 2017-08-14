@@ -1,1 +1,53 @@
+平稳性检验 - 差分运算 - 白噪声检验 - 模型识别
+BIC 定阶，确认模型的p、q参数 - 白噪声检验
+模型参数估计 - 预测 - 检验
+
+为了验证序列中有用的信息是否被提取完毕了，需要对序列进行白噪声检验
+模型识别。采用极大似然比方法 进行模型的参数估计。采用BIC对模型定阶，确定pq参数
+
+
+The pandas.core.datetools module is deprecated
+from statsmodels.tsa.stattools import adfuller as ADF
+from pandas.core import datetools
+===
+
+# 用 adf 检测平稳性
+import numpy as np
+import pandas as pd
+from pandas import Series, DataFrame
+
+path = '数据源\\图书配套数据、代码\\chapter11\\demo\\tmp\\data_processed.csv'
+f = open(path, encoding = 'utf-8')
+d = pd.read_csv(f)
+del d['COLLECTTIME']
+d2 = d.copy()
+d2.head()
+
+d3 = d2.iloc[:len(d2)-5]
+from statsmodels.tsa.stattools import adfuller as ADF
+
+diff_x = 0
+adf = ADF(d3['CWXT_DB:184:D:\\'])
+while adf[1] > 0.05:
+    diff_x = diff_x + 1
+    adf = ADF(d3['CWXT_DB:184:D:\\'].diff(diff_x).dropna())
+
+print(u'原始序列经过%s阶差分后归于平稳，p值为%s' %(diff_x, adf[1]))
+===
+
+# 检验白噪声
+from statsmodels.stats.diagnostic import acorr_ljungbox
+
+[[lb], [p]] = acorr_ljungbox(d3['CWXT_DB:184:D:\\'], lags = 1)
+if p < 0.05:
+    print(u'原始序列为非白噪声序列，对应的p值为：%s' %p)
+else:
+    print(u'原始该序列为白噪声序列，对应的p值为：%s' %p)
+
+[[lb], [p]] = acorr_ljungbox(d3['CWXT_DB:184:D:\\'].diff().dropna(), lags = 1)
+if p < 0.05:
+    print(u'一阶差分序列为非白噪声序列，对应的p值为：%s' %p)
+else:
+    print(u'一阶差分该序列为白噪声序列，对应的p值为：%s' %p)
+
 
