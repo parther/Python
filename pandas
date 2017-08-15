@@ -69,7 +69,8 @@
           
      del d['animals'] # 删除列
           
-     d.fillna(-1) #填充空值
+     d.fillna(-1) # 填充空值
+     d.dropna() # 删除空值行
           
      pd.DataFrame.from_dict(dic, orient='index') # 建立dataframe 时 转换行列
      
