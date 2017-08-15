@@ -35,6 +35,7 @@
      单位根小于1，被解释变量随时间收敛，期望和方差也会与时间无关
 
 # AR模型 也是多元线性回归模型
+     auto regressive model
      受过去p期序列值的影响，误差项是当期的随机干扰项
      AR（p）模型，PACF会在lag（延迟）=p时截尾
      偏自相关截尾，自相关拖尾，则选择AR过程；反之选择MA；若均拖尾则选择ARIMA
@@ -43,10 +44,12 @@
      偏自相关系数，考虑中间k-1个随机变量对自相关系数的影响
 
 # MA 模型 受过去q期随机干扰值 ε的影响
+     MA模型(moving average model)滑动平均模型
      MA（q）模型，ACF会在lag=q时截尾
      对原始序列建立ARIMA(0，1，1)模型
 
 # ARIMA 模型
+     Autoregressive Integrated Moving Average Model,
      受过去p期序列 和过去q期误差项的共同影响
      自相关和偏自相关系数拖尾
      残差在数理统计中是指实际观察值与估计值（拟合值）之间的差
