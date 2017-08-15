@@ -24,7 +24,7 @@
 赋值
      s['a'] = 5#修改value值
 查询和修改数据类型
-     s.dtype()
+     s.dtype
      s.astype('str')
 
 常用属性和方法
