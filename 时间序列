@@ -57,9 +57,11 @@
 #
      https://www.zhihu.com/question/31833683/answer/116155144
      一阶矩，二阶矩。一阶矩是期望值，二阶矩是变量与期望值差的平方求期望，相当于方差
+     
      1阶差分 对相距一期的两个序列值作减法
      差分运算具有强大的信息提取能力，很多非平稳序列差分运算后变成了平稳序列
-     p值 也可以判断是非平稳白噪声序列
+     
+     Q统计量 LB 统计量 用于检验序列的纯随机性，然后计算 p 值，与显著性水平相比较，判断是非平稳白噪声序列
 # BIC 
      http://blog.csdn.net/xianlingmao/article/details/7891277
      贝叶斯信息量 bayesian information criterion
