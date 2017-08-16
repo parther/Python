@@ -4,6 +4,8 @@
           The pandas.core.datetools module is deprecated
           from pandas.core import datetools
      bic_matrix_d = pd.DataFrame(bic_matrix) 定阶的值在变
+     lagnum = 12
+     p2 = (p < 0.05).sum()
 
 # 基本步骤：
      平稳性检验 - 差分运算 - 白噪声检验
@@ -65,16 +67,14 @@ print(u'BIC最小的p值和q值为：%s、%s' %(p,q))
 ===
 
 # 模型检验
-lagnum = 12 #残差延迟个数
-from statsmodels.tsa.arima_model import ARIMA #建立ARIMA(0,1,1)模型
 arima = ARIMA(s, (0, 1, 1)).fit() #建立并训练模型
-s_pred = arima.predict(typ = 'levels') #预测
-pred_error = (s_pred - s).dropna() #计算残差
+s_pred = arima.predict(typ = 'levels') # 反过来预测s的值，缺少s的第一个值，因为前面dropna了
+pred_error = (s_pred - s).dropna() # 残差序列中如果不是白噪声，说明信息未提取完整，需修改模型
 
-from statsmodels.stats.diagnostic import acorr_ljungbox #白噪声检验
-lb, p= acorr_ljungbox(pred_error, lags = lagnum)
-h = (p < 0.05).sum() #p值小于0.05，认为是非白噪声。
-if h > 0:
+lagnum = 12 # 
+p = acorr_ljungbox(pred_error, lags = lagnum)[1]
+p2 = (p < 0.05).sum() #p值小于0.05，认为是非白噪声,白噪声是相加的值
+if p2 > 0:
   print(u'模型ARIMA(0,1,1)不符合白噪声检验')
 else:
   print(u'模型ARIMA(0,1,1)符合白噪声检验')
