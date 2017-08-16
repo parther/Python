@@ -3,6 +3,7 @@
      from statsmodels.tsa.stattools import adfuller as ADF
           The pandas.core.datetools module is deprecated
           from pandas.core import datetools
+     bic_matrix_d = pd.DataFrame(bic_matrix) 定阶的值在变
 
 # 基本步骤：
      平稳性检验 - 差分运算 - 白噪声检验
@@ -28,7 +29,7 @@ d2.head()
 from statsmodels.tsa.stattools import adfuller as ADF
 diff_x = 0
 adf = ADF(s)
-while adf[1] > 0.004: # 验证差分后的结果是否符合 
+while adf[1] > 0.004: # 验证差分后的结果是否符合 显著性水平 
     diff_x = diff_x + 1
     adf = ADF(s.diff(diff_x).dropna())
 print('通过 %s 次差分 后的 p 值为：%s' %(diff_x, adf[1]))
@@ -36,36 +37,27 @@ print('通过 %s 次差分 后的 p 值为：%s' %(diff_x, adf[1]))
 
 # 检验白噪声
 from statsmodels.stats.diagnostic import acorr_ljungbox
-
-[[lb], [p]] = acorr_ljungbox(d4['CWXT_DB:184:D:\\'], lags = 1)
+[p] = acorr_ljungbox(s, lags = 1)[1]
 if p < 0.05:
     print(u'原始序列为非白噪声序列，对应的p值为：%s' %p)
 else:
+    [p] = acorr_ljungbox(s.diff().dropna(), lags = 1)[1]
     print(u'原始该序列为白噪声序列，对应的p值为：%s' %p)
-
-[[lb], [p]] = acorr_ljungbox(d4['CWXT_DB:184:D:\\'].diff().dropna(), lags = 1)
-if p < 0.05:
-    print(u'一阶差分序列为非白噪声序列，对应的p值为：%s' %p)
-else:
-    print(u'一阶差分该序列为白噪声序列，对应的p值为：%s' %p)
 ===
 
-# 模型识别
-d4= d3.iloc[:len(d3)-5]
-s = d4['CWXT_DB:184:D:\\']
+#定阶, 模型识别，确定模型
 from statsmodels.tsa.arima_model import ARIMA
-#定阶
 pmax = int(len(s)/10) #一般阶数不超过length/10
 qmax = int(len(s)/10) #一般阶数不超过length/10
 bic_matrix = [] #bic矩阵
 for p in range(pmax+1):
-  tmp = []
-  for q in range(qmax+1):
-    try: #存在部分报错，所以用try来跳过报错。
-      tmp.append(ARIMA(s, (p,1,q)).fit().bic)
-    except:
-      tmp.append(None)
-  bic_matrix.append(tmp)
+    tmp = []
+    for q in range(qmax+1):
+        try: #存在部分报错，所以用try来跳过报错。
+            tmp.append(ARIMA(s, (p,1,q)).fit().bic)
+        except:
+            tmp.append(None)
+    bic_matrix.append(tmp)
 
 bic_matrix = pd.DataFrame(bic_matrix) #从中可以找出最小值
 p,q = bic_matrix.stack().idxmin() #先用stack展平，然后用idxmin找出最小值位置。
