@@ -1,15 +1,17 @@
-平稳性检验 - 差分运算 - 白噪声检验 - 模型识别
-BIC 定阶，确认模型的p、q参数 - 白噪声检验
-模型参数估计 - 预测 - 检验
+# 问题：
+     极大似然比方法
+     from statsmodels.tsa.stattools import adfuller as ADF
+          The pandas.core.datetools module is deprecated
+          from pandas.core import datetools
 
-为了验证序列中有用的信息是否被提取完毕了，需要对序列进行白噪声检验
-模型识别。采用极大似然比方法 进行模型的参数估计。采用BIC对模型定阶，确定pq参数
-时间列须为 时间格式，时间由前到后排序
-差分 本行减去上一行的差值
+# 基本步骤：
+     平稳性检验 - 差分运算 - 白噪声检验
+     BIC 定阶，模型识别，确认模型的p、q参数
+     预测 - 检验
 
-The pandas.core.datetools module is deprecated
-from statsmodels.tsa.stattools import adfuller as ADF
-from pandas.core import datetools
+# 
+     时间列须为 时间格式，时间由前到后排序
+     差分 本行减去上一行的差值
 ===
 
 # 平稳性检验
@@ -17,22 +19,19 @@ import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
 
-path = '数据源\\图书配套数据、代码\\chapter11\\demo\\tmp\\data_processed.csv'
-f = open(path, encoding = 'utf-8')
-d = pd.read_csv(f)
-d2 = d.copy()
-d2['COLLECTTIME'] = pd.to_datetime(d2['COLLECTTIME'])
-d3 = d2.sort_values('COLLECTTIME').set_index('COLLECTTIME')
-d3.head()
+f = '数据源\\图书配套数据、代码\\chapter11\\demo\\tmp\\discdata_processed.xls'
+d = pd.read_excel(f, index_col = 'COLLECTTIME')
+d2 = d.iloc[:len(d)-5]
+s = d2['CWXT_DB:184:D:\\']
+d2.head()
 
 from statsmodels.tsa.stattools import adfuller as ADF
 diff_x = 0
-adf = ADF(d4['CWXT_DB:184:D:\\'])
-while adf[1] > 0.05:
+adf = ADF(s)
+while adf[1] > 0.004: # 验证差分后的结果是否符合 
     diff_x = diff_x + 1
-    adf = ADF(d4['CWXT_DB:184:D:\\'].diff(diff_x).dropna())
-
-print(u'原始序列经过%s阶差分后归于平稳，p值为%s' %(diff_x, adf[1]))
+    adf = ADF(s.diff(diff_x).dropna())
+print('通过 %s 次差分 后的 p 值为：%s' %(diff_x, adf[1]))
 ===
 
 # 检验白噪声
