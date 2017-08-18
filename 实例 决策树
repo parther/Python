@@ -1,0 +1,34 @@
+#
+    决策图生成
+===
+
+#使用ID3决策树算法预测销量高低
+import pandas as pd
+import numpy as np
+
+#参数初始化
+inputfile =  '数据源\\图书配套数据、代码\\chapter5\\demo\\data\\sales_data.xls'
+data = pd.read_excel(inputfile, index_col = u'序号') #导入数据
+
+#数据是类别标签，要将它转换为数据
+#用1来表示“好”、“是”、“高”这三个属性，用-1来表示“坏”、“否”、“低”
+data[data == u'好'] = 1
+data[data == u'是'] = 1
+data[data == u'高'] = 1
+data[data != 1] = -1
+x = data.iloc[:,:3].as_matrix().astype(int)
+y = data.iloc[:,3].as_matrix().astype(int)
+
+from sklearn.tree import DecisionTreeClassifier as DTC
+dtc = DTC(criterion='entropy') #建立决策树模型，基于信息熵
+dtc.fit(x, y) #训练模型
+
+# dtc.predict(a) # a必须是多维数组，用于预测
+
+# 决策图生成
+import pydotplus
+from sklearn import tree
+clf = dtc.fit(x, y)
+dot_data = tree.export_graphviz(clf, out_file=None) 
+graph = pydotplus.graph_from_dot_data(dot_data) 
+graph.write_pdf("dt.pdf") 
