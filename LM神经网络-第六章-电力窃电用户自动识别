@@ -6,6 +6,7 @@
      ValueError: Invalid argument "metric" passed to K.function with Theano backend
      This error means that you are running Keras version 0 (e.g. 0.3.2) but running code that was written for Keras version 1. 
      You can upgrade to Keras 1, or remove metrics=['accuracy'] from the function call to model.compile()
+     net.compile(loss = 'binary_crossentropy', optimizer = 'adam')
  
 #
      修改Keras.jason 解决backend 问题
@@ -31,19 +32,37 @@ from keras.layers.core import Dense, Activation #导入神经网络层函数、�
 
 netfile = '数据源\\图书配套数据、代码\\chapter6\\demo\\tmp\\net.model' #构建的神经网络模型存储路径
 net = Sequential() #建立神经网络
-net.add(Dense(input_dim = 3, units = 10)) #添加输入层（3节点）到隐藏层（10节点）的连接
+net.add(Dense(input_dim = 3, units = 10)) #添加输入层（3节点，自变量3个属性）到隐藏层（10节点）的连接
 net.add(Activation('relu')) #隐藏层使用relu激活函数
 net.add(Dense(input_dim = 10, units = 1)) #添加隐藏层（10节点）到输出层（1节点）的连接
 net.add(Activation('sigmoid')) #输出层使用sigmoid激活函数
-net.compile(loss = 'binary_crossentropy', optimizer = 'adam', class_mode = "binary") #编译模型，使用adam方法求解
+net.compile(loss = 'binary_crossentropy', optimizer = 'adam') #编译模型，使用adam方法求解
 
 net.fit(train[:,:3], train[:,3], epochs=1000, batch_size=1) #训练模型，循环1000次
 net.save_weights(netfile) #保存模型 
+
+net.predict_classes(a) # 预测 net.predict出来的只是概率
 ===
  
 # 构建混淆矩阵
 from cm_plot import * #导入自行编写的混淆矩阵可视化函数
 cm_plot(train[:,3], predict_result).show() #显示混淆矩阵可视化结果
+=
+
+# 混淆矩阵函数
+def cm_plot(y, yp):
+    from sklearn.metrics import confusion_matrix
+    cm = confusion_matrix(y, yp) 
+    import matplotlib.pyplot as plt 
+    plt.matshow(cm, cmap=plt.cm.Greens) 
+    plt.colorbar() 
+    for x in range(len(cm)): 
+        for y in range(len(cm)):
+            plt.annotate(cm[x,y], xy=(x, y), horizontalalignment='center', verticalalignment='center')
+  
+    plt.ylabel('True label') 
+    plt.xlabel('Predicted label') 
+    return plt
 ===
  
 # 构建ROC曲线
