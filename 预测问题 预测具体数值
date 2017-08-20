@@ -1,1 +1,16 @@
+#
+     from sklearn.linear_model import Lasso lasso 怎样选择特征向量
+     
+#
+     主成分降维 和 筛选特征向量 不一样。主成分针对x值，特征向量针对(x,y)值
+     主成分降维 用新的数据代替旧的数据
+     
+#
+from sklearn.decomposition import PCA
+pca = PCA(3) # 选择主成分
+pca.fit(x)
+pca.components_ # 显示主成分
+pca.explained_variance_ratio_ # 显示主成分贡献率
+low_d = pca.transform(d) # 生成可以替代 原数据的 数据
+     
 
