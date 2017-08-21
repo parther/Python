@@ -13,5 +13,64 @@ pca.fit(x)
 pca.components_ # 显示主成分
 pca.explained_variance_ratio_ # 显示主成分贡献率
 low_x = pca.transform(x) # 生成可以替代 原数据的 数据
-     
+===
 
+#
+import numpy as np
+import pandas as pd
+
+f = u'数据源\\第3周\\data\\data.xlsx'
+d = pd.read_excel(f,header=0,index_col=0)
+d.head()
+
+# 数据探索
+d.describe() #基本统计量
+d.skew() #偏度
+d.kurt()
+d.corr()
+import matplotlib.pyplot as plt
+d.iloc[:,:10].hist()
+plt.show()
+
+# 提取主成分
+from sklearn.decomposition import PCA,FactorAnalysis
+pca = PCA()
+pca.fit(d)
+pca.explained_variance_ratio_
+
+pca2=PCA(n_components=2)
+reduce_X = pca2.fit_transform(d)
+reduce_X
+
+# 选择合适的 K 聚类
+from sklearn.cluster import AgglomerativeClustering, KMeans
+from scipy.spatial.distance import cdist
+
+K = range(1, 8)
+meandistortions = []
+for k in K:
+    kmeans = KMeans(n_clusters=k)
+    kmeans.fit(reduce_X)
+    meandistortions.append(sum(np.min(cdist(reduce_X, kmeans.cluster_centers_, 'euclidean'), axis=1)) / reduce_X.shape[0])
+    # cdist 返回距离
+    
+# 从图中找到变化最陡峭的点作为分割点
+fig = plt.figure()   
+plt.plot(K, meandistortions, 'bx-')
+plt.xlabel('k')
+plt.ylabel('The average degree of distortion')
+plt.title('Best k')
+plt.show() 
+
+# 导出聚类结果
+model = KMeans(n_clusters = 4)
+model.fit(reduce_X)
+ 
+r1 = pd.Series(model.labels_).value_counts() # 统计各个类别的数目，索引为类别
+r2 = pd.DataFrame(model.cluster_centers_) # 找出聚类中心，索引为类别
+r = pd.concat([r2, r1], axis = 1) #横向连接（0是纵向），得到聚类中心对应的类别下的数目
+r.columns = list(pd.DataFrame(reduce_X).columns) + [u'类别数目'] #重命名表头
+ 
+ 
+ 
+ 
