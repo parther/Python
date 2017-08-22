@@ -6,13 +6,7 @@
      主成分降维 用新的数据代替旧的数据
      峰度 偏度 http://blog.sina.com.cn/s/blog_514922200101c2dn.html
      矩阵距离计算 http://blog.csdn.net/pipisorry/article/details/48814183
-#
-from sklearn.decomposition import PCA
-pca = PCA(3) # 选择主成分
-pca.fit(x)
-pca.components_ # 显示主成分
-pca.explained_variance_ratio_ # 显示主成分贡献率
-low_x = pca.transform(x) # 生成可以替代 原数据的 数据
+     
 ===
 
 #
@@ -36,11 +30,10 @@ plt.show()
 from sklearn.decomposition import PCA,FactorAnalysis
 pca = PCA()
 pca.fit(d)
-pca.explained_variance_ratio_
+pca.explained_variance_ratio_  # 查看贡献率
 
 pca2=PCA(n_components=2)
-reduce_X = pca2.fit_transform(d)
-reduce_X
+reduce_X = pca2.fit_transform(d) # 数据降维 
 
 # 选择合适的 K 聚类
 from sklearn.cluster import AgglomerativeClustering, KMeans
@@ -69,7 +62,7 @@ model.fit(reduce_X)
 r1 = pd.Series(model.labels_).value_counts() # 统计各个类别的数目，索引为类别
 r2 = pd.DataFrame(model.cluster_centers_) # 找出聚类中心，索引为类别
 r = pd.concat([r2, r1], axis = 1) #横向连接（0是纵向），得到聚类中心对应的类别下的数目
-r.columns = list(pd.DataFrame(reduce_X).columns) + [u'类别数目'] #重命名表头
+r.columns = list(pd.DataFrame(reduce_X).columns) + [u'类别数目'] # 重命名表头
  
  
  
