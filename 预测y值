@@ -4,8 +4,10 @@
 #
      ImportError: `save_weights` requires h5py
      OSError: Unable to create file 更改存储路径到根路径
-     
-#
+===
+
+
+# 神经网络预测数据
 import numpy as np
 import pandas as pd
 f = u'数据源\\第3周\\data\\data1_GM11.xls'
@@ -31,8 +33,7 @@ model.compile(loss='mean_squared_error', optimizer='adam') # 编译模型
 model.fit(train_x, train_y, epochs = 1000, batch_size = 16) # 训练模型，学习一万次
 model.save_weights(modelfile) # 保存模型参数
 
-# 预测，还原测试集
-x = ((data[feature] - data_mean[feature])/data_std[feature]).as_matrix() # 均值和方差使用的是样本数据
+x = ((data[feature] - data_mean[feature])/data_std[feature]).as_matrix() # 预测，还原测试集。均值和方差使用的是样本数据
 data[u'y_pred'] = model.predict(x) * data_std['y'] + data_mean['y'] # 均值和方差使用的是样本数据
 data.to_excel(out_f)
 
