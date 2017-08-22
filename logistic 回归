@@ -3,7 +3,7 @@
 
 # 
      模型训练的输入值类型必须为 array，所以需将 df 转为 array
-     mportError: cannot import name '_ellipsoid' # 重装scipy，numpy+mkl
+     importError: cannot import name '_ellipsoid' # 重装scipy，numpy+mkl
 ===
 
 import numpy as np
