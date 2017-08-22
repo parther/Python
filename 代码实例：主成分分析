@@ -1,1 +1,14 @@
+#
+     主成分降维 和 筛选特征向量 不一样。主成分针对x值，特征向量针对(x,y)值
+     主成分降维 用新的数据代替旧的数据
+     峰度 偏度 http://blog.sina.com.cn/s/blog_514922200101c2dn.html
+     矩阵距离计算 http://blog.csdn.net/pipisorry/article/details/48814183
+     
+# 提取主成分
+from sklearn.decomposition import PCA,FactorAnalysis
+pca = PCA()
+pca.fit(d)
+pca.explained_variance_ratio_  # 查看贡献率
 
+pca2=PCA(n_components=2)
+reduce_X = pca2.fit_transform(d) # 数据降维 
