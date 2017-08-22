@@ -1,5 +1,6 @@
 # 
      是否一定要标准化
+     标准化的使用样本数据的均值和方差还原预测值 是否可靠
      
 #
      ImportError: `save_weights` requires h5py
