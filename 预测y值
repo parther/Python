@@ -1,6 +1,43 @@
 # 
      是否一定要标准化
-     ImportError: `save_weights` requires h5py.
      
 #
+     ImportError: `save_weights` requires h5py
      OSError: Unable to create file 更改存储路径到根路径
+     
+#
+import numpy as np
+import pandas as pd
+f = u'数据源\\第3周\\data\\data1_GM11.xls'
+out_f = u'数据源\\第3周\\data\\revenue2.xls' # 神经网络预测后保存的结果
+model_f = 'a.model' # 模型保存路径
+d = pd.read_excel(f) # 读取数据
+feature_l = ['x2', 'x3', 'x5', 'x8','x10','x12'] # 特征所在列
+
+train_d = d.loc[range(1994,2014)].copy() # 取样本数据，并将之标准化
+mean_s = train_d.mean()
+std_s = train_d.std()
+zs_train_d = (train_d - mean_s)/std_s # 数据标准化
+train_x = zs_train_d[feature].as_matrix() # 特征数据
+train_y = zs_train_d['y'].as_matrix() # 标签数据
+
+from keras.models import Sequential
+from keras.layers.core import Dense, Activation
+model = Sequential() # 建立模型
+model.add(Dense(input_dim=6, units=12))
+model.add(Activation('relu')) # 用relu函数作为激活函数，能够大幅提供准确度
+model.add(Dense(input_dim=12, units=1))
+model.compile(loss='mean_squared_error', optimizer='adam') # 编译模型
+model.fit(train_x, train_y, epochs = 1000, batch_size = 16) # 训练模型，学习一万次
+model.save_weights(modelfile) # 保存模型参数
+
+# 预测，还原测试集
+x = ((data[feature] - data_mean[feature])/data_std[feature]).as_matrix() # 均值和方差使用的是样本数据
+data[u'y_pred'] = model.predict(x) * data_std['y'] + data_mean['y'] # 均值和方差使用的是样本数据
+data.to_excel(out_f)
+
+import matplotlib.pyplot as plt # 画出预测结果图，比较差异
+d[['y','test_y']].plot(subplots = False, style=['b-o','r-*']) # 是否在同一坐标轴上
+plt.show()
+
+
