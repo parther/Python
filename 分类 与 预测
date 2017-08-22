@@ -13,4 +13,11 @@ https://www.zhihu.com/question/27367177
       定义：分类模型预测结果的情形表
       参考：https://www.zhihu.com/question/36883196/answer/138939089
  
-
+# 处理回归预测类问题时候，拿到数据需做一系列的统计量分析
+     d.describe() #基本统计量
+     d.skew() #偏度
+     d.kurt()
+     d.corr()
+     import matplotlib.pyplot as plt
+     d.iloc[:,:10].hist()
+     plt.show()
