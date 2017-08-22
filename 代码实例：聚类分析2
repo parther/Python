@@ -1,0 +1,28 @@
+# 选择合适的 K 聚类
+from sklearn.cluster import AgglomerativeClustering, KMeans
+from scipy.spatial.distance import cdist
+
+K = range(1, 8)
+meandistortions = []
+for k in K:
+    kmeans = KMeans(n_clusters=k)
+    kmeans.fit(reduce_X)
+    meandistortions.append(sum(np.min(cdist(reduce_X, kmeans.cluster_centers_, 'euclidean'), axis=1)) / reduce_X.shape[0])
+    # cdist 返回距离
+    
+# 从图中找到变化最陡峭的点作为分割点
+fig = plt.figure()   
+plt.plot(K, meandistortions, 'bx-')
+plt.xlabel('k')
+plt.ylabel('The average degree of distortion')
+plt.title('Best k')
+plt.show() 
+
+# 导出聚类结果
+model = KMeans(n_clusters = 4)
+model.fit(reduce_X)
+ 
+r1 = pd.Series(model.labels_).value_counts() # 统计各个类别的数目，索引为类别
+r2 = pd.DataFrame(model.cluster_centers_) # 找出聚类中心，索引为类别
+r = pd.concat([r2, r1], axis = 1) #横向连接（0是纵向），得到聚类中心对应的类别下的数目
+r.columns = list(pd.DataFrame(reduce_X).columns) + [u'类别数目'] # 重命名表头
