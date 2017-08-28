@@ -1,1 +1,10 @@
-http://dwz.cn/6rbr8v
+# http://dwz.cn/6rbr8v
+
+#
+numpy是Python的数值计算扩展，专门用来处理矩阵，它的运算效率比列表更高效
+scipy是基于numpy的科学计算包，包括统计、线性代数等工具
+
+pandas是一个更常用的包，在抽象概念上它更接近我们熟悉的excel和sql
+DataFrame是一个表格型的数据结构，类似一张excel表格或者SQL
+
+pandas中可以用query函数以类SQL语言执行查询
