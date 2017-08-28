@@ -1,1 +1,11 @@
-http://dwz.cn/6rbBGr
+# http://dwz.cn/6rbBGr
+
+# 问题
+无法直接读取csv文件
+
+#
+AttributeError 一般是属性或者方法错误
+
+#
+一般来说，csv的数据都是干净的
+apply中，参数是添加在函数后面，而不是里面的
