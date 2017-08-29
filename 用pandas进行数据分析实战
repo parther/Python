@@ -11,7 +11,7 @@ AttributeError 一般是属性或者方法错误
 一般来说，csv的数据都是干净的
 apply中，参数是添加在函数后面，而不是里面的
 
-axis是apply中的参数，axis=0表示将函数用在行，axis=1则是列
+?axis是apply中的参数，axis=0表示将函数用在行，axis=1则是列
 
 一般分类数据用value_counts，数值数据用describe，这是最常用的两个统计函数
 plt.style.use('ggplot') 使用R语言中的ggplot2配色作为绘图风格，纯粹为了好看
@@ -22,3 +22,5 @@ isin()
 mean，count，其实都省略了agg
 agg和apply是不同的，虽然某些方法相近，比如求sum，count等
 pply支持更细的粒度，它能按组进行复杂运算，将数据拆分合并，而agg则必须固定为列
+
+cut可以等距划分，传入一个数字就好
