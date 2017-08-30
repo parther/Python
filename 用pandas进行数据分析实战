@@ -4,6 +4,7 @@
 无法直接读取csv文件
 unstack() pivot透视表 reset_index()恢复
 count value_count
+value_count计算series中每个数据的个数
 plt.subplots()
 
 #
