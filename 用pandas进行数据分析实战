@@ -2,10 +2,13 @@
 
 # 问题
 无法直接读取csv文件
-unstack()
+unstack() pivot透视表 reset_index()恢复
+count value_count
+plt.subplots()
 
 #
 AttributeError 一般是属性或者方法错误
+安装出问题 可以下载源文件搞定
 
 #
 一般来说，csv的数据都是干净的
@@ -24,3 +27,6 @@ agg和apply是不同的，虽然某些方法相近，比如求sum，count等
 pply支持更细的粒度，它能按组进行复杂运算，将数据拆分合并，而agg则必须固定为列
 
 cut可以等距划分，传入一个数字就好
+
+'e,f,d'.split(',') 将str被分割的每个字符转换成列表
+各行元素已经转换成了列表，所以value_counts会逐行计算列表中的标签
