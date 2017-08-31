@@ -6,6 +6,9 @@ unstack() pivot透视表 reset_index()恢复
 count value_count
 value_count计算series中每个数据的个数
 plt.subplots()
+unique_d2.groupby('city').describe().round(2) 如何排名
+分组情况下的平均薪资直方图 unique_d2.hist(by='city')
+t_d.groupby([0,1])[3].mean().unstack().apply(lambda x:x/x.sum(),axis = 0) 这里堆积起来还是列
 
 #
 AttributeError 一般是属性或者方法错误
@@ -23,7 +26,7 @@ plt.style.use('ggplot') 使用R语言中的ggplot2配色作为绘图风格，纯
 数据分析的一大思想是细分维度
 isin()
 
-mean，count，其实都省略了agg
+mean，count，其实都省略了agg agg(['count','mean'])
 agg和apply是不同的，虽然某些方法相近，比如求sum，count等
 pply支持更细的粒度，它能按组进行复杂运算，将数据拆分合并，而agg则必须固定为列
 
@@ -31,3 +34,6 @@ cut可以等距划分，传入一个数字就好
 
 'e,f,d'.split(',') 将str被分割的每个字符转换成列表
 各行元素已经转换成了列表，所以value_counts会逐行计算列表中的标签
+unique_d2.groupby('city').boxplot(figsize=(20,16)) 分组画图也就是按分组来每个都画
+t_d.groupby(0)[1].agg(lambda x:x.max() - x.min()) 分组的话，那就是agg 组内运算
+unique_d2.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) # 按城市 显示salary 箱线图
