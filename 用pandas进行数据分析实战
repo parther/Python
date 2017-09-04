@@ -35,8 +35,11 @@ pply支持更细的粒度，它能按组进行复杂运算，将数据拆分合�
 
 cut可以等距划分，传入一个数字就好
 
-'e,f,d'.split(',') 将str被分割的每个字符转换成列表
+'e,f,d'.split(',') 将str被分割的每个字符转换成列表，后面接函数将会转换为表格
 各行元素已经转换成了列表，所以value_counts会逐行计算列表中的标签
 unique_d2.groupby('city').boxplot(figsize=(20,16)) 分组画图也就是按分组来每个都画
 t_d.groupby(0)[1].agg(lambda x:x.max() - x.min()) 分组的话，那就是agg 组内运算
 unique_d2.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) # 按城市 显示salary 箱线图
+agg 参数可以跟基本统计量，不能直接接pd 的函数
+apply 某种程度上是可以替代agg 的
+t_d.dropna(axis=1) 分删除纵的横的
