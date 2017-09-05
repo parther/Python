@@ -54,3 +54,6 @@ g_d1.apply(top) # apply 传入的是最一般化的 函数
 
 agg,transform,apply 都传入函数，但用法不同
 
+value_count计算series中每个数据的个数 count记录有多少行数据
+s.value_counts()
+pd.value_counts 将数据变为索引，对应位置显示1
