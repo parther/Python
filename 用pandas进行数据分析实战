@@ -4,45 +4,45 @@
 向dataframe插入数据
 直方图的分组打印出来
 
-value_count计算series中每个数据的个数 count记录有多少行数据
-unstack 适用于两个分组，直观显示
+#
+AttributeError 一般是属性或者方法错误
+安装模块出问题，可以下载源文件本地安装
+一般来说，对比Excel，csv的数据都是干净的
 
 判断是否符合正态分布
 http://blog.csdn.net/QimaoRyan/article/details/72861387
 p值要大于0.05
 
-使用双坐标轴
-d.plot(kind='bar', subplots=True)
+value_count计算series中每个数据的个数 count记录有多少行数据
+s.value_counts()
+pd.value_counts 将数据变为索引，对应位置显示1
+unstack 适用于两个分组，直观显示
 
-boxplot 仅仅适用于dataframe
-AttributeError 一般是属性或者方法错误
-安装模块出问题，可以下载源文件本地安装
 
-一般来说，csv的数据都是干净的
 
 apply中，第二个参数是所引入函数的第二个参数
 axis是apply,agg中的参数。axis=0表示将函数作用在d的行，axis=1则是列。此时的统计函数不起作用
 d.apply(lambda x:x[0]+x[1] , axis=0)
-
 apply,agg 参数可以直接接 基本统计量函数的名称，接其他函数前面必须带pd且没有分号
 unique_d2.apply('std')
+unique_d2.apply(pd.value_counts)
 
+使用双坐标轴
+d.plot(kind='bar', subplots=True)
+boxplot 仅仅适用于dataframe
 plt.style.use('ggplot') 使用R语言中的ggplot2配色作为绘图风格，纯粹为了好看
 
 isin
-unique_d2[unique_d2['city'].isin(['上海','北京'])]
-
+     unique_d2[unique_d2['city'].isin(['上海','北京'])]
 pd.cut 将数据分组
-pd.cut(s,3,labels=['a','b','c'])
-
+     pd.cut(s,3,labels=['a','b','c'])
 split 将str的每个字符分割，并且输出列表
-
 按城市分组，显示salary 箱线图
-d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) 
-
-
-d.dropna(axis=1) 分删除纵的横的
-d.info()# 数据基础信息
+     d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) 
+分删除纵的横的空值
+     d.dropna(axis=1) 
+数据基础信息
+     d.info()
 
 从招聘网站上爬取的 数据分析师相关岗位 的招聘信息
 目的：站在求职者的角度，分析 数据分析师相关岗位 的招聘数量和薪酬水平
