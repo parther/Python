@@ -1,0 +1,83 @@
+import numpy as np
+import pandas as pd
+from pandas import Series, DataFrame
+
+path = '数据源\\DataAnalyst.csv'
+f = open(path, encoding = 'utf-8')
+d = pd.read_csv(f)
+
+#d.info()# 数据基础信息
+#len(d['positionId'].unique()) # 不重复数据个数
+unique_d = d.drop_duplicates(subset = 'positionId', keep = 'first') # 删除重复值，保留第一个值
+
+def cut_word(x, method = 'bottom'):
+    position_i = x.find('-') # find 确定在字符串中的位置
+    len_i = len(x)
+    if position_i != -1:
+        bottom_x = x[:position_i-1]# 此时的切片是返回数据中的字符
+        top_x = x[position_i+1 : len_i-1]
+    else:
+        bottom_x = x[:x.upper().find('K')]
+        top_x = bottom_x
+    if method == 'bottom':
+        return bottom_x
+    if method == 'top':
+        return top_x
+    
+unique_d2 = unique_d.copy()
+unique_d2['bottom_salary'] = unique_d2['salary'].apply(cut_word).astype('int')
+unique_d2['top_salary'] = unique_d2['salary'].apply(cut_word,method = 'top').astype('int')
+unique_d2['avg_salary'] = unique_d2.apply(lambda x:(x['bottom_salary'] + x['top_salary'])/2, axis=1)
+unique_d2 = unique_d2[['city','industryField','companyShortName','companySize','positionName', 'positionLables','education','workYear','avg_salary']] # 删除无用属性
+
+import matplotlib.pyplot as plt
+plt.style.use('ggplot')
+%matplotlib inline
+
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+
+# 按城市分组，平均薪酬，工作机会比较
+unique_d2.groupby('city')['avg_salary'].agg(['mean','count']).sort_values(by='count',ascending=False)
+#unique_d2.groupby('city')['avg_salary'].describe()[['mean','count']] # 跟上面的结果是一样的
+unique_d2.groupby('city')['avg_salary'].agg(['mean','count']).round(2).sort_values(by='count',ascending=False).iloc[0:5,1].cumsum()/unique_d2.groupby('city')['avg_salary'].agg(['mean','count']).round(2).sort_values(by='count',ascending=False).iloc[:,1].sum()
+#unique_d2.groupby('city')['avg_salary'].describe()['mean'].sort_values(ascending=False).plot(kind='bar',legend=True)
+#unique_d2.groupby('city')['avg_salary'].describe()['count'].sort_values(ascending=False).plot(kind='bar',legend=True)
+# 按城市分组，工作机会前5的城市分别为北京，上海，深圳，杭州，广州，占到工作机会的百分之90以上
+# 按城市分组，平均薪资前五的城市分别为北京，深圳，上海，杭州，苏州，区间不超过2k
+
+# 按行业分组，平均薪酬，工作机会比较
+unique_d2.groupby('industryField')['avg_salary'].agg(['mean','count']).sort_values(by='count',ascending=False).iloc[0:10]
+unique_d2.groupby('industryField')['avg_salary'].agg(['mean','count']).round(2).sort_values(by='count',ascending=False).iloc[0:10,1].cumsum()/unique_d2.groupby('industryField')['avg_salary'].agg(['mean','count']).round(2).sort_values(by='count',ascending=False).iloc[:,1].sum()
+# 按行业分组，工作机会前10的行业标签为移动互联网，数据服务，金融，电子商务，企业服务，O2O，占到工作机会的百分之60以上
+# 按行业分组，薪资最低为15.78
+
+# 按公司规模分组，平均薪酬，工作机会比较
+unique_d2.groupby('companySize')['avg_salary'].agg(['mean','count']).sort_values(by='count',ascending=False).iloc[0:10]
+# 按公司规模分组，工作机会前3的公司规模大于150人，占到工作机会的百分之70以上，薪酬大于行业的平均薪资
+
+# 按学历水平分组，平均薪酬，工作机会比较
+unique_d2.groupby('education')['avg_salary'].agg(['mean','count']).sort_values(by='count',ascending=False)
+unique_d2.groupby('education')['avg_salary'].agg(['mean','count']).round(2).sort_values(by='count',ascending=False).iloc[0:3,1].cumsum()/unique_d2.groupby('education')['avg_salary'].agg(['mean','count']).round(2).sort_values(by='count',ascending=False).iloc[:,1].sum()
+# 按学历水平分组，本科以上占工作机会的将近百分之80，本科的平均薪资与行业平均薪资基本持平，硕士和博士的薪资超出平均水平
+
+# 按工作经验分组，平均薪酬，工作机会比较
+unique_d2.groupby('workYear')['avg_salary'].agg(['mean','count']).sort_values(by='count',ascending=False)
+unique_d2.groupby('workYear')['avg_salary'].agg(['mean','count']).round(2).sort_values(by='count',ascending=False).iloc[0:3,1].cumsum()/unique_d2.groupby('workYear')['avg_salary'].agg(['mean','count']).round(2).sort_values(by='count',ascending=False).iloc[:,1].sum()
+# 可以看出1年以上工作经验占到工作机会的将近百分之70,3年以上工作经验的平均薪资可达20k以上，远超行业的平均薪资
+
+# 按工作经验和学历分组，指定城市，平均薪酬，工作机会比较
+unique_d2[unique_d2['city']=='广州'].groupby(['education','workYear'])['avg_salary'].count().round(2).unstack()
+unique_d2[unique_d2['city']=='广州'].groupby(['education','workYear'])['avg_salary'].mean().round(2).unstack()
+#unique_d2[unique_d2['city']=='广州'].groupby(['education','workYear'])['avg_salary'].count().round(2).unstack().plot(kind='bar',figsize=(9,7))
+# 可以根据求职者自身的学历和工作经验，判断薪酬，判断工作机会的大小
+
+split_d = unique_d2['positionLables'].str[1:-1].str.replace(' ','').str.replace("'",'').dropna().str.split(',').apply(pd.value_counts)
+split_d2 = split_d.unstack().dropna().reset_index().groupby('level_0').count().sort_values(by ='level_1', ascending=False)
+
+from wordcloud import WordCloud
+wordclod = WordCloud(width=900,height=400,background_color='white',font_path='数据源\\MSYH.TTC')
+wordclod.fit_words(split_d2['level_1'])
+plt.figure(figsize=(15,15))
+plt.imshow(wordclod)
+plt.axis('off')
