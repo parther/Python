@@ -7,6 +7,7 @@
      a = np.arange(1, 10) # 相当于 range， 创建整数数组
           a = np.arange(1,10,2)# 2 是间隔
      a = np.linspace(1,10, num = 4) # 将1到10的数据分成 4 等分，相当于构建等差数列
+     线性等分向量（linear space）
           
 创建矩阵（多维数组）
      a = np.ones([2,2]) # 创建2行2列 全是 1 的矩阵
