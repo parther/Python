@@ -1,12 +1,8 @@
 # http://dwz.cn/6rbBGr
 
 # 问题
-无法直接读取csv文件
-unstack() pivot透视表 reset_index()恢复
-count value_count
-value_count计算series中每个数据的个数
-plt.subplots()
-unique_d2.groupby('city').describe().round(2) 如何排名
+value_count计算series中每个数据的个数 count记录有多少行数据
+
 分组情况下的平均薪资直方图 unique_d2.hist(by='city')
 t_d.groupby([0,1])[3].mean().unstack().apply(lambda x:x/x.sum(),axis = 0) 这里堆积起来还是列
 判断是否符合正态分布
