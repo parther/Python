@@ -8,9 +8,8 @@ pivot透视表
 向dataframe插入数据
 直方图的分组打印出来
 
-# 报错
-AttributeError 一般是属性或者方法错误
-===
+#
+一般来说，对比Excel，csv的数据都是干净的
 
 # 时间函数
 时间格式 http://blog.csdn.net/qq_22238533/article/details/70050748
