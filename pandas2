@@ -1,14 +1,19 @@
-# 参考：
+# 参考
 Python 数据分析包：pandas 基础 http://www.open-open.com/lib/view/open1402477162868.html
-时间格式 http://blog.csdn.net/qq_22238533/article/details/70050748
-oton 数据分析 链接: http://pan.baidu.com/s/1i4394wt 密码: jsrv
+soton 数据分析 链接: http://pan.baidu.com/s/1i4394wt 密码: jsrv
 
-# 问题：
+# 问题
 pivot透视表
 无法直接读取csv文件
+向dataframe插入数据
+直方图的分组打印出来
+
+# 报错
+AttributeError 一般是属性或者方法错误
 ===
 
 # 时间函数
+时间格式 http://blog.csdn.net/qq_22238533/article/details/70050748
 转换成时间格式     
      s2=pd.to_datetime(s)
 获取天数
