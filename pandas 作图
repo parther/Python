@@ -12,3 +12,10 @@ data.plot(kind='barh')
 # 直方图
      s.hist()
      d.hist()
+     
+使用双坐标轴
+d.plot(kind='bar', subplots=True)
+boxplot 仅仅适用于dataframe
+plt.style.use('ggplot') 使用R语言中的ggplot2配色作为绘图风格，纯粹为了好看
+按城市分组，显示salary 箱线图
+     d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7))
