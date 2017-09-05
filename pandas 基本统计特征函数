@@ -1,7 +1,12 @@
-# cumsum 累计求和
-     d.cumsum()
-     s.cumsum()
+# 
+cumsum 累计求和
+d.cumsum()
+s.cumsum()
 
-# rolling(2).sum() 滚动求和
-     s.rolling(3).sum() # 3 表示相邻三行 
-     d.rolling(3).sum()
+rolling(2).sum() 滚动求和
+s.rolling(3).sum() # 3 表示相邻三行 
+d.rolling(3).sum()
+
+判断是否符合正态分布
+http://blog.csdn.net/QimaoRyan/article/details/72861387
+p值要大于0.05
