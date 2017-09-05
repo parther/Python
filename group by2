@@ -53,7 +53,10 @@ g_d1.transform(lambda x: x.max()) # 传入函数，返回的是整个列表
 g_d1.apply(top) # apply 传入的是最一般化的 函数
 
 agg,transform,apply 都传入函数，但用法不同
-
-value_count计算series中每个数据的个数 count记录有多少行数据
-s.value_counts()
-pd.value_counts 将数据变为索引，对应位置显示1
+unstack 适用于两个分组，直观显示
+apply中，第二个参数是所引入函数的第二个参数
+axis是apply,agg中的参数。axis=0表示将函数作用在d的行，axis=1则是列。此时的统计函数不起作用
+d.apply(lambda x:x[0]+x[1] , axis=0)
+apply,agg 参数可以直接接 基本统计量函数的名称，接其他函数前面必须带pd且没有分号
+unique_d2.apply('std')
+unique_d2.apply(pd.value_counts)
