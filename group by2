@@ -60,3 +60,5 @@ d.apply(lambda x:x[0]+x[1] , axis=0)
 apply,agg 参数可以直接接 基本统计量函数的名称，接其他函数前面必须带pd且没有分号
 unique_d2.apply('std')
 unique_d2.apply(pd.value_counts)
+pd.cut 将数据分组
+     pd.cut(s,3,labels=['a','b','c'])
