@@ -1,1 +1,9 @@
-http://dwz.cn/6tu4AK
+# http://dwz.cn/6tu4AK
+
+# 问题
+\s+表示匹配任意空白
+pandas中有专门的时间序列方法tseries
+
+d = pd.read_csv(f, names=columns,engine='python', sep = '\s+') sep = '\s+'表示分隔符 \s+表示匹配任意空白
+d2['order_date'] = pd.to_datetime(d['order_date'], format='%Y%m%d')
+d2['month'] = d2['order_date'].values.astype('datetime64[M]') 只显示月份
