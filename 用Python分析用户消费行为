@@ -3,7 +3,14 @@
 # 问题
 \s+表示匹配任意空白
 pandas中有专门的时间序列方法tseries
+plot.hist hist
+apply axis
 
 d = pd.read_csv(f, names=columns,engine='python', sep = '\s+') sep = '\s+'表示分隔符 \s+表示匹配任意空白
 d2['order_date'] = pd.to_datetime(d['order_date'], format='%Y%m%d')
 d2['month'] = d2['order_date'].values.astype('datetime64[M]') 只显示月份
+d2.plot.scatter(y = 'order_products', x ='order_amount') 散点图表示方法
+数据透视表
+np.NaN None
+applymap针对DataFrame里的所有数据 counts_pd2 = counts_pd.applymap(lambda x : 1 if x>1 else None if x==0 else 0)
+lambda没有elif的用法
