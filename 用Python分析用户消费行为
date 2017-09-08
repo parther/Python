@@ -14,3 +14,4 @@ d2.plot.scatter(y = 'order_products', x ='order_amount') 散点图表示方法
 np.NaN None
 applymap针对DataFrame里的所有数据 counts_pd2 = counts_pd.applymap(lambda x : 1 if x>1 else None if x==0 else 0)
 lambda没有elif的用法
+s.value_counts()
