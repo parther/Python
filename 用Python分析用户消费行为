@@ -4,7 +4,10 @@
 \s+表示匹配任意空白
 pandas中有专门的时间序列方法tseries
 plot.hist hist
-apply axis
+apply axis status_amount_pd2.replace('unreg',np.NaN).apply(pd.value_counts,axis=0) 以行为索引和以列为索引 0以列为索引
+fillna
+pd.value_counts 上一篇是 如何计数的
+status_amount_pd2.replace('unreg',np.NaN).apply(lambda x : pd.value_counts(x)) 计数与案例的不一样
 
 d = pd.read_csv(f, names=columns,engine='python', sep = '\s+') sep = '\s+'表示分隔符 \s+表示匹配任意空白
 d2['order_date'] = pd.to_datetime(d['order_date'], format='%Y%m%d')
@@ -15,3 +18,4 @@ np.NaN None
 applymap针对DataFrame里的所有数据 counts_pd2 = counts_pd.applymap(lambda x : 1 if x>1 else None if x==0 else 0)
 lambda没有elif的用法
 s.value_counts()
+在运算中，None 当成了0处理，计数时不处理
