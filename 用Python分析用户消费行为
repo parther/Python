@@ -19,3 +19,6 @@ applymap针对DataFrame里的所有数据 counts_pd2 = counts_pd.applymap(lambda
 lambda没有elif的用法
 s.value_counts()
 在运算中，None 当成了0处理，计数时不处理
+life_s.dt.days[life_s.dt.days>0].mean() 将days转换为数字
+留存率也是消费分析领域的经典应用。它指用户在第一次消费后，有多少比率进行第二次消费
+和回流率的区别是留存倾向于计算第一次消费，并且有多个时间窗口
