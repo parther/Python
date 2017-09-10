@@ -1,8 +1,7 @@
 # http://dwz.cn/6rbBGr
 
 # 问题
-向dataframe插入数据
-直方图的分组打印出来
+向dataframe插入1行数据
 
 #
 AttributeError 一般是属性或者方法错误
@@ -14,11 +13,11 @@ http://blog.csdn.net/QimaoRyan/article/details/72861387
 p值要大于0.05
 
 value_count计算series中每个数据的个数 count记录有多少行数据
-s.value_counts()
-pd.value_counts 将数据变为索引，对应位置显示1
+pd.value_counts(d[0]) 与 d[0].value_counts() 等价
+pd.value_counts 与 apply结合使用，必须保证series的单个数据为列表
+(s.str.split(',')).apply(pd.value_counts)
+
 unstack 适用于两个分组，直观显示
-
-
 
 apply中，第二个参数是所引入函数的第二个参数
 axis是apply,agg中的参数。axis=0表示将函数作用在d的行，axis=1则是列。此时的统计函数不起作用
@@ -43,7 +42,9 @@ split 将str的每个字符分割，并且输出列表
      d.dropna(axis=1) 
 数据基础信息
      d.info()
+直方图的分组打印出来 使用pd.cut
 
+=
 从招聘网站上爬取的 数据分析师相关岗位 的招聘信息
 目的：站在求职者的角度，分析 数据分析师相关岗位 的招聘数量和薪酬水平
 分析流程:
