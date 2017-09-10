@@ -26,22 +26,17 @@ apply,agg 参数可以直接接 基本统计量函数的名称，接其他函数
 unique_d2.apply('std')
 unique_d2.apply(pd.value_counts)
 
-使用双坐标轴
-d.plot(kind='bar', subplots=True)
+使用双坐标轴 d.plot(kind='bar', subplots=True)
 boxplot 仅仅适用于dataframe
 plt.style.use('ggplot') 使用R语言中的ggplot2配色作为绘图风格，纯粹为了好看
+按城市分组，显示salary 箱线图 d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) 
 
-isin
-     unique_d2[unique_d2['city'].isin(['上海','北京'])]
-pd.cut 将数据分组
-     pd.cut(s,3,labels=['a','b','c'])
+isin unique_d2[unique_d2['city'].isin(['上海','北京'])]
+pd.cut 将数据分组 pd.cut(s,3,labels=['a','b','c'])
 split 将str的每个字符分割，并且输出列表
-按城市分组，显示salary 箱线图
-     d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) 
-分删除纵的横的空值
-     d.dropna(axis=1) 
-数据基础信息
-     d.info()
+
+分删空值 d.dropna(axis=1) 
+数据基础信息 d.info()
 直方图的分组打印出来 使用pd.cut
 
 =
