@@ -18,7 +18,7 @@ pd.value_counts(d[0]) 与 d[0].value_counts() 等价
 pd.value_counts 与 apply结合使用，必须保证series的单个数据为列表
 (s.str.split(',')).apply(pd.value_counts)
 
-unstack 适用于两个分组，直观显示
+unstack 多重索引或多个分组的情况下，转化成直观显示的dataframe，多次适用的情况下互相转化
 
 apply中，第二个参数是所引入函数的第二个参数
 axis是apply,agg中的参数。axis=0表示将函数作用在d的行，axis=1则是列。此时的统计函数不起作用
