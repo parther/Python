@@ -1,21 +1,13 @@
 # 问题：
-     饼图
-# 用法
-     d.plot()
-# 折线图
-# 柱状图
-data.plot(kind='bar')
-data.plot(kind='barh')
-     
-# 散点图
-     d.plot(x=0, y=1, kind='scatter')
-# 直方图
-     s.hist()
-     d.hist()
-     
-使用双坐标轴
-d.plot(kind='bar', subplots=True)
-boxplot 仅仅适用于dataframe
-plt.style.use('ggplot') 使用R语言中的ggplot2配色作为绘图风格，纯粹为了好看
-按城市分组，显示salary 箱线图
-     d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7))
+饼图
+
+#
+三种作图表达
+d.hist()
+d.plot.hist()
+d.plot(kind ='hist')
+
+分组箱线图，仅适用于dataframe d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) 
+使用双坐标轴，适用于多个维度的比较 d.plot(kind='bar', subplots=True)
+
+
