@@ -8,6 +8,7 @@ apply axis status_amount_pd2.replace('unreg',np.NaN).apply(pd.value_counts,axis=
 fillna
 concat
 for name,group in grouped
+复购率的意义
 
 #
 d = pd.read_csv(f, names=columns,engine='python', sep = '\s+') sep = '\s+'表示分隔符 \s+表示匹配任意空白
@@ -27,3 +28,9 @@ for name,group in grouped:  name是分组值，第二个循环对象group，是�
 s.shift(1) 偏移函数，整个函数向下移动,和excel上的offset差不多
 Python的优势就在于快速和灵活，远比Excel和SQL快
 基本统计量与分布结合起来看
+复购率的定义是在某时间窗口内消费两次及以上的用户在总消费用户中占比
+回购率是某一个时间窗口内消费的用户，在下一个时间窗口仍旧消费的占比。回购率代表忠诚度
+新客指第一次消费，老客指时间窗口内有过消费也称活跃用户
+不活跃用户则是时间窗口内没有消费过的老客
+回流用户是在上一个窗口中没有消费，而在当前时间窗口内有过消费的老客
+以上的时间窗口都是按月统计
