@@ -25,4 +25,5 @@ life_s.dt.days[life_s.dt.days>0].mean() 将days转换为数字
 pivot_retention_trans = pivot_retention.fillna(0).applymap(lambda x: 1 if x>0 else 0) applymap 作用于每个数据
 for name,group in grouped:  name是分组值，第二个循环对象group，是分组聚合后的结果
 s.shift(1) 偏移函数，整个函数向下移动,和excel上的offset差不多
- 
+Python的优势就在于快速和灵活，远比Excel和SQL快
+基本统计量与分布结合起来看
