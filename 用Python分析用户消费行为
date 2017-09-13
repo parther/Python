@@ -9,6 +9,7 @@ fillna
 concat
 for name,group in grouped
 复购率的意义
+代码运行速度太慢
 
 #
 d = pd.read_csv(f, names=columns,engine='python', sep = '\s+') sep = '\s+'表示分隔符 \s+表示匹配任意空白
@@ -34,7 +35,9 @@ Python的优势就在于快速和灵活，远比Excel和SQL快
 不活跃用户则是时间窗口内没有消费过的老客
 回流用户是在上一个窗口中没有消费，而在当前时间窗口内有过消费的老客
 以上的时间窗口都是按月统计
-
+d2.groupby('user_id')['order_amount','order_products'].sum().plot.hist(subplots=True, figsize=(12,8),bins=30) plot和subplot
+d2['month'].astype('str').sort_values().unique() 修改数据类型，series后面直接跟修改函数。unique跟在最后
+counts_pd.applymap(lambda x : 1 if x>1 else None if x==0 else 0)  else的用法
 ===
 数据：CDNow网站的用户购买明细
 目的：根据CDNow网站的用户购买明细，分析用户的消费行为
