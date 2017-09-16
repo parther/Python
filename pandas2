@@ -3,10 +3,9 @@ Python 数据分析包：pandas 基础 http://www.open-open.com/lib/view/open140
 soton 数据分析 链接: http://pan.baidu.com/s/1i4394wt 密码: jsrv
 
 # 问题
-pivot透视表
 无法直接读取csv文件
 向dataframe插入数据
-直方图的分组打印出来
+pandas中有专门的时间序列方法tseries
 
 #
 一般来说，对比Excel，csv的数据都是干净的
