@@ -22,10 +22,14 @@ s.values.astype('datetime64[M]')
      
 d.query('director_name == "Gore Verbinski"') # 只对列条件进行筛选，注意单引号双引号的问题
 s.unique
+d['month'].astype('str').sort_values().unique() 修改数据类型，series后面直接跟修改函数。unique跟在最后
 np.NaN None 是一样的
 
 d['actor_2_name'].isin(['Orlando Bloom']) # 判断是否在列中
 d.isnull()
 pd.notnull(s) s.notnull() 是一样的，都返回布尔值series
+
+s.shift(1) 偏移函数，整个函数向下移动,和excel上的offset差不多
+基本统计量与分布结合起来看
 
 
