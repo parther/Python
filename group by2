@@ -52,3 +52,8 @@ g_d1.agg('max') # 'max'等基本统计函数 亦可 直接作用
 g_d1.transform(lambda x: x.max()) # 传入函数，返回的是整个列表
 g_d1.apply(top) # apply 传入的是最一般化的 函数
 
+unstack 适用于两个分组，直观显示
+pd.cut 将数据分组
+pd.cut(s,3,labels=['a','b','c'])
+
+
