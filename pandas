@@ -95,7 +95,8 @@ d.sort_index(axis=1, ascending=False)# axis表示按纵列排序
      path = '数据源\\test.csv'
      f = open(path, encoding='utf-8')
      d = pd.read_csv(f, names=['a','b','c','d'], index_col=0,encoding='utf-8')
-
+读取text
+d = pd.read_csv(f, names=columns,engine='python', sep = '\s+') sep表示分隔符 \s+表示匹配任意空白
           
           
         
