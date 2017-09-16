@@ -15,7 +15,7 @@
      g_d2.groups # 获得分组数据对应的索引
      g_d2.get_group('Bug') #获得单个分组数据对应的索引 及 其他 值 
      
-     for name,group in g_d1: # name,group 一般配合一起使用，单独使用会打印出整个数据表。name 是分组值，group 是分组对应的其他内容
+     for name,group in g_d1: # name,group 一般配合一起使用，单独使用会打印出整个数据表。name 是分组值相当于索引，group 是分组对应的内容
          print(name)
          print(group)
          
