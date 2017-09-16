@@ -6,10 +6,10 @@ pandas中有专门的时间序列方法tseries
 plot.hist hist
 apply axis status_amount_pd2.replace('unreg',np.NaN).apply(pd.value_counts,axis=0) 以行为索引和以列为索引 0以列为索引
 fillna
-concat
+pd.concat
 for name,group in grouped
-复购率的意义
-代码运行速度太慢
+复购率的意义 忠诚度
+代码运行速度太慢 64位
 三个月作为时间窗口统计
 
 #
@@ -23,11 +23,9 @@ applymap针对DataFrame里的所有数据 counts_pd2 = counts_pd.applymap(lambda
 lambda没有elif的用法
 在运算中，None 当成了0处理，计数时不处理
 life_s.dt.days[life_s.dt.days>0].mean() 将days转换为数字
+
 留存率也是消费分析领域的经典应用。它指用户在第一次消费后，有多少比率进行第二次消费
 和回流率的区别是留存倾向于计算第一次消费，并且有多个时间窗口
-pivot_retention_trans = pivot_retention.fillna(0).applymap(lambda x: 1 if x>0 else 0) applymap 作用于每个数据
-for name,group in grouped:  name是分组值，第二个循环对象group，是分组聚合后的结果
-s.shift(1) 偏移函数，整个函数向下移动,和excel上的offset差不多
 Python的优势就在于快速和灵活，远比Excel和SQL快
 基本统计量与分布结合起来看
 复购率的定义是在某时间窗口内消费两次及以上的用户在总消费用户中占比
@@ -35,7 +33,10 @@ Python的优势就在于快速和灵活，远比Excel和SQL快
 新客指第一次消费，老客指时间窗口内有过消费也称活跃用户
 不活跃用户则是时间窗口内没有消费过的老客
 回流用户是在上一个窗口中没有消费，而在当前时间窗口内有过消费的老客
-以上的时间窗口都是按月统计
+
+for name,group in grouped:  name是分组值，第二个循环对象group，是分组聚合后的结果
+s.shift(1) 偏移函数，整个函数向下移动,和excel上的offset差不多
+
 d2.groupby('user_id')['order_amount','order_products'].sum().plot.hist(subplots=True, figsize=(12,8),bins=30) plot和subplot
 d2['month'].astype('str').sort_values().unique() 修改数据类型，series后面直接跟修改函数。unique跟在最后
 counts_pd.applymap(lambda x : 1 if x>1 else None if x==0 else 0)  else的用法
