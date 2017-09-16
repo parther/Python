@@ -1,0 +1,180 @@
+import numpy as np
+import pandas as pd
+from pandas import Series,DataFrame
+from datetime import datetime
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif'] = ['SimHei']#用来显示中文标签
+plt.rcParams['axes.unicode_minus'] = False#用来显示负号
+%matplotlib inline
+plt.style.use('ggplot')
+
+columns = ['user_id','order_date','order_products','order_amount']
+f = '数据源\\CDNOW_master.txt'
+d = pd.read_csv(f, names=columns,engine='python', sep = '\s+')
+#d.head()
+
+d[['order_products','order_amount']].describe().round(2).T
+# 均值是2.41，标准差为2.33，稍具波动性。order_products的75%四分位数为3，说明大量用户单次购买不超过3件
+# 购买金额order_amount同理，大部分小单
+# 消费类数据的基本上是长尾类型，大部分小单用户贡献的利润2成左右，俗称二八定律
+
+d2 = d.copy()
+d2['order_date'] = pd.to_datetime(d['order_date'], format='%Y%m%d')
+d2['month'] = d2['order_date'].values.astype('datetime64[M]')
+# 我们将月份作为消费行为的主要事件窗口，选择哪种时间窗口取决于消费频率
+
+d2.groupby('user_id').sum()[['order_products','order_amount']].describe().round(2).T
+#d2.groupby('user_id').sum().plot.scatter(y = 'order_products', x ='order_amount')
+# 以用户分组，将用户数据相加。从用户角度看，平均每个用户购买7件商品，客单价为106
+# order_products 和 order_amount 的平均数和75%四分位数接近，说明存在少量高额高量消费用户
+# 销量和消费金额呈正相关，用户数据比较健康
+
+plt.figure(figsize=(12,4))
+plt.subplot(121)
+d2.groupby('user_id')['order_amount'].sum().hist(bins=300)
+plt.title('order_amount')
+plt.subplot(122)
+d2.groupby('user_id')['order_products'].sum().hist(bins=300)
+plt.title('order_products')
+pd.cut(d2.groupby('user_id')['order_amount'].sum(),30).value_counts()
+# 以用户分组，数据相加。结合直方图，可以看出大部分用户的消费金额和消费数量集中在小额部分，说明购买力确实不强
+
+
+d2.groupby('month')[['order_products','order_amount']].sum()
+#d2.groupby('month')[['order_products','order_amount']].sum().corr()
+#d2.groupby('month')[['order_products','order_amount']].sum().plot(kind ='line',subplots=True,figsize=(9,7))
+# 以月份分组，将用户数据相加。销量在1997年1-4月较高，随后趋于平稳，消费金额亦是如此。销量与消费金额有很强的正相关性
+
+d2.groupby('user_id')['month'].min().value_counts()
+# 所有用户首次消费的时间，主要集中在1997年前三个月。数据代表的是某段时间内的消费者18个月的消费行为，有局限性
+# 数据上消费了的用户定义为新客
+
+d2.groupby('user_id')['month'].max().value_counts()
+# 用户最后消费时间
+
+counts_pd = d2.pivot_table(index='user_id', columns='month', values='order_date',aggfunc='count').fillna(0)
+column_month = d2['month'].astype('str').sort_values().unique()# 与上面的columns对应
+counts_pd.columns = column_month
+#counts_pd.head()
+# 数据透视。显示用户在每个月的消费次数
+
+counts_pd2 = counts_pd.applymap(lambda x : 1 if x>1 else None if x==0 else 0)
+# 将消费1次的显示0，大于1次的显示1，无消费的显示None
+
+pd.DataFrame(counts_pd2.sum()/counts_pd2.count(), columns=[u'复购率'])
+#pd.DataFrame(counts_pd2.sum()/counts_pd2.count(), columns=[u'复购率']).plot()
+# 前期复购率较低为6%左右，是因为有大量的新客产生，后期趋于稳定在20%左右
+
+amount_pd = d2.pivot_table(index='user_id', columns='month', values='order_amount',aggfunc='mean').fillna(0)
+column_month = d2['month'].astype('str').sort_values().unique()
+amount_pd.columns = column_month
+# 透视表，values 改成金额，以表示是否消费
+
+amount_pd2 = counts_pd.applymap(lambda x : 1 if x>0 else 0)
+# 存在消费的显示1
+
+def purchase_return(x):
+    l = []
+    for i in range(17):
+        if x[i] ==1:
+            if x[i+1]==1:
+                l.append(1)
+            if x[i+1]==0:
+                l.append(0)
+        else:
+            l.append(np.NaN)
+    l.append(np.NaN) # 形成列表
+    return l
+return_amount_pd2 = amount_pd2.apply(purchase_return, axis=1) # axis=1 同行列的运算
+# 将本月有消费，下个月也有消费的标记为1，下个月没消费的标记为0
+
+#pd.DataFrame(return_amount_pd2.sum()/return_amount_pd2.count(), columns=[u'回购率'])
+#pd.DataFrame(return_amount_pd2.sum()/return_amount_pd2.count(), columns=[u'回购率']).plot(figsize=(10,4))
+# 前期回购率约为15%，后面达到35%。前期基本为新客，后期为老客，老客忠诚率大于新客
+# 用户消费特征。综合来看，老客质量稍高，回购率较好达35%，复购率稍微差点
+
+def active_status(x):
+    l = []
+    for i in range(18):
+        if x[i]==0:
+            if len(l)>0:
+                if l[i-1] =='unreg':
+                    l.append('unreg')
+                else:
+                    l.append('unactive')
+            else:
+                l.append('unreg')
+                
+        else: # 使用与上面保持一致
+            if len(l)==0:
+                l.append('new')
+            else:
+                if l[i-1] =='unactive':
+                    l.append('return')
+                elif l[i-1] =='unreg':
+                    l.append('new')
+                else:
+                    l.append('active')
+    return l
+status_amount_pd2 = amount_pd2.apply(active_status, axis=1)
+# 定义新客，活跃，不活跃，回流
+# 新客定义为本月消费，之前都未曾消费。活跃定义本月消费，为上月有消费。不活跃定义为上月有消费，本月未消费。回流定义为本月有消费，之前有消费但上月没有
+
+count_status_amount_pd2 = status_amount_pd2.replace('unreg',np.NaN).apply(lambda x : pd.value_counts(x))
+# 计算每种状态的个数。unreg状态排除掉
+#count_status_amount_pd2.fillna(0).T.plot.area(figsize=(12,6))
+# 红色和紫色相加就是消费用户，因为新客太少可以忽略不计
+#count_status_amount_pd2.apply(lambda x:x/x.sum(),axis=1).T['active'].plot(figsize=(12,6))
+# 活跃用户占比，后期3%-5%，也有下降趋势
+#count_status_amount_pd2.apply(lambda x:x/x.sum(),axis=1).T['return'].plot(figsize=(12,6))
+# 回流用户占比。5% - 8%，有下降趋势
+# 综合来看，在消费用户中，回流用户6成活跃用户4成，整体还行
+
+user_amount_gd = d2.groupby('user_id')['order_amount'].sum().sort_values(ascending=False).reset_index()
+user_amount_gd['cum_order_amount'] = user_amount_gd['order_amount'].cumsum()
+user_amount_gd['rate_cum_order_amount'] = user_amount_gd['cum_order_amount']/user_amount_gd['order_amount'].sum() #
+int(len(user_amount_gd)*0.2)
+user_amount_gd.iloc[int(len(user_amount_gd)*0.2),3]
+#user_amount_gd['rate_cum_order_amount'].plot()
+# 前20%（4714名）的用户贡献了将近70%的消费总额，抓住高质量用户
+
+(d2.groupby('user_id')['order_date'].max() - d2.groupby('user_id')['order_date'].min()).head()
+# 用户最后一次消费减第一次消费 为 客户的生命周期
+(d2.groupby('user_id')['order_date'].max() - d2.groupby('user_id')['order_date'].min()).describe()
+(d2.groupby('user_id')['order_date'].max() - d2.groupby('user_id')['order_date'].min()).mean()
+# 平均生命周期为134天，结合数据分布会更有意义
+((d2.groupby('user_id')['order_date'].max() - d2.groupby('user_id')['order_date'].min())/np.timedelta64(1,'D')).hist(bins=15)
+pd.cut(((d2.groupby('user_id')['order_date'].max() - d2.groupby('user_id')['order_date'].min())/np.timedelta64(1,'D')),15).value_counts()
+# 从分布上看，大量用户的生命周期集中在了0天，最好是计算消费两次以上的生命周期
+
+life_s = (d2.groupby('user_id')['order_date'].max() - d2.groupby('user_id')['order_date'].min())
+life_s.dt.days[life_s.dt.days>0].mean()
+#life_s.dt.days[life_s.dt.days>0].hist(bins=100,figsize=(12,6))
+#pd.cut(life_s.dt.days[life_s.dt.days>0],100).value_counts()
+# 计算消费大于2次的生命周期，平均生命周期为216高于整体水平
+# 直方图上看呈双峰趋势，有大量用户虽然消费超过两次，但没有持续，应该在消费后1个月加以引导
+# 消费周期大于400天的，属于忠诚用户了
+
+order_date_min = d2.groupby('user_id')['order_date'].min()
+user_purchase = d2[['user_id','order_products','order_amount','order_date']]
+user_purchase_retention = pd.merge(left=user_purchase,right=order_date_min.reset_index(),how='inner',on='user_id',suffixes=('','_min'))
+user_purchase_retention['order_date_diff'] = user_purchase_retention['order_date'] - user_purchase_retention['order_date_min']
+user_purchase_retention['date_diff'] = user_purchase_retention['order_date_diff'].dt.days
+# 距用户首次消费后的天数
+def diff(x):
+    d= x['date_diff'] - x['date_diff'].shift(-1)
+    return d
+last_diff = user_purchase_retention.groupby('user_id').apply(lambda x:x['date_diff'] - x['date_diff'].shift(1))
+pd.DataFrame(last_diff2).reset_index()['date_diff'].sort_values(ascending=True).describe()
+# 将用户上下两次消费时间相减将能求出消费间隔
+# 用mean函数即可求出用户的平均消费间隔时间是68天
+
+bin = [0,3,7,15,30,60,90,180,365]
+user_purchase_retention['date_diff_bin'] = pd.cut(user_purchase_retention['date_diff'],bins=bin)
+pivot_retention = user_purchase_retention.pivot_table(index='user_id',columns='date_diff_bin',values='order_amount',aggfunc=sum)
+pivot_retention.mean()
+# 用户在后续各时间段的平均消费额，平均效果看，0-3天消费额最大
+pivot_retention_trans = pivot_retention.fillna(0).applymap(lambda x: 1 if x>0 else 0)
+#(pivot_retention_trans.sum()/pivot_retention_trans.count()).plot.bar()
+# 约2.5%的用户0-3天内有消费，本身CD不是高频消费品
+# 月27%的用户半年后有过购买，注重用户忠诚度的培养，放长线掉大鱼，在一定时间内召回用户购买
