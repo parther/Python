@@ -87,7 +87,7 @@ d['animals'] = d['boys'] + d['girls'] # 列相加
 
 ===
 
-# 数据读取
+数据读取
 读取excel 文件：
      d = pd.read_excel()
 读取csv 文件：
@@ -96,7 +96,22 @@ d['animals'] = d['boys'] + d['girls'] # 列相加
      d = pd.read_csv(f, names=['a','b','c','d'], index_col=0,encoding='utf-8')
 读取text
 d = pd.read_csv(f, names=columns,engine='python', sep = '\s+') sep表示分隔符 \s+表示匹配任意空白
+===
+
+applymap 针对DataFrame里的所有单个数据起作用 
+d1 = d2.applymap(lambda x : 1 if x>1 else None if x==0 else 0)
+
+agg，apply 都传入函数作用于dataframe，但用法不同。agg只能作用在列
+apply中，第二个参数是所引入函数的第二个参数
+apply,agg 参数可以直接接 基本统计量函数的名称，接其他函数前面必须带pd且没有分号
+unique_d2.apply('std')
+unique_d2.apply(pd.value_counts)
+
+
           
-          
-        
+
+
+
+
+
           
