@@ -10,4 +10,7 @@ d.plot(kind ='hist')
 分组箱线图，仅适用于dataframe d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) 
 使用双坐标轴，适用于多个维度的比较 d.plot(kind='bar', subplots=True)
 
+散点图
+d.plot.scatter(x='a',y='b')
+
 
