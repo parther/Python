@@ -18,7 +18,11 @@ A|B可以匹配A或B
 1[0-9] 表示两个数
 
 Python的r前缀，不用考虑转义的问题
-match()方法判断是否匹配，如果匹配成功，返回一个Match对象
+
+判断正则表达式是否匹配，match()方法判断是否匹配，如果匹配成功，返回一个Match对象
+import re
+re.match(r'^\d{3}\-\d{3,8}$', '010-12345')
+
 正则表达式切分字符串比用固定的字符更灵活
 split 用法 http://www.runoob.com/python/att-string-split.html
 re.split(r'[\s\,\;]+', 'a,b;; c  d') 或
