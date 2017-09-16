@@ -10,7 +10,7 @@ pandas中有专门的时间序列方法tseries
 #
 一般来说，对比Excel，csv的数据都是干净的
 
-# 时间函数
+时间函数
 http://blog.csdn.net/qq_22238533/article/details/70050748
 https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html
 转换成时间格式     
@@ -20,11 +20,11 @@ s.dt.days
 获取月份
 s.values.astype('datetime64[M]') 
      
-#
-d2.query('director_name == "Gore Verbinski"')#只对列条件进行筛选，注意单引号双引号的问题
-d['actor_2_name'].isin(['Orlando Bloom'])#判断是否在列中
-unique
-isnull
+d.query('director_name == "Gore Verbinski"') # 只对列条件进行筛选，注意单引号双引号的问题
+s.unique
+np.NaN None 是一样的
+
+d['actor_2_name'].isin(['Orlando Bloom']) # 判断是否在列中
 d.isnull()
 pd.notnull(s) s.notnull() 是一样的，都返回布尔值series
 
