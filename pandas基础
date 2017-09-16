@@ -73,18 +73,17 @@
           
      d.fillna(-1) # 填充空值
      d.dropna() # 删除空值行   
-     d.dropna(axis=1) 分删除纵的横的空值
+     d.dropna(axis=1) # 分删除纵的横的空值
      d.drop_duplicates(subset = [1,2]) # 删除重复值
     
      pd.DataFrame.from_dict(dic, orient='index') # 建立dataframe 时 转换行列
 
 排序
 d.sort_values(by = 'b')#按值排序
-d.sort_index(axis=1, ascending=False)# axis表示按纵列排序
-
+d.sort_index(axis=1, ascending=False) # axis表示按纵列排序
  
 基本运算
-     d['animals'] = d['boys'] + d['girls'] #列相加
+d['animals'] = d['boys'] + d['girls'] # 列相加
 
 ===
 
