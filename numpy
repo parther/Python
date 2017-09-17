@@ -82,4 +82,7 @@ numpy的基本用法：
      a = np.array([1,'a',True]) # True代表1，False 代表0
 ===
 
-多维数组可以转换为dataframe格式，可以互转  
+多维数组可以转换为dataframe格式，可以互转
+numpy数组拼接方法介绍 http://blog.csdn.net/zyl1042635242/article/details/43162031
+
+
