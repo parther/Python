@@ -1,6 +1,8 @@
 # 重点：
+Numpy的详细教程 https://zhuanlan.zhihu.com/p/24988491
 
-# numpy的基本用法：
+# 
+numpy的基本用法：
 创建数组
      a = np.array([4, 5, 6]) # 创建数组
           a = np.array([[1,2,3],[4, 5, 6]]) # 创建二维数组
