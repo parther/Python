@@ -1,5 +1,8 @@
-# 参考：http://blog.csdn.net/youngbit007/article/details/54288603
-# 单个分组
+# 参考：
+groupby,聚合，分组级运算 http://blog.csdn.net/youngbit007/article/details/54288603
+
+# 
+单个分组
      g_d2 = d.groupby(['Type 1'])
      
 # 多个分组
