@@ -1,6 +1,7 @@
 # 参考
 pandas 基础 http://www.open-open.com/lib/view/open1402477162868.html
 使用pandas进行数据清洗 http://www.cnblogs.com/stream886/p/6021743.html
+http://pandas.pydata.org/
 
 # 问题
 无法直接读取csv文件
