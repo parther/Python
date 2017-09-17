@@ -71,6 +71,9 @@
 # 模型识别 预测
      ARIMA(p,1,q)
      模型向前预测时间越长，误差越大
+     
+自相关系数和偏自相关系数 https://zhuanlan.zhihu.com/p/26525852
+AR、MA及ARMA模型 https://zhuanlan.zhihu.com/p/22248464
 
 
 
