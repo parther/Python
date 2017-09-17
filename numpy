@@ -1,5 +1,6 @@
-# 重点：
+# 
 Numpy的详细教程 https://zhuanlan.zhihu.com/p/24988491
+https://docs.scipy.org/doc/
 
 # 
 numpy的基本用法：
