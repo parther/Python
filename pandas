@@ -12,8 +12,7 @@ pandas中有专门的时间序列方法tseries
 一般来说，对比Excel，csv的数据都是干净的
 
 时间函数
-http://blog.csdn.net/qq_22238533/article/details/70050748
-https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html
+Datetimes and Timedeltas https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html
 转换成时间格式     
 pd.to_datetime(s, format='%Y%m%d')
 获取天数
