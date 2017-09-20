@@ -38,5 +38,7 @@
 3 模型评价
 构建混淆矩阵
 构建 ROC 曲线
-          
+
+===
+scipy.interpolate.lagrange https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.lagrange.html
  
