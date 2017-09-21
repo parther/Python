@@ -41,4 +41,6 @@
 
 ===
 scipy.interpolate.lagrange https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.lagrange.html
- 
+Python 实现拉格朗日插值 http://www.jianshu.com/p/c7d6b9db8b56
+拉格朗日插值的稳定性不太好，出现不稳定的现象称为龙格现象，解决的办法就是分段用较低次数的插值多项式
+其实就是解方程组
