@@ -1,5 +1,14 @@
 # 问题
 apply 运用到列表
+def lagrange(x):
+    for i in range(len(x)):
+        if (x.isnull())[i]:
+            x1 = x[list(range(i-5,i)) + list(range(i+1,i+6))]
+            x2 = x1[x1.notnull()]
+            x[i]=lagrange(list(x2.index),list(x2))(i)
+            return x
+        else:
+            return x
 
 #
 scipy.interpolate.lagrange https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.lagrange.html
@@ -8,7 +17,7 @@ Python 实现拉格朗日插值 http://www.jianshu.com/p/c7d6b9db8b56
 其实就是解方程组
 lagrange 无法使用apply
 s[[1, 2, 3, 4, 5, 6]] 筛选索引
-if is None ==None 是一样的
+if is None ==None 是一样的，与拉格朗日插值无法配合，但数字却可以
 
 ===
 import pandas as pd
