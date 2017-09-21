@@ -1,3 +1,16 @@
+# 问题
+apply 运用到列表
+
+#
+scipy.interpolate.lagrange https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.lagrange.html
+Python 实现拉格朗日插值 http://www.jianshu.com/p/c7d6b9db8b56
+拉格朗日插值的稳定性不太好，出现不稳定的现象称为龙格现象，解决的办法就是分段用较低次数的插值多项式
+其实就是解方程组
+lagrange 无法使用apply
+s[[1, 2, 3, 4, 5, 6]] 筛选索引
+if is None ==None 是一样的
+
+===
 import pandas as pd
 from pandas import Series, DataFrame
 from scipy.interpolate import lagrange
@@ -14,3 +27,10 @@ for i in d.columns:
     for j in range(len(d[i])):
         if (d[i].isnull())[j]: #返回布尔值，true or false
             d[i][j] = d_lagrange(d[i], j) # ij一致，如果上面条件成立
+           
+=
+for i in range(len(s)):
+    if (s.isnull())[i]:
+        s1 = s[list(range(i-5,i)) + list(range(i+1,i+6))]
+        s2 = s1[s1.notnull()]
+        s[i]=lagrange(list(s2.index),list(s2))(i)
