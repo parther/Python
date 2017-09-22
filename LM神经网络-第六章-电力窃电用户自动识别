@@ -1,18 +1,21 @@
 # 问题：
      
-     Using Theano backend.
-     WARNING (theano.configdefaults): g++ not available, if using conda: `conda install m2w64-toolchain`
-     安装 conda install mingw libpython
-     ValueError: Invalid argument "metric" passed to K.function with Theano backend
-     This error means that you are running Keras version 0 (e.g. 0.3.2) but running code that was written for Keras version 1. 
-     You can upgrade to Keras 1, or remove metrics=['accuracy'] from the function call to model.compile()
-     net.compile(loss = 'binary_crossentropy', optimizer = 'adam')
+Using Theano backend.
+WARNING (theano.configdefaults): g++ not available, if using conda: `conda install m2w64-toolchain`
+ValueError: Invalid argument "metric" passed to K.function with Theano backend
+This error means that you are running Keras version 0 (e.g. 0.3.2) but running code that was written for Keras version 1. 
+You can upgrade to Keras 1, or remove metrics=['accuracy'] from the function call to model.compile()
+net.compile(loss = 'binary_crossentropy', optimizer = 'adam')
+d.as_matrix() d.as_matrix 的区别
  
 #
-     修改Keras.jason 解决backend 问题
-===
+修改Keras.jason 解决backend 问题
+import math
+1 math.floor(2.3)
+2 math.ceil(2.3) 
+3 round(2.3)
 
-# 重点：
+===
 import pandas as pd
 from random import shuffle
 
