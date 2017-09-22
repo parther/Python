@@ -15,6 +15,11 @@ import math
 2 math.ceil(2.3) 
 3 round(2.3)
 
+Sequential model The simplest type of model a linear stack of layers
+https://keras.io/#getting-started-30-seconds-to-keras
+
+信号的正向传播和误差的逆向传播两个过程组成
+训练样本需为array类型
 ===
 import pandas as pd
 from random import shuffle
