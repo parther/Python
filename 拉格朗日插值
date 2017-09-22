@@ -15,7 +15,6 @@ scipy.interpolate.lagrange https://docs.scipy.org/doc/scipy/reference/generated/
 Python 实现拉格朗日插值 http://www.jianshu.com/p/c7d6b9db8b56
 拉格朗日插值的稳定性不太好，出现不稳定的现象称为龙格现象，解决的办法就是分段用较低次数的插值多项式
 其实就是解方程组
-lagrange 无法使用apply
 s[[1, 2, 3, 4, 5, 6]] 筛选索引
 if is None ==None 是一样的，与拉格朗日插值无法配合也无法运用到函数，但数字却可以
 
