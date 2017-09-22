@@ -1,5 +1,5 @@
 # 问题
-apply 运用到列表
+apply 运用到列表 return放在最后面，归根结底是语法错误
 def lagrange(x):
     for i in range(len(x)):
         if (x.isnull())[i]:
@@ -17,7 +17,7 @@ Python 实现拉格朗日插值 http://www.jianshu.com/p/c7d6b9db8b56
 其实就是解方程组
 lagrange 无法使用apply
 s[[1, 2, 3, 4, 5, 6]] 筛选索引
-if is None ==None 是一样的，与拉格朗日插值无法配合，但数字却可以
+if is None ==None 是一样的，与拉格朗日插值无法配合也无法运用到函数，但数字却可以
 
 ===
 import pandas as pd
@@ -27,19 +27,13 @@ from scipy.interpolate import lagrange
 f = '数据源\\图书配套数据、代码\\chapter6\\test\\data\\missing_data.xls'
 d = pd.read_excel(f, header = None)
 
-def d_lagrange(s, n, k=5):
-    y = s[list(range(n-k, n)) + list(range(n+1, n+1+k))]
-    y = y[y.notnull()]
-    return lagrange(y.index,list(y))(n)
-    
-for i in d.columns:
-    for j in range(len(d[i])):
-        if (d[i].isnull())[j]: #返回布尔值，true or false
-            d[i][j] = d_lagrange(d[i], j) # ij一致，如果上面条件成立
-           
-=
-for i in range(len(s)):
-    if (s.isnull())[i]:
-        s1 = s[list(range(i-5,i)) + list(range(i+1,i+6))]
-        s2 = s1[s1.notnull()]
-        s[i]=lagrange(list(s2.index),list(s2))(i)
+def lag_range(x):
+    for i in range(len(x)):
+        if (x.isnull())[i]:
+            x1 = x[list(range(i-5,i)) + list(range(i+1,i+6))]
+            x2 = x1[x1.notnull()]
+            x[i]=lagrange(list(x2.index),list(x2))(i)
+        else:
+            pass
+    return x
+d.apply(lag_range)
