@@ -1,51 +1,54 @@
-# 参考：
-http://blog.csdn.net/panda1234lee/article/details/52311593
+#
 http://matplotlib.org/users/screenshots.html
+matplotlib绘图可视化知识点整理 http://blog.csdn.net/panda1234lee/article/details/52311593
 
 # 问题
 plt.subplots()
     
-#
-使用R语言中的ggplot2配色作为绘图风格，纯粹为了好看 plt.style.use('ggplot') 
-%matplotlib inline # 可以省略 plt.show()
-
+# 常见画图
 折线图
-     x = np.linspace(1,2*np.pi, num = 100)
-     y = np.sin(x)
-     plt.plot(x,y)
+x = np.linspace(1,2*np.pi, num = 100)
+y = np.sin(x)
+plt.plot(x,y)
      
 柱状图。x y 需一一对应
-     x = np.arange(len(y))
-     y = np.random.randint(0,9,size=(4))
-     plt.bar(x,y)
-     plt.barh(x,y) # 条形图
+x = np.arange(len(y))
+y = np.random.randint(0,9,size=(4))
+plt.bar(x,y)
+plt.barh(x,y) # 条形图
 
 多维柱状图
-     x = np.arange(len(y))
-     y = np.random.randint(0,9,size=(3,3))
+x = np.arange(len(y))
+y = np.random.randint(0,9,size=(3,3))
      
-     plt.bar(x, y[0],color='r',width = 0.25)
-     plt.bar(x+0.25, y[1],color='b',width = 0.25)
-     plt.bar(x+0.5, y[2],color='y',width = 0.25)
+plt.bar(x, y[0],color='r',width = 0.25)
+plt.bar(x+0.25, y[1],color='b',width = 0.25)
+plt.bar(x+0.5, y[2],color='y',width = 0.25)
      
 堆积柱状图
-     x = np.arange(len(y))
-     y = np.random.randint(0,9,size=(3,3))
+x = np.arange(len(y))
+y = np.random.randint(0,9,size=(3,3))
      
-     plt.bar(x,y[0],color = 'r',width = 0.25)
-     plt.bar(x,y[1], bottom = y[0],color = 'y',width = 0.25)
-     plt.bar(x,y[2], bottom = y[0]+y[1],color = 'b',width = 0.25)
+plt.bar(x,y[0],color = 'r',width = 0.25)
+plt.bar(x,y[1], bottom = y[0],color = 'y',width = 0.25)
+plt.bar(x,y[2], bottom = y[0]+y[1],color = 'b',width = 0.25)
      
 直方图 plt.hist(x,10)
-     
+
+#
 引入模块 正常显示中文
 import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
-     
+ 
+ 
+使用R语言中的ggplot2配色作为绘图风格，纯粹为了好看 plt.style.use('ggplot') 
+%matplotlib inline 可以省略 plt.show()
+
 文本注释
-plt.annotate(cm[x,y], xy=(x, y), horizontalalignment='center', verticalalignment='center')#依次y值，xy值，显示的位置
-plt.annotate(format(p[6], '.4%'), xy = (6, p[6]), xytext=(6*0.9, p[6]*0.9), arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"))     
+s.plot(color = 'r', style = '-o', secondary_y = True, linewidth = 3)
+plt.annotate(p[6],xy = (6, p[6]), xytext=(6*0.9, p[6]*0.9), arrowprops=dict(arrowstyle="->"))
+p[6]需要显示的文本内容，xy需要显示文本内容的点，xytext文本内容的位置，arrowprops箭头指向
 
 设定坐标轴的范围值：plt.ylim(0,1.05) 
 设置图例的位置：plt.legend(loc=8)
