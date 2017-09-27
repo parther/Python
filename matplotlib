@@ -3,7 +3,7 @@ http://matplotlib.org/users/screenshots.html
 matplotlib绘图可视化知识点整理 http://blog.csdn.net/panda1234lee/article/details/52311593
 
 # 问题
-plt.subplots()
+plt.colorbar() 
     
 # 常见画图
 折线图
@@ -48,6 +48,12 @@ plt.rcParams['axes.unicode_minus'] = False
 s.plot(color = 'r', style = '-o', secondary_y = True, linewidth = 3)
 plt.annotate(p[6],xy = (6, p[6]), xytext=(6*0.9, p[6]*0.9), arrowprops=dict(arrowstyle="->"))
 p[6]需要显示的文本内容，xy需要显示文本内容的点，xytext文本内容的位置，arrowprops箭头指向
+
+多重图像 
+plt.subplot(121) 表示1行两列，下面的图表放在第一列
+d2.groupby('user_id')['order_amount'].sum().hist(bins=300)
+plt.subplot(122) 表示1行两列，下面的图表放在第二列
+d2.groupby('user_id')['order_products'].sum().hist(bins=300)
 
 设定坐标轴的范围值：plt.ylim(0,1.05) 
 设置图例的位置：plt.legend(loc=8)
