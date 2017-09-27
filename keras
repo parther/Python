@@ -1,3 +1,12 @@
 # 
 https://keras.io/
 http://keras-cn.readthedocs.io/en/latest/backend/
+
+#
+Sequential model The simplest type of model  a linear stack of layers
+https://keras.io/#getting-started-30-seconds-to-keras
+
+from keras.models import Sequential # Sequential 线性叠层，组织分层
+from keras.layers import Dense,Activation # 导入神经网络层函数、激活函数
+
+
