@@ -59,5 +59,6 @@ d2.groupby('user_id')['order_products'].sum().hist(bins=300)
 设置图例的位置：plt.legend(loc=8)
 设置刻度标签 plt.ylabel('rio')
 多个图画到一个表格subplot
+matshow Plot a matrix or array as an image http://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.matshow.html?
 
 
