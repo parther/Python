@@ -83,7 +83,14 @@ numpy的基本用法：
      a = np.array([1,'a',True]) # True代表1，False 代表0
 ===
 
+import math
+1 math.floor(2.3) 向前取整
+2 math.ceil(2.3) 向后取整 
+3 round(2.3) 四舍五入
+
 多维数组可以转换为dataframe格式，可以互转
 numpy数组拼接方法介绍 http://blog.csdn.net/zyl1042635242/article/details/43162031
+
+
 
 
