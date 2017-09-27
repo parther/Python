@@ -1,2 +1,6 @@
 # http://scikit-learn.org/stable/
 
+from sklearn.metrics import confusion_matrix
+plt.matshow(confusion_matrix(y, yp), cmap=plt.cm.Greens)
+
+
