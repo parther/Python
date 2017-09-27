@@ -1,6 +1,11 @@
 # 问题：
-     保存的模型如何使用
- 
+保存的模型如何使用
+
+#
+http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier
+决策树算法的Python实现 https://zhuanlan.zhihu.com/p/20794583
+===
+
 import numpy as np
 import pandas as pd 
 from pandas import Series, DataFrame
