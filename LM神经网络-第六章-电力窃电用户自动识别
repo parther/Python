@@ -7,6 +7,7 @@ You can upgrade to Keras 1, or remove metrics=['accuracy'] from the function cal
 net.compile(loss = 'binary_crossentropy', optimizer = 'adam')
 3 d.as_matrix() d.as_matrix 的区别 一般d.as_matrix()
 4 plt.colorbar() 
+5 保存模型有什么用
  
 #
 修改Keras.jason 解决backend 问题
