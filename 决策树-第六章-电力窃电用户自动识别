@@ -4,54 +4,46 @@
 #
 http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier
 决策树算法的Python实现 https://zhuanlan.zhihu.com/p/20794583
+
 ===
 
 import numpy as np
-import pandas as pd 
-from pandas import Series, DataFrame
-from random import shuffle #导入随机函数shuffle
+import pandas as pd
+from pandas import DataFrame, Series
+import matplotlib.pyplot as plt
+% matplotlib inline
 
 f = '数据源\\图书配套数据、代码\\chapter6\\demo\\data\\model.xls' 
 d = pd.read_excel(f) #读取数据，数据的前三列是特征，第四列是标签
 
-d2 = d.as_matrix() #将表格转换为矩阵
-shuffle(d2) #随机打乱数据
-
-p = 0.8 #设置训练数据比例
-train = d2[:int(len(d2)*p)] #前80%为训练集
-test = d2[int(len(d2)*p):] #后20%为测试集
-===
+from random import shuffle
+d_a = d.as_matrix()
+shuffle(d_a)
+p = 0.8
+train_a = d_a[:int(len(d_a)*p)]
+test_a = d_a[int(len(d_a)*p):]
 
 #构建CART决策树模型
-from sklearn.tree import DecisionTreeClassifier #导入决策树模型
+from sklearn.tree import DecisionTreeClassifier # 导入决策树模型
+model = DecisionTreeClassifier()
+model.fit(train_a[:,:3],train_a[:,3])
+predict_result = model.predict(train_a[:,:3])
 
-f_tree = '数据源\\图书配套数据、代码\\chapter6\\demo\\tmp\\tree.pkl' #模型输出名字
-tree = DecisionTreeClassifier() #建立决策树模型
-tree.fit(train[:,:3], train[:,3]) #训练
-
-#tree.score(train[:,:3], train[:,3])
-#tree.predict(a) 
-#保存模型
+f_tree = '数据源\\图书配套数据、代码\\chapter6\\demo\\tmp\\tree.pkl' # 保存模型
 from sklearn.externals import joblib
 joblib.dump(tree, f_tree)
-===
 
-# 画出混淆矩阵，可以打包到函数里面
-from sklearn.metrics import confusion_matrix #导入混淆矩阵函数
-cm = confusion_matrix(train[:,3], tree.predict(train[:,:3])) #混淆矩阵
-
-import matplotlib.pyplot as plt #导入作图库
-plt.matshow(cm, cmap=plt.cm.Greens) #画混淆矩阵图，配色风格使用cm.Greens，更多风格请参考官网。
-plt.colorbar() #颜色标签
-  
-for x in range(len(cm)): #数据标签
-    for y in range(len(cm)):
-        plt.annotate(cm[x,y], xy=(x, y), horizontalalignment='center', verticalalignment='center')
-        
-plt.ylabel('True label') #坐标轴标签
-plt.xlabel('Predicted label') #坐标轴标签
-plt.show()
-===
+# 生成混淆矩阵
+def cm_plot(y, yp): # 混淆矩阵函数
+    from sklearn.metrics import confusion_matrix
+    cm = confusion_matrix(y, yp)
+    plt.matshow(cm, cmap=plt.cm.Greens) 
+    plt.colorbar() 
+    for x in range(len(cm)): 
+        for y in range(len(cm)):
+            plt.annotate(cm[x,y], xy=(x, y), horizontalalignment='center', verticalalignment='center')
+           
+cm_plot(train_a[:,3],predict_result) 
 
 # 做出ROC曲线
 from sklearn.metrics import roc_curve #导入ROC曲线函数
