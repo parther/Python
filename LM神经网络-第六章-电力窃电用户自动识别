@@ -56,7 +56,8 @@ model.save_weights(model_f) #保存模型
 
 def cm_plot(y, yp): # 混淆矩阵函数
     from sklearn.metrics import confusion_matrix
-    plt.matshow(confusion_matrix(y, yp), cmap=plt.cm.Greens) 
+    cm = confusion_matrix(y, yp)
+    plt.matshow(cm, cmap=plt.cm.Greens) 
     plt.colorbar() 
     for x in range(len(cm)): 
         for y in range(len(cm)):
