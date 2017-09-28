@@ -27,6 +27,7 @@ f = '数据源\\图书配套数据、代码\\chapter6\\test\\data\\missing_data.
 d = pd.read_excel(f, header = None)
 
 def lag_range(x):
+    from scipy.interpolate import lagrange
     for i in range(len(x)):
         if (x.isnull())[i]:
             x1 = x[list(range(i-5,i)) + list(range(i+1,i+6))]
