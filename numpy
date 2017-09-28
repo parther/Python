@@ -62,7 +62,7 @@ numpy的基本用法：
 数组的运算
      a + 1#
      a*2
-     a1+a2 # 数组对应相加
+     a1+a2 # 数组对应相加，必须对应
           a1+a2 # a2为一维数组，也就是向量
           np.add(a1,a2)
      a1- a2 # 对应相减
@@ -90,7 +90,5 @@ import math
 
 多维数组可以转换为dataframe格式，可以互转
 numpy数组拼接方法介绍 http://blog.csdn.net/zyl1042635242/article/details/43162031
-
-
 
 
