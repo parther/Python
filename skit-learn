@@ -3,4 +3,6 @@
 from sklearn.metrics import confusion_matrix
 plt.matshow(confusion_matrix(y, yp), cmap=plt.cm.Greens)
 
+from sklearn.metrics import roc_curve
+
 
