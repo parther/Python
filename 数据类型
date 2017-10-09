@@ -1,0 +1,58 @@
+# 重点：
+# 列表生成式
+参考：https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014317799226173f45ce40636141b6abc8424e12b5fb27000
+创建：
+     a = (x for x in range(0,4))
+     def m(x):
+         for i in range(x):
+            yield i
+显示：
+     next(a)
+     for i in a:
+         print(i)
+ 
+# list
+列表相加：
+     a = [1,2,3] + [4,5,6]
+新建
+     b=['peter','peter2','peter3']
+     a=['peter', ['max', 'max2', 'max3', ['max', 'max', 'max']]]
+     a=['peter',b]
+查询
+     print(a)
+     print(a[1])
+     print(a[1][2])
+     print(len(a))
+新增
+     a.append('max')
+     a.insert(2, 'adam')
+     a.extend(['max','max2','max3'])
+更新
+     a[2]='adam'
+删除
+     a.remove('adam')
+     a.pop()
+     a.pop(2)
+#
+     [p] = acorr_ljungbox(s, lags = 1)[1]
+     p = acorr_ljungbox(s, lags = 1)[1]
+     p[0]
+===
+
+# dict
+查询属性和参数
+     dic.values()
+     dic.keys()
+
+          
+© 2017 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
