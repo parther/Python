@@ -1,7 +1,12 @@
 # 问题：
 s1 - s2 array([88, 85, 85, ..., 44, 15, 35], dtype='timedelta64[M]') 转为int类型 
+
 #
 (target_d['LOAD_TIME'] - target_d['FFP_DATE']).dt.days 将时间格式转为浮点型数字
+函数的不同顺序造成速度不同 target_d.describe().T
+target_d.describe().loc[['max','min'],:]
+为何数据标准化 数据符合均值为0，标准差为1的正态分布；消除不同单位的差别，数值可以进行比较了
+标准差标准化数据 与 计算出来的不一致 可能是条件筛选的原因
 
 ===
 
@@ -49,15 +54,6 @@ target_d = target_d[['L','R','F','M','C']]
 ===
 
 # 数据变换，数据归一
-d5 = d4.copy()
-d6 = (d5 - d5.mean(axis=0)) / d5.std(axis=0)
-d6.columns = ['Z' + i for i in d6.columns]
-===
-
-# 数据存储
-f2 = '数据源\\图书配套数据、代码\\chapter7\\demo\\tmp\\data_cleaned.csv'
-z_f2 = '数据源\\图书配套数据、代码\\chapter7\\demo\\tmp\\z_data_cleaned.csv'
-d6.to_csv(f2 )
-d6.to_csv(z_f2 )
+zs_d = (target_d - target_d.mean())/target_d.std()
 
 
