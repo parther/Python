@@ -1,5 +1,9 @@
 # 问题：
-     用python画雷达图
+用python画雷达图
+
+# 
+['count'] + list(target_d.columns) list不能用于str
+
 ===
 
 import numpy as np
