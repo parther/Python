@@ -7,6 +7,8 @@ s1 - s2 array([88, 85, 85, ..., 44, 15, 35], dtype='timedelta64[M]') 转为int�
 target_d.describe().loc[['max','min'],:]
 为何数据标准化 数据符合均值为0，标准差为1的正态分布；消除不同单位的差别，数值可以进行比较了
 标准差标准化数据 与 计算出来的不一致 可能是条件筛选的原因
+['count'] + list(target_d.columns) list不能用于str
+画图 https://zhuanlan.zhihu.com/p/27990382
 
 ===
 
@@ -51,9 +53,22 @@ target_d['C'] = target_d['avg_discount'].round(2)
 
 target_d = target_d[['L','R','F','M','C']]
 
+# target_d.describe().loc[['max','min'],:] # 观察数据量纲
+
 ===
 
 # 数据变换，数据归一
 zs_d = (target_d - target_d.mean())/target_d.std()
+
+===
+
+# 建模
+from sklearn.cluster import KMeans
+model = KMeans(n_jobs = 4, n_clusters = 5)
+model.fit(zs_d)
+
+# zs_d['labels'] = model.labels_
+center_d = pd.concat([pd.Series(model.labels_).value_counts(), pd.DataFrame(model.cluster_centers_)], axis = 1)
+center_d.columns = ['count'] + list(target_d.columns)
 
 
