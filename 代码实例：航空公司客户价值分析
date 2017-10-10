@@ -9,6 +9,7 @@ target_d.describe().loc[['max','min'],:]
 标准差标准化数据 与 计算出来的不一致 可能是条件筛选的原因
 ['count'] + list(target_d.columns) list不能用于str
 画图 https://zhuanlan.zhihu.com/p/27990382
+d.items()
 
 ===
 
