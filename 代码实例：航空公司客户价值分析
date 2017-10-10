@@ -1,6 +1,6 @@
 # 问题：
 s1 - s2 array([88, 85, 85, ..., 44, 15, 35], dtype='timedelta64[M]') 转为int类型 
-https://zhuanlan.zhihu.com/p/27990382 如何在jupyter中显示
+https://zhuanlan.zhihu.com/p/27990382 如何在jupyter中显示 https://zhuanlan.zhihu.com/p/28157126
 
 
 #
@@ -12,6 +12,8 @@ target_d.describe().loc[['max','min'],:]
 ['count'] + list(target_d.columns) list不能用于str
 画图 https://zhuanlan.zhihu.com/p/27990382
 d.items()
+radar schema = [ ("L", 2.5), ("R", 2.5), ("F", 2.5), ("M", 2.5), ("C", 2.5)] 需确保不能出现负数
+画雷达图
 
 ===
 
