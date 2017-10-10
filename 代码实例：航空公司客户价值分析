@@ -1,5 +1,7 @@
 # 问题：
 s1 - s2 array([88, 85, 85, ..., 44, 15, 35], dtype='timedelta64[M]') 转为int类型 
+https://zhuanlan.zhihu.com/p/27990382 如何在jupyter中显示
+
 
 #
 (target_d['LOAD_TIME'] - target_d['FFP_DATE']).dt.days 将时间格式转为浮点型数字
