@@ -1,0 +1,25 @@
+from pyecharts import Radar
+
+v1 = [list(radar_d.loc['客户群1',:])]
+v2 = [list(radar_d.loc['客户群2',:])]
+v3 = [list(radar_d.loc['客户群3',:])]
+v4 = [list(radar_d.loc['客户群4',:])]
+v5 = [list(radar_d.loc['客户群5',:])]
+c_schema= [{"name": "L", "max": 2.5, "min": -1},
+           {"name": "R", "max": 2.5, "min": -1},
+           {"name": "F", "max": 2.5, "min": -1},
+           {"name": "M", "max": 2.5, "min": -1},
+           {"name": "C", "max": 2.5, "min": -1}]
+
+radar = Radar()
+radar.config(c_schema=c_schema, shape='circle')
+radar.add('客户群1', v1, item_color="#ff0000", symbol=None)
+radar.add('客户群2', v2, item_color="#477725", symbol=None)
+radar.add('客户群3', v3, item_color="#66ff00", symbol=None)
+radar.add('客户群4', v4, item_color="#66ffff", symbol=None)
+radar.add('客户群5', v5, item_color="#FFFF00", symbol=None)
+radar.show_config()
+radar.render() # 在HTML中显示出来
+#radar.render_notebook()
+
+
