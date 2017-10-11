@@ -18,7 +18,11 @@ pd.to_datetime(s, format='%Y%m%d')
 获取天数
 s.dt.days
 获取月份
-s.values.astype('datetime64[M]') 
+s.values.astype('datetime64[M]')
+创建时间数据
+np.datetime64('2005-02-25')
+转为int类型
+s1 - s2 array([88, 85, 85, ..., 44, 15, 35], dtype='timedelta64[M]') 转为int类型 (s1-s2).astype('int')
      
 d.query('director_name == "Gore Verbinski"') # 只对列条件进行筛选，注意单引号双引号的问题
 s.unique
