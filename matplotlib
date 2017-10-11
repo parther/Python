@@ -1,6 +1,7 @@
 #
 http://matplotlib.org/users/screenshots.html
 matplotlib绘图可视化知识点整理 http://blog.csdn.net/panda1234lee/article/details/52311593
+echart画图  https://zhuanlan.zhihu.com/p/27990382
 
 # 问题
 plt.colorbar() 
