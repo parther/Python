@@ -39,6 +39,7 @@ a.pop(2)
 查询属性和参数
 dic.values()
 dic.keys()
-
+括号显示
+d.items() dict_items([('a', 1), ('b', 2)])
 
 
