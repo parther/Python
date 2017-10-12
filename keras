@@ -1,6 +1,7 @@
 # 
 https://keras.io/
 http://keras-cn.readthedocs.io/en/latest/backend/
+主要作用是人工神经网络
 
 #
 Sequential model The simplest type of model  a linear stack of layers
