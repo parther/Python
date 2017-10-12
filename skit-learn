@@ -8,4 +8,6 @@ from sklearn.metrics import roc_curve roc曲线
 
 from sklearn.tree import DecisionTreeClassifier 决策树
 
+from sklearn.cluster import KMeans 聚类分析
+
 
