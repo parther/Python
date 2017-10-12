@@ -1,9 +1,10 @@
 # http://scikit-learn.org/stable/
+与机器学习最为紧密的库，提供分类、回归预测、聚类、数据变换等
 
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix 混淆矩阵
 plt.matshow(confusion_matrix(y, yp), cmap=plt.cm.Greens)
 
-from sklearn.metrics import roc_curve
+from sklearn.metrics import roc_curve roc曲线
 
 from sklearn.tree import DecisionTreeClassifier 决策树
 
