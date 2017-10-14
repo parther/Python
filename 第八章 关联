@@ -1,5 +1,5 @@
 # 问题：
-     多维转1维 a[pd.notnull(a)]
+多维转1维 a[pd.notnull(a)]
 
 ===
 
