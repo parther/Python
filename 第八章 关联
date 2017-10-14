@@ -1,34 +1,32 @@
 # 问题：
+关联规则代码的理解
 多维转1维 a[pd.notnull(a)]
+pd.value_counts
+d1.apply(lambda x: x.value_counts(), axis=1) 0和1 的效果
+关联规则的简易代码
+result = result.T.sort_index(level = ['confidence','support'], ascending = False)
+能否用类打包多个函数
+
+#
+d1.apply(pd.value_counts) d1.apply(lambda x: x.value_counts()) 是一样的效果
+'a,b,c'.split(',') 分离str
+result = result.T.sort_values(by = ['confidence','support'], ascending = False)
 
 ===
 
 # 关联规则
-import numpy as np
-import pandas as pd
-from pandas import Series, DataFrame
+from apriori import * #导入自行编写的apriori函数
 
-path = '数据源\\图书配套数据、代码\\chapter8\\demo\\m_d2.csv' 
-f = open(path, encoding = 'utf-8')
-d = pd.read_csv(f, dtype = object)
-d2 = d[['肝气郁结证型系数n','热毒蕴结证型系数n' ,'冲任失调证型系数n','气血两虚证型系数n','脾胃虚弱证型系数n','肝肾阴虚证型系数n','TNM分期']]
-=
-
-from apriori2 import * #导入自行编写的apriori函数
-
-s_f = lambda x : pd.Series(1, index = x[pd.notnull(x)]) #转换0-1矩阵的过渡函数，pd.notnull(x) 可以适用于array
-L = list( map(s_f, d2.as_matrix()) )#用map方式执行 接收 iterable 类型数据，所以需要转换 d2.as_matrix() 转成array
-d3 = pd.DataFrame(L).fillna(0) # l 由多个series组成 转成dataframe 会出现空值
-#del l #删除中间变量b，节省内存
-
+dataset_d = discretization_d.apply(lambda x: x.value_counts(), axis=1).fillna(0)
 support = 0.059 #最小支持度
 confidence = 0.75 #最小置信度
-ms = '---' #连接符，默认'--'，用来区分不同元素，如A--B。需要保证原始表格中不含有该字符
-find_rule(d3, support, confidence, ms)
-===
+find_rule(dataset_d, support, confidence, ms='---')
 
-# 链接函数，打包成module
+=
+# apriori.py 的代码
+
 import pandas as pd
+
 def connect_string(x, ms): #自定义连接函数，用于实现L_{k-1}到C_k的连接
     x = list(map(lambda i:sorted(i.split(ms)), x))
     l = len(x[0])
@@ -76,8 +74,10 @@ def find_rule(d, support, confidence, ms = u'--'): #寻找关联规则的函数
             result[i]['confidence'] = cofidence_series[i]
             result[i]['support'] = support_series[ms.join(sorted(i.split(ms)))]
   
-    result = result.T.sort_index(level = ['confidence','support'], ascending = False)
+    result = result.T.sort_values(by = ['confidence','support'], ascending = False)
     print(u'\n结果为：')
-    print(result)
   
     return result
+
+
+
