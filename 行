@@ -1,0 +1,127 @@
+# 问题：
+     Error Code: 1052. Column 'city' in field list is ambiguous
+
+# 
+插入行数据 插入值必须有 ' ' 符号
+     insert into orders(items) values('knife'）
+插入多行数据
+     insert into persons values(2, 'Bush', 'BushGeorge', 'Fifth Avenue',	'New York'), (3, 'Carter', 'Thomas', 'Changan Street', 'Beijing')
+更新行数据
+     update orders set orderno= '100.' where id_o=1
+删除行
+     delete from orders where id_p=2
+查询所有
+     select * from orders
+查询指定列
+     select id_p from orders
+===
+
+# 查询清洗函数，类似函数distinct，concat，trim，left，substr，length，locate 更多参考 必知必会
+删除 
+     删除重复值
+     select distinct id_p from orders
+     删除空格查询，分trim，ltrim和rtrim
+     select ltrim(id_p) as 'all' from orders
+建立新列
+     合并列
+     select concat(id_p, ' yes ', OrderNo) as 'all' from orders
+选取
+     取某几个字符，right（），left（）
+     select left(lastname,3) as ll from persons
+     取中间第几个字符，取几个
+     select substr(lastname,3,2) as ll from persons
+     取长度
+     select length(id_p)  from orders
+     取某个字符位置
+     select locate('e', lastname) from persons
+替换
+     select replace(lastname, 'a', 'b') as count_lastname from persons
+ 
+# 查询时间函数，类似函数 now，date，datediff 更多参考 必知必会
+返回当前日期
+     select now() as d from orders
+     select date(now()) as d from orders
+查询相隔天数，前面减去后面
+     select datediff(date(now()), '2017-5-2') as d from orders
+ 
+# 查询计算函数，类似函数 count，avg，min，max，sum 更多参考 必知必会
+计数
+     select count(id_p) from persons
+求和
+     select sum(orderno) from orders
+===
+
+# 条件查询
+     select * from persons where length(lastname) = 5
+     
+# 布尔值 类似and，or，not
+and
+     select orderno from order where id_o=1 and id_p=1
+not
+     select orderno, id_o from orders where id_o not in (2,3,4)
+
+# 逻辑值 类似=，>，<，!= 更多参考 必知必会
+不等于
+     select orderno, id_o from orders where id_o !=1
+
+# in 包含，相当于or， 后面接列表
+     select orderno, id_o from orders where id_o not in (2,3,4)
+# like %是通配符，与like配合使用，模糊查询
+     select id_p, lastname from persons where lastname like'%e%'
+===
+
+# 正则表达式
+     select id_p, lastname from persons where lastname regexp'e'
+以某字符开头或结尾
+     select id_p, lastname from persons where lastname regexp'r$'
+     select * from persons where lastname regexp '^c'
+包含数字，字母
+     select id_p, lastname from persons where lastname regexp'[1-4]'
+     select id_p, lastname from persons where lastname regexp'[:alpha:]'
+任意字符
+     select * from persons where lastname regexp '.a'
+重复个数
+     select id_p, lastname from persons where lastname regexp'[pe]{2}'
+转义特殊字符
+     select id_o, orderno from orders where orderno regexp'\\.'
+===
+
+# 文本搜索查询 
+     SELECT title, MATCH(body) AGAINST('php and other key word') AS score FROM t_article WHERE MATCH(body) AGAINST('php and other key word');
+
+# 嵌套子查询，用select表示
+     select lastname, (select count(*) from orders where orders.id_p = persons.id_p) as id from persons 
+     where id_p in (select id_p from orders where orderno = 2000
+
+# 联结查询
+where
+     select persons.id_p, lastname from persons, orders  where persons.id_p= orders.id_p order by lastname
+join 分为join，left join，right join，union
+     select persons.id_p, lastname from persons join orders on persons.id_p= orders.id_p order by lastname     
+union 列数相同 重复值过滤 加括号
+     (SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons left JOIN OrdersON Persons.Id_P=Orders.Id_P)
+     union
+     (SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons right JOIN Orders ON Persons.Id_P=Orders.Id_P)
+ 
+# 分组查询 类似group by，order by，limit，having
+     select city, count(city) as cc from data2 
+     group by city 
+     having cc>400
+     order by cc desc 
+     limit 3
+group by 选择不重复数据
+having过滤分组
+     select class from courses group by class having count(student)>= 5 
+===
+
+
+#
+     联接查询尽量用 join 模式 
+     排名筛选 select Salary as SecondHighestSalary FROM Employee order by Salary desc limit 1,1 
+          limit 1,1 前面的1表示排名，后面的1是显示几个
+     两表联和能解决很多查询的问题
+          SELECT * FROM Employee AS a, Employee AS b 总共有 a 个数乘以 b 个数个结果
+          SELECT p1.* FROM Persons as p1, Persons as p2 总共有 a 个数乘以 b 个数个结果 省略显示横向，变换而已
+          
+          
+          
