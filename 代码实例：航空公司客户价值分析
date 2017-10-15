@@ -105,6 +105,9 @@ radar.add('客户群3', v3, item_color="#66ff00", symbol=None)
 radar.add('客户群4', v4, item_color="#66ffff", symbol=None)
 radar.add('客户群5', v5, item_color="#FFFF00", symbol=None)
 radar.show_config()
-radar.render()
+# radar.render()
+radar
+
+radar_d.rank(ascending=False)
 
 
