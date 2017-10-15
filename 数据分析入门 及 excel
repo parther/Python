@@ -1,0 +1,63 @@
+# 参考：
+     谁说菜鸟不会数据分析
+     秦路excel 系列
+     七周成为数据分析师 http://dwz.cn/6pfCw6
+ 
+# 初级数据分析师
+# excel
+     excel 重要的是学会搜索
+     vlookup SQL中的join，python中的merge
+     数据透视表 SQL中的group，python中的pivot_table
+     不合并单元格，拒绝花哨，表一原始数据，表二加工数据，表三图表
+
+     数据类型 timestamp date string int bigint char factor float
+     数组 及python中的数组
+     函数及对应的参数
+     编码 utf-8 ASCII delimiter
+=
+
+# excel 图表
+     字不如表，表不如图
+     数据分析最终都是要兜售自己的观点和结论，不能落地的的数据分析是没有价值的
+     excel 可以完成大部分的图表。但进阶的图表需要用到编程绘制，而且更有xiaolv
+
+     BI（商业智能）更长于交互和报表，效率更高相比于excel一键解决
+     可视化分析，解释已经发生和正在发生的数据，未来发生的数据是数据挖掘的方向
+=
+
+# 数据分析思维
+     结构化的分析思维，俗称金字塔思维
+     常用基本方法 SMART 5W2H SWOT 4P 
+     基本分析的方法论 
+          指标为先，好的指标是比率或者比率，好的分析应该对比和关联
+=
+
+# sql
+# 
+     row_number convert contact
+     expalin 优化，sql工作原理，数据类型，io
+#
+     处理百万级数据的效率
+     SQL 是数据分析的核心技能，EXCEL 到 sql 是处理数据的一大进步
+     围绕select展开
+     进阶 row_number convert contact substr
+          expalin 优化，sql工作原理，数据类型，io
+=
+
+# 统计学
+     统计学是数据分析的基础
+     基本目标是 了解基础的含义，不被数据欺骗了
+=
+
+# 业务能力
+     一切为业务服务
+     良好的业务沟通能力是数据分析的基础能力
+=
+
+# python
+     是否具备编程能力，是初级分析师与高级分析师的分水岭
+     掌握 编程语言如python 可以事半功倍，数据挖掘，可视化，爬虫都需要
+     R入门简单，统计方面操作优势明显。但大数据处理能力较弱，学习曲线陡峭，入门难？
+     python万能胶水语言，各种包足以应付数据分析的任务
+
+
