@@ -1,117 +1,121 @@
-# Series 用法
+# 问题：
+
+#
+
+===
+Series
 新建
-     s = pd.Series([1, 2, 3, 4], index = ['a', 'b', 'c', 'd']) # index 可以为数组，series
-     s = pd.Series({'a2':1, 'b2':2})
-     s = pd.Series(1, index = range(10)) # 创建值为 1 的数组
+s = pd.Series([1, 2, 3, 4], index = ['a', 'b', 'c', 'd']) # index 可以为数组，series
+s = pd.Series({'a2':1, 'b2':2})
+s = pd.Series(1, index = range(10)) # 创建值为 1 的数组
      
 查询    
-     s.index # 查询索引 
-     s.values # 查询所有的值          
-     s['a'] # 查询指定索引的值
-     
+s.index # 查询索引 
+s.values # 查询所有的值          
+s['a'] # 查询指定索引的值    
 条件查询
-     s[s==1] # s==1 返回的是布尔值
-     s[s>1]
+s[s==1] # s==1 返回的是布尔值
+s[s>1]
 
 排序
-     s.sort_index()# 按索引排序
-     s.sort_values()# 按值排序
+s.sort_index()# 按索引排序
+s.sort_values()# 按值排序
+
+排名
+s.rank()
 
 命名
-     s.name = 'a_series'#Series命名
-     s.index.name = 'the_index'#索引命名
+s.name = 'a_series'#Series命名
+s.index.name = 'the_index'#索引命名
      
 赋值
-     s['a'] = 5#修改value值
+s['a'] = 5 #修改value值
 查询和修改数据类型
-     s.dtype
-     s.astype('str')
+s.dtype
+s.astype('str')
 
 常用属性和方法
-     s.unique() #查询不重复值
-     s.value_counts() #每个值计数
-     s.round(1)# 保留小数点后一位
+s.unique() #查询不重复值
+s.value_counts() #每个值计数
+s.round(1)# 保留小数点后一位
+
 ===
 
 # pandas DataFram的用法
 新建
-     d = DataFrame(np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
-     d = DataFrame([[1,2,3,4],[5,6,7,8],[9,10,11,12]],  columns =['a2', 'b2', 'c2','d2'])
-     d = DataFrame({'a':[1,2,3], 'b':[4,5,6], 'c':[7,8,9], 'd':[10,11,12]},index = ['A', 'B', 'C'])
+d = DataFrame(np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
+d = DataFrame([[1,2,3,4],[5,6,7,8],[9,10,11,12]],  columns =['a2', 'b2', 'c2','d2'])
+d = DataFrame({'a':[1,2,3], 'b':[4,5,6], 'c':[7,8,9], 'd':[10,11,12]},index = ['A', 'B', 'C'])
      
 查询
+d.info() # 数据基础信息
+d.index #查询索引
+d.columns #查询列名
      
-     d.info() # 数据基础信息
-     d.index #查询索引
-     d.columns #查询列名
-     
-     d.head(6) #头五行
-     d.tail(6) #尾六行
-     d.shape #查询表格行列大小
-     d.dtypes#查询每列的数据类型 
+d.head(6) #头五行
+d.tail(6) #尾六行
+d.shape # 查询表格行列大小
+d.dtypes # 查询每列的数据类型 
 
-     d['a'] #查询列名下的值, 返回series类型
-          d[['a']] # 返回dataframe类型
-     d[['a', 'b']] # 查询多个列名，返回 dataframe 数据类型
+d['a'] #查询列名下的值, 返回series类型
+d[['a']] # 返回dataframe类型
+d[['a', 'b']] # 查询多个列名，返回 dataframe 数据类型
       
 条件查询
-     d[d['a']==2] # 返回2所在的行
-     d[(d['a']>1) & (d['a']<3)] # 多重条件，返回条件满足所在的行，&表示和
-          d[(d['a']>1) | (d['a']<3)] # |表示或者
-          
-     d[d['b'].isnull()] #布尔值配合查询
+d[d['a']==2] # 返回2所在的行
+d[(d['a']>1) & (d['a']<3)] # 多重条件，返回条件满足所在的行，&表示和
+d[(d['a']>1) | (d['a']<3)] # |表示或者
+d[d['b'].isnull()] #布尔值配合查询
           
 修改
-     d.as_matrix() # 将pd变成 array 矩阵, 某些算法需要    
-     d['LOAD_TIME'] = pd.to_datetime(d['LOAD_TIME'])# 将 列d['LOAD_TIME']的类型 修改成 日期类型
+d.as_matrix() # 将pd变成 array 矩阵, 某些算法需要    
+d['LOAD_TIME'] = pd.to_datetime(d['LOAD_TIME'])# 将 列d['LOAD_TIME']的类型 修改成 日期类型
           
-     d['a'] = [1,2,3] # 新建列并且赋值
-     d.['a2']=[13, 14, 15] #修改整列数据，但索引不能修改
-     d.columns = ['id', 'year', 'boys', 'girls', 'animals']#修改列名
+d['a'] = [1,2,3] # 新建列并且赋值
+d.['a2']=[13, 14, 15] #修改整列数据，但索引不能修改
+d.columns = ['id', 'year', 'boys', 'girls', 'animals']#修改列名
           
-     del d['animals'] # 删除列
-          
-     d.fillna(-1) # 填充空值
-     d.dropna() # 删除空值行   
-     d.dropna(axis=1) # 分删除纵的横的空值
-     d.drop_duplicates(subset = [1,2]) # 删除重复值
+del d['animals'] # 删除列          
+d.fillna(-1) # 填充空值
+d.dropna() # 删除空值行   
+d.dropna(axis=1) # 分删除纵的横的空值
+d.drop_duplicates(subset = [1,2]) # 删除重复值
     
-     pd.DataFrame.from_dict(dic, orient='index') # 建立dataframe 时 转换行列
+pd.DataFrame.from_dict(dic, orient='index') # 建立dataframe 时 转换行列
 
 排序
 d.sort_values(by = 'b')#按值排序
-d.sort_index(axis=1, ascending=False) # axis表示按纵列排序
- 
+d.sort_index(axis=1, ascending=False) # axis表示按行排序
+排名
+d.rank()
+
 基本运算
 d['animals'] = d['boys'] + d['girls'] # 列相加
 
 ===
 
-数据读取
-读取excel 文件：
-     d = pd.read_excel()
+# 读取excel 文件：
+d = pd.read_excel()
+
 读取csv 文件：
-     path = '数据源\\test.csv'
-     f = open(path, encoding='utf-8')
-     d = pd.read_csv(f, names=['a','b','c','d'], index_col=0,encoding='utf-8')
+path = '数据源\\test.csv'
+f = open(path, encoding='utf-8')
+d = pd.read_csv(f, names=['a','b','c','d'], index_col=0,encoding='utf-8')
+
 读取text
 d = pd.read_csv(f, names=columns,engine='python', sep = '\s+') sep表示分隔符 \s+表示匹配任意空白
+
 ===
 
-applymap 针对DataFrame里的所有单个数据起作用 
+# 运用函数到dataframe
+
+1 applymap 针对DataFrame里的所有单个数据起作用 
 d1 = d2.applymap(lambda x : 1 if x>1 else None if x==0 else 0) else一定要接
 
-agg，apply 都传入函数作用于dataframe，但用法不同。agg只能作用在列
-apply中，第二个参数是所引入函数的第二个参数
-apply,agg 参数可以直接接 基本统计量函数的名称，接其他函数前面必须带pd且没有分号
+2 apply,agg 参数可以直接接 基本统计量函数的名称，接其他函数前面必须带pd且没有分号
 unique_d2.apply('std')
 unique_d2.apply(pd.value_counts)
+agg，apply 都传入函数作用于dataframe，但用法不同。agg只能作用在列
+apply中，第二个参数是所引入函数的第二个参数
 
 
-          
-
-
-
-
-
-          
