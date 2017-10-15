@@ -1,0 +1,19 @@
+# http://dwz.cn/6pQPyT
+# 问题：
+     BI 如何实现自动化报表
+     与R结合
+
+# 
+
+     可视化排序按钮在右上角
+     BI 图表下载：https://store.office.com/en-us/appshome.aspx?ui=en-US&rs=en-US&ad=US
+     发布报表：https://app.powerbi.com/
+     BI 关联表功能的使用。拖曳生成
+     
+#
+BI主要功能。制作自动化的报表，可视化报表
+DAX 相当于excel的函数功能
+DAX的容错性比Excel低，用iferror 保证容错性
+清洗的主要思路：移除重复值，过滤目标数据，清洗脏数据，格式转换
+
+
