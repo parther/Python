@@ -1,0 +1,20 @@
+# cmd 下连接服务器 
+     添加环境变量：C:\Program Files\MySQL\MySQL Server 5.6\bin
+     cmd 输入命令：mysql -uroot -p123456
+
+#
+新建数据库
+     create database db
+指定数据库
+     use db;
+查询服务器下有哪些数据库
+     show databases
+修改数据库名称
+     CREATE DATABASE new_db_name;
+     RENAME TABLE db_name.table1 TO new_db_name.table1;
+     DROP DATABASE db_name;
+删除数据库
+     drop database test2
+     
+     
+     
