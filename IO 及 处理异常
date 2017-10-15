@@ -1,0 +1,9 @@
+
+ValueError: Invalid argument "metric" passed to K.function with Theano backend
+This error means that you are running Keras version 0 (e.g. 0.3.2) but running code that was written for Keras version 1. 
+You can upgrade to Keras 1, or remove metrics=['accuracy'] from the function call to model.compile()
+net.compile(loss = 'binary_crossentropy', optimizer = 'adam')
+
+KeyError: '热毒蕴结证型系数' # 一般是不存在这个值
+TypeError # 一般是数据类型错了，比如中括号代表的list
+AttributeError # 一般是方法或属性错了或者不存在
