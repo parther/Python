@@ -19,7 +19,7 @@ radar.add('客户群3', v3, item_color="#66ff00", symbol=None)
 radar.add('客户群4', v4, item_color="#66ffff", symbol=None)
 radar.add('客户群5', v5, item_color="#FFFF00", symbol=None)
 radar.show_config()
-radar.render() # 在HTML中显示出来
-#radar.render_notebook()
+# radar.render() # 在HTML中显示出来
+radar # 在notebook中显示
 
 
