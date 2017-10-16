@@ -2,6 +2,8 @@
 用 类 解决循环问题
 centers_d.rolling(2).mean() 为什么用这种方式确定范围值是合理的
 为什么聚类时没有离散化数据 属性系数化了
+pd.DataFrame(f('肝气郁结证型系数').value_counts().sort_index(),columns=['计数']) ['计数']完全没有列
+def f(x, y=True): 默认显示
 
 #
 model.fit(g_d2[[u'肝气郁结证型系数']].as_matrix()) 
