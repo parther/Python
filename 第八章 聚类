@@ -1,10 +1,9 @@
 # 问题：
 用 类 解决循环问题
 centers_d.rolling(2).mean() 为什么用这种方式确定范围值是合理的
+为什么聚类时没有离散化数据 属性系数化了
 
-===
-
-# 重点：
+#
 model.fit(g_d2[[u'肝气郁结证型系数']].as_matrix()) 
 参数必须是array类型，as_matrix() 将dataframe 转换为array
 fit 要求 d 的所有数据为 float 或 int 类型
