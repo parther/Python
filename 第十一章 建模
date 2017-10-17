@@ -1,20 +1,30 @@
 # 问题：
-     极大似然比方法
-     from statsmodels.tsa.stattools import adfuller as ADF
-          The pandas.core.datetools module is deprecated
-          from pandas.core import datetools
-     bic_matrix_d = pd.DataFrame(bic_matrix) 定阶的值在变
-     lagnum = 12
-     p2 = (p < 0.05).sum()
+极大似然比方法
+from statsmodels.tsa.stattools import adfuller as ADF
+The pandas.core.datetools module is deprecated
+from pandas.core import datetools
 
-# 基本步骤：
-     平稳性检验 - 差分运算 - 白噪声检验
-     BIC 定阶，模型识别，确认模型的p、q参数
-     预测 - 检验
+bic_matrix_d = pd.DataFrame(bic_matrix) 定阶的值在变
+lagnum = 12
+p2 = (p < 0.05).sum()
+
+显著性水平 
+平稳性的结果与书上的不一样 数据其实没什么问题
+final_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据
+LB 统计量 Ljung-Box
 
 # 
-     时间列须为 时间格式，时间由前到后排序
-     差分 本行减去上一行的差值
+基本步骤：
+平稳性检验 - 差分运算 - 白噪声检验
+BIC 定阶，模型识别，确认模型的p、q参数
+预测 - 检验
+
+时间列须为 时间格式，时间由前到后排序
+差分 本行减去上一行的差值
+from statsmodels.tsa.stattools import adfuller as ADF
+[p] = acorr_ljungbox(s, lags = 1)[1]  将单个数字从array中提取出来
+为了保证数据信息提取完毕，需要保证原始数据非白噪声，差分后为白噪声
+
 ===
 
 # 平稳性检验
