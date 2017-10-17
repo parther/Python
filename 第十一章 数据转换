@@ -1,3 +1,14 @@
+# 问题：
+
+#
+g_d.apply(lambda x : x['SYS_NAME'].iloc[0]) group类型dataframe 只能apply运用函数 是有索引的
+pd.concat([select_d1,select_d2],axis=1) 会保留所有的列名
+pd.merge(left=select_d1, right=select_d2,on='ENTITY', how='left') merge必须要有对应列 有相同的元素
+s1 = pd.Series([1,2,3])
+s2 = pd.Series([4,5,6]) pd.DataFrame([s1,s2])
+
+===
+
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
@@ -5,11 +16,19 @@ from pandas import Series, DataFrame
 path = '数据源\\图书配套数据、代码\\chapter11\\demo\\data\\discdata.csv' 
 f = open(path, encoding = 'utf-8')
 d = pd.read_csv(f)
-d.head()
 
+used_d = d[d['TARGET_ID'] == 184]
+used_d['COLLECTTIME'] = pd.to_datetime(used_d['COLLECTTIME'])
+
+g_d = used_d.groupby('COLLECTTIME')
+c_d = pd .DataFrame(g_d.apply(lambda x : x['VALUE'].iloc[0]),columns=['CWXT_DB:184:C:\\'])
+d_d = pd .DataFrame(g_d.apply(lambda x : x['VALUE'].iloc[1]),columns=['CWXT_DB:184:D:\\'])
+final_d = pd.concat([c_d,d_d],axis=1).reset_index()
+
+=
+# 采用函数
 d2 = d[d['TARGET_ID'] == 184].copy()
 g_d2 = d2.groupby('COLLECTTIME') #以时间分组
-# d2[d2['ENTITY'] == 'C:\\'][['VALUE','COLLECTTIME']] # 可以做到行列转换
 
 def attr_trans(x): #定义属性变换函数
     result = pd.Series(index = ['SYS_NAME', 'CWXT_DB:184:C:\\', 'CWXT_DB:184:D:\\', 'COLLECTTIME2'])
@@ -20,3 +39,18 @@ def attr_trans(x): #定义属性变换函数
     return result
 
 data_processed = g_d2.apply(attr_trans)
+
+=
+# 常规解法
+select_d = used_d[['ENTITY','VALUE','COLLECTTIME']]
+select_d1 =select_d[select_d['ENTITY']=='C:\\']
+select_d2 =select_d[select_d['ENTITY']=='D:\\']
+
+select_d1 = select_d1.set_index('COLLECTTIME')
+select_d2 = select_d2.set_index('COLLECTTIME')
+
+concat_d = pd.concat([select_d1,select_d2],axis=1)['VALUE']
+concat_d.columns=['CWXT_DB:184:C:\\','CWXT_DB:184:D:\\']
+concat_d = concat_d.reset_index()
+
+
