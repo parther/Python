@@ -5,6 +5,7 @@
 Q统计量 LB 统计量
 BIC
 截尾 拖尾
+ARIMA(p,1,q)的具体对应含义
 
 # 
 协方差与自相关系数 https://www.zhihu.com/question/20852004/answer/134902061
@@ -57,13 +58,13 @@ MA模型(moving average model)滑动平均模型
 MA（q）模型，ACF会在lag=q时截尾
 对原始序列建立ARIMA(0，1，1)模型
 
-# ARIMA 模型
+# ARIMA 模型 ARMA差分后
 Autoregressive Integrated Moving Average Model,
 受过去p期序列 和过去q期误差项的共同影响
 自相关和偏自相关系数拖尾
 残差在数理统计中是指实际观察值与估计值（拟合值）之间的差
 ARIMA 模型的实质就是 差分运算和ARMA模型的组合
-ARIMA(p,1,q)
+ARIMA(p,1,q) 中间的1是1阶差分的意思 p阶拖尾，q阶拖尾
 
 差分运算具有强大的信息提取能力，很多非平稳序列差分运算后变成了平稳序列，把趋势去掉
 1阶差分 对相距一期的两个序列值作减法
