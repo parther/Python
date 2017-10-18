@@ -1,31 +1,31 @@
 # 问题：
+232
 极大似然比方法
 from statsmodels.tsa.stattools import adfuller as ADF
 FutureWarning: The pandas.core.datetools module is deprecated and will be removed in a future version. 
 Please use the pandas.tseries module instead.
 from pandas.core import datetools
-
+BIC最小的p值和q值为：0、1 有时候为1
 bic_matrix_d = pd.DataFrame(bic_matrix) 定阶的值在变
 lagnum = 12
 p2 = (p < 0.05).sum()
-
 显著性水平 
 平稳性的结果与书上的不一样 数据其实没什么问题
 final_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据是为了拿来预测
 LB 统计量 Ljung-Box
-
 try: #存在部分报错，所以用try来跳过报错。
 tmp.append(ARIMA(s, (p,1,q)).fit().bic)
 except:
-
 ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
 [p] = acorr_ljungbox(s, lags = 1)[1] lags = 1
+lagnum = 12 
+有时候模型拟合为11 有时候为01
+
 # 
 基本步骤：
 平稳性检验 - 差分运算 - 白噪声检验
 BIC 定阶，模型识别，确认模型的p、q参数
 预测 - 检验
-
 时间列须为 时间格式，时间由前到后排序
 差分 本行减去上一行的差值
 from statsmodels.tsa.stattools import adfuller as ADF
@@ -33,39 +33,56 @@ from statsmodels.tsa.stattools import adfuller as ADF
 为了保证数据信息提取完毕，需要保证原始数据非白噪声，差分后为白噪声
 hessian matrix 海赛矩阵
 inversion 反转
-===
 
-# 平稳性检验
+===
+# 预处理 检验平稳性和白噪声
+
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
 
-f = '数据源\\图书配套数据、代码\\chapter11\\demo\\tmp\\discdata_processed.xls'
-d = pd.read_excel(f, index_col = 'COLLECTTIME')
-d2 = d.iloc[:len(d)-5]
-s = d2['CWXT_DB:184:D:\\']
-d2.head()
+path = '数据源\\图书配套数据、代码\\chapter11\\demo\\data\\discdata.csv' 
+f = open(path, encoding = 'utf-8')
+d = pd.read_csv(f)
+
+used_d = d[d['TARGET_ID'] == 184].copy()
+used_d['COLLECTTIME'] = pd.to_datetime(used_d['COLLECTTIME'])
+
+g_d = used_d.groupby('COLLECTTIME')
+c_d = pd .DataFrame(g_d.apply(lambda x : x['VALUE'].iloc[0]),columns=['CWXT_DB:184:C:\\'])
+d_d = pd .DataFrame(g_d.apply(lambda x : x['VALUE'].iloc[1]),columns=['CWXT_DB:184:D:\\'])
+final_d = pd.concat([c_d,d_d],axis=1)
+
+final_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据
+s1 = final_d['CWXT_DB:184:D:\\']
 
 from statsmodels.tsa.stattools import adfuller as ADF
 diff_x = 0
 adf = ADF(s)
-while adf[1] > 0.004: # 验证差分后的结果是否符合 显著性水平 
+while adf[1] >= 0.05: # adf[1]为p值，检验是否小于0.05，若不小于则进行差分
     diff_x = diff_x + 1
     adf = ADF(s.diff(diff_x).dropna())
-print('通过 %s 次差分 后的 p 值为：%s' %(diff_x, adf[1]))
-===
+print('通过 %s 阶差分后序列平稳，p 值为：%s' %(diff_x, adf[1]))
 
-# 检验白噪声
 from statsmodels.stats.diagnostic import acorr_ljungbox
 [p] = acorr_ljungbox(s, lags = 1)[1]
-if p < 0.05:
-    print(u'原始序列为非白噪声序列，对应的p值为：%s' %p)
-else:
-    [p] = acorr_ljungbox(s.diff().dropna(), lags = 1)[1]
-    print(u'原始该序列为白噪声序列，对应的p值为：%s' %p)
-===
+if p < 0.05: # p < 0.05 为非白噪声序列
+    [p] = acorr_ljungbox(s.diff(1).dropna(), lags = 1)[1]
+    print(u'原始序列非白噪声序列，1阶差分后序列为白噪声序列，对应的p值为：%s' %p)
+else:  
+    print(u'原始序列为白噪声序列，对应的p值为：%s' %p)
+    
+=
 
-#定阶, 模型识别，确定模型
+建模。定阶，识别模型
+1 图像识别
+from statsmodels.graphics.tsaplots import plot_acf  
+plot_acf(stable_s1)
+
+from statsmodels.graphics.tsaplots import plot_pacf
+plot_pacf(stable_s1)
+
+2 BIC检验
 from statsmodels.tsa.arima_model import ARIMA
 pmax = int(len(s)/10) #一般阶数不超过length/10
 qmax = int(len(s)/10) #一般阶数不超过length/10
