@@ -19,6 +19,7 @@ tmp.append(ARIMA(s, (p,1,q)).fit().bic)
 except:
 
 ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+[p] = acorr_ljungbox(s, lags = 1)[1] lags = 1
 # 
 基本步骤：
 平稳性检验 - 差分运算 - 白噪声检验
