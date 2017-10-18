@@ -1,5 +1,6 @@
 # 问题：
 极大似然比方法
+from statsmodels.tsa.stattools import adfuller as ADF
 FutureWarning: The pandas.core.datetools module is deprecated and will be removed in a future version. 
 Please use the pandas.tseries module instead.
 from pandas.core import datetools
@@ -10,13 +11,14 @@ p2 = (p < 0.05).sum()
 
 显著性水平 
 平稳性的结果与书上的不一样 数据其实没什么问题
-final_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据
+final_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据是为了拿来预测
 LB 统计量 Ljung-Box
 
 try: #存在部分报错，所以用try来跳过报错。
 tmp.append(ARIMA(s, (p,1,q)).fit().bic)
 except:
 
+ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
 # 
 基本步骤：
 平稳性检验 - 差分运算 - 白噪声检验
@@ -28,7 +30,8 @@ BIC 定阶，模型识别，确认模型的p、q参数
 from statsmodels.tsa.stattools import adfuller as ADF
 [p] = acorr_ljungbox(s, lags = 1)[1]  将单个数字从array中提取出来
 为了保证数据信息提取完毕，需要保证原始数据非白噪声，差分后为白噪声
-
+hessian matrix 海赛矩阵
+inversion 反转
 ===
 
 # 平稳性检验
