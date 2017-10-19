@@ -20,6 +20,8 @@ ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check ml
 [p] = acorr_ljungbox(s, lags = 1)[1] lags = 1
 lagnum = 12 
 有时候模型拟合为11 有时候为01
+arima.predict(typ = 'levels') typ = 'levels'
+平均值
 
 # 
 http://blog.csdn.net/y1535766478/article/details/77982675
@@ -37,7 +39,8 @@ inversion 反转
 l.append(ARIMA(s, (i,1,j)).fit().bic) 只能接全数字或者是str
 l2.extend(l1) # 将元素散开
 pd.DataFrame(l2).stack() 堆积起来，也就是去掉列
-pd.DataFrame(bic_matrix) ARIMA(s, (1,1,1)).fit().bic 数字时常变化
+pd.DataFrame(bic_matrix) ARIMA(s, (1,1,1)).fit().bic 数字时常变化 可能与运行的速度有关
+compare_d.plot() 坐标轴缩放
 
 ===
 # 预处理 检验平稳性和白噪声
