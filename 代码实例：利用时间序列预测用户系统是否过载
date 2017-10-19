@@ -42,6 +42,11 @@ l2.extend(l1) # 将元素散开
 pd.DataFrame(l2).stack() 堆积起来，也就是去掉列
 d.plot(yticks=[10,11,12],xlim=-1) xlim原点的位置  yticks只显示轴上的某些点
 
+g_d.apply(lambda x : x['SYS_NAME'].iloc[0]) group类型dataframe 只能apply运用函数 是有索引的
+pd.concat([select_d1,select_d2],axis=1) 会保留所有的列名
+pd.merge(left=select_d1, right=select_d2,on='ENTITY', how='left') merge必须要有对应列 有相同的元素
+s1 = pd.Series([1,2,3]) s2 = pd.Series([4,5,6]) pd.DataFrame([s1,s2])
+
 ===
 
 # 预处理 检验平稳性和白噪声
