@@ -1,46 +1,46 @@
-# 问题：
-232
-极大似然比方法
+# 问题：P232
 from statsmodels.tsa.stattools import adfuller as ADF
 FutureWarning: The pandas.core.datetools module is deprecated and will be removed in a future version. 
 Please use the pandas.tseries module instead.
 from pandas.core import datetools
-BIC最小的p值和q值为：0、1 有时候为1
-bic_matrix_d = pd.DataFrame(bic_matrix) 定阶的值在变
-lagnum = 12
-p2 = (p < 0.05).sum()
-显著性水平 
-平稳性的结果与书上的不一样 数据其实没什么问题
-final_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据是为了拿来预测
-LB 统计量 Ljung-Box
-try: #存在部分报错，所以用try来跳过报错。
-tmp.append(ARIMA(s, (p,1,q)).fit().bic)
-except:
-ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-[p] = acorr_ljungbox(s, lags = 1)[1] lags = 1
-lagnum = 12 
-有时候模型拟合为11 有时候为01
-arima.predict(typ = 'levels') typ = 'levels'
-平均值
+http://pandas.pydata.org/pandas-docs/version/0.19.0/whatsnew.html
+
+lagnum = 12 残差延迟个数
+jungbox_p2 = (jungbox_p < 0.05).sum() # p值小于0.05，认为是非白噪声,白噪声是相加的值
 
 # 
-http://blog.csdn.net/y1535766478/article/details/77982675
-基本步骤：
-平稳性检验 - 差分运算 - 白噪声检验
-BIC 定阶，模型识别，确认模型的p、q参数
-预测 - 检验
+BIC最小的p值和q值为：0、1 有时候为1、1 与数据有关；与BIC编写代码是否正确有关；代码的反应速度
+显著性水平 显著性水平是估计总体参数落在某一区间内，可能犯错误的概率，用α表示
+final_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据是为了拿来预测
+LB 统计量 Ljung-Box LB检验，判断其是否是高斯白噪声 https://www.zhihu.com/question/22863169/answer/22937500
+try except: 存在部分报错，所以用try来跳过报错而尝试except的内容，比如忽略参数错误
+arima.predict(typ = 'levels') typ = 'levels'
+
+d.plot() 改变y轴范围 http://blog.csdn.net/ccy950903/article/details/50688449
+d.plot()
+plt.axis([0,7,0,13]) 
+
+极大似然比方法
+https://www.zhihu.com/question/20447622/answer/23902715
+http://blog.csdn.net/yanqingan/article/details/6125812
+利用已知的样本结果，反推最有可能（最大概率）导致这样结果的参数值
+
+
+应用系统负载分析与磁盘容量预测 http://blog.csdn.net/y1535766478/article/details/77982675
+基本步骤：平稳性检验 - 白噪声检验 - 模型识别，确认模型的p、q参数 - 模型检验 - 模型应用
 时间列须为 时间格式，时间由前到后排序
 差分 本行减去上一行的差值
+
 from statsmodels.tsa.stattools import adfuller as ADF
 [p] = acorr_ljungbox(s, lags = 1)[1]  将单个数字从array中提取出来
 为了保证数据信息提取完毕，需要保证原始数据非白噪声，差分后为白噪声
+
 hessian matrix 海赛矩阵
 inversion 反转
 l.append(ARIMA(s, (i,1,j)).fit().bic) 只能接全数字或者是str
 l2.extend(l1) # 将元素散开
 pd.DataFrame(l2).stack() 堆积起来，也就是去掉列
-pd.DataFrame(bic_matrix) ARIMA(s, (1,1,1)).fit().bic 数字时常变化 可能与运行的速度有关
-compare_d.plot() 坐标轴缩放
+d.plot(yticks=[10,11,12],xlim=-1) xlim原点的位置  yticks只显示轴上的某些点
 
 ===
 # 预处理 检验平稳性和白噪声
