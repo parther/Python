@@ -66,6 +66,7 @@ train_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据
 s = train_d['CWXT_DB:184:D:\\']
 stable_s = s.diff(1).dropna()
 
+# 平稳性
 from statsmodels.tsa.stattools import adfuller as ADF
 diff_x = 0
 adf = ADF(s)
@@ -74,6 +75,7 @@ while adf[1] >= 0.05: # adf[1]为p值，检验是否小于0.05，若不小于则
     adf = ADF(s.diff(diff_x).dropna())
 print('通过 %s 阶差分后序列平稳，p 值为：%s' %(diff_x, adf[1]))
 
+# 白噪声
 from statsmodels.stats.diagnostic import acorr_ljungbox
 [p] = acorr_ljungbox(s, lags = 1)[1]
 if p < 0.05: # p < 0.05 为非白噪声序列
