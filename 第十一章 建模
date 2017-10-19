@@ -43,8 +43,8 @@ pd.DataFrame(l2).stack() 堆积起来，也就是去掉列
 d.plot(yticks=[10,11,12],xlim=-1) xlim原点的位置  yticks只显示轴上的某些点
 
 ===
-# 预处理 检验平稳性和白噪声
 
+# 预处理 检验平稳性和白噪声
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
@@ -61,8 +61,10 @@ c_d = pd .DataFrame(g_d.apply(lambda x : x['VALUE'].iloc[0]),columns=['CWXT_DB:1
 d_d = pd .DataFrame(g_d.apply(lambda x : x['VALUE'].iloc[1]),columns=['CWXT_DB:184:D:\\'])
 final_d = pd.concat([c_d,d_d],axis=1)
 
-final_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据
-s1 = final_d['CWXT_DB:184:D:\\']
+test_d = final_d.iloc[len(final_d)-5:]
+train_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据
+s = train_d['CWXT_DB:184:D:\\']
+stable_s = s.diff(1).dropna()
 
 from statsmodels.tsa.stattools import adfuller as ADF
 diff_x = 0
@@ -82,7 +84,7 @@ else:
     
 =
 
-建模。定阶，识别模型
+# 建模。定阶，识别模型
 1 图像识别
 from statsmodels.graphics.tsaplots import plot_acf  
 plot_acf(stable_s1)
@@ -92,46 +94,53 @@ plot_pacf(stable_s1)
 
 2 BIC检验
 from statsmodels.tsa.arima_model import ARIMA
-pmax = int(len(s)/10) #一般阶数不超过length/10
-qmax = int(len(s)/10) #一般阶数不超过length/10
+pmax = int(len(stable_s)/10) #一般阶数不超过length/10
+qmax = int(len(stable_s)/10) #一般阶数不超过length/10
 bic_matrix = [] #bic矩阵
-for p in range(pmax+1):
-    tmp = []
-    for q in range(qmax+1):
-        try: #存在部分报错，所以用try来跳过报错。
-            tmp.append(ARIMA(s, (p,1,q)).fit().bic)
+
+for i in range(pmax+1): # for 只与对应的循坏对象有关 循环需要从内往外看吗
+    l = []
+    for j in range(qmax+1):
+        try:
+            l.append(ARIMA(s, (i,1,j)).fit().bic)
         except:
-            tmp.append(None)
-    bic_matrix.append(tmp)
+            l.append(None)
+    bic_matrix.append(l)
+    
+# (p,q) = pd.DataFrame(bic_matrix).stack().idxmin()
+# (p,q)
 
-bic_matrix = pd.DataFrame(bic_matrix) #从中可以找出最小值
-p,q = bic_matrix.stack().idxmin() #先用stack展平，然后用idxmin找出最小值位置。
-print(u'BIC最小的p值和q值为：%s、%s' %(p,q))
-===
+=
 
-# 模型检验
-arima = ARIMA(s, (0, 1, 1)).fit() #建立并训练模型
+# 模型检验，残差是否为白噪声序列，保证有用信息已经提取完毕
+arima = ARIMA(s, (p, 1, q)).fit() #建立并训练模型
 s_pred = arima.predict(typ = 'levels') # 反过来预测s的值，缺少s的第一个值，因为前面dropna了
 pred_error = (s_pred - s).dropna() # 残差序列中如果不是白噪声，说明信息未提取完整，需修改模型
 
-lagnum = 12 # 
-p = acorr_ljungbox(pred_error, lags = lagnum)[1]
-p2 = (p < 0.05).sum() #p值小于0.05，认为是非白噪声,白噪声是相加的值
-if p2 > 0:
-  print(u'模型ARIMA(0,1,1)不符合白噪声检验')
+from statsmodels.stats.diagnostic import acorr_ljungbox
+lagnum = 12 # 延迟12期的白噪声
+jungbox_p = acorr_ljungbox(pred_error, lags = lagnum)[1] # 返回的是数组，第二个为检验值
+jungbox_p2 = (jungbox_p < 0.05).sum() # p值小于0.05，认为是非白噪声,白噪声是相加的值
+if jungbox_p2 > 0:
+    print(u'模型ARIMA(%s,1,%s)不符合白噪声检验'% (p,q))
 else:
-  print(u'模型ARIMA(0,1,1)符合白噪声检验')
-===
+    print(u'模型ARIMA(%s,1,%s)符合白噪声检验'% (p,q))
+    
+=
 
-# 模型评价
-#参数初始化
-file = '数据源\\图书配套数据、代码\\chapter11\\demo\\data\\predictdata.xls'
-data = pd.read_excel(file)
+# 模型应用和评价
+model = ARIMA(s, (0,1,1)).fit() #建立ARIMA(1, 1, 1)模型
 
-#计算误差
-abs_ = (data[u'预测值'] - data[u'实际值']).abs()
-mae_ = abs_.mean() # mae
-rmse_ = ((abs_**2).mean())**0.5 # rmse
-mape_ = (abs_/data[u'实际值']).mean() # mape
+compare_d = pd.DataFrame(test_d[['CWXT_DB:184:D:\\']])
+compare_d['predict'] = model.forecast(5)[0] # model.forecast(5)返回预测结果，标准误差，置信区间
+compare_d.columns = ['real','predict']
+compare_d = compare_d/10**6 # 数据换成GB
+
+abs_ = (compare_d['real'] - compare_d['predict']).abs()
+mae_ = abs_.mean() # mae 平均绝对误差
+rmse_ = ((abs_**2).mean())**0.5 # rmse 均方根误差
+mape_ = (abs_/compare_d['real']).mean() # mape
 
 print(u'平均绝对误差为：%0.4f，\n均方根误差为：%0.4f，\n平均绝对百分误差为：%0.6f。' %(mae_, rmse_, mape_))
+
+
