@@ -34,6 +34,10 @@ from statsmodels.tsa.stattools import adfuller as ADF
 为了保证数据信息提取完毕，需要保证原始数据非白噪声，差分后为白噪声
 hessian matrix 海赛矩阵
 inversion 反转
+l.append(ARIMA(s, (i,1,j)).fit().bic) 只能接全数字或者是str
+l2.extend(l1) # 将元素散开
+pd.DataFrame(l2).stack() 堆积起来，也就是去掉列
+pd.DataFrame(bic_matrix) ARIMA(s, (1,1,1)).fit().bic 数字时常变化
 
 ===
 # 预处理 检验平稳性和白噪声
