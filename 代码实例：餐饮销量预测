@@ -1,0 +1,75 @@
+#
+d['销量'] = d['销量'].astype('float64') folat才能运用于时间序列
+
+
+===
+
+import numpy as np
+import pandas as pd
+from pandas import Series, DataFrame
+
+#参数初始化
+discfile = '数据源\\图书配套数据、代码\\chapter5\\demo\\data\\arima_data.xls'
+d = pd.read_excel(discfile, index_col = u'日期') # 读取数据，指定日期列为指标，Pandas自动将“日期”列识别为Datetime格式
+
+d['销量'] = d['销量'].astype('float64') 
+s = d['销量']
+stable_s = s.diff(1).dropna()
+
+from statsmodels.tsa.stattools import adfuller as ADF
+diff_x = 0
+adf = ADF(s)
+while adf[1] >= 0.05: # adf[1]为p值，检验是否小于0.05，若不小于则进行差分
+    diff_x = diff_x + 1
+    adf = ADF(s.diff(diff_x).dropna())
+print('通过 %s 阶差分后序列平稳，p 值为：%s' %(diff_x, adf[1]))
+
+from statsmodels.stats.diagnostic import acorr_ljungbox
+[p] = acorr_ljungbox(s, lags = 1)[1]
+if p < 0.05: # p < 0.05 为非白噪声序列
+    [p] = acorr_ljungbox(s.diff(1).dropna(), lags = 1)[1]
+    print(u'原始序列非白噪声序列，1阶差分后序列为白噪声序列，信息提取完毕，原始序列可用。对应的p值为：%s' %p)
+else:  
+    print(u'原始序列为白噪声序列，对应的p值为：%s' %p)
+    
+from statsmodels.graphics.tsaplots import plot_acf  
+plot_acf(stable_s)
+
+from statsmodels.graphics.tsaplots import plot_pacf
+plot_pacf(stable_s)
+
+from statsmodels.tsa.arima_model import ARIMA
+pmax = int(len(stable_s)/10) #一般阶数不超过length/10
+qmax = int(len(stable_s)/10) #一般阶数不超过length/10
+bic_matrix = [] #bic矩阵
+
+for i in range(pmax+1): # for 只与对应的循坏对象有关 循环需要从内往外看吗
+    l = []
+    for j in range(qmax+1):
+        try:
+            l.append(ARIMA(s, (i,1,j)).fit().bic)
+        except:
+            l.append(None)
+    bic_matrix.append(l)
+    
+# (p,q) = pd.DataFrame(bic_matrix).stack().idxmin()
+# (p,q)
+
+arima = ARIMA(s, (p, 1, q)).fit() #建立并训练模型
+s_pred = arima.predict(typ = 'levels') # 反过来预测s的值，缺少s的第一个值，因为前面dropna了
+pred_error = (s_pred - s).dropna() # 残差序列中如果不是白噪声，说明信息未提取完整，需修改模型
+
+from statsmodels.stats.diagnostic import acorr_ljungbox
+lagnum = 12 # 延迟12期的白噪声
+jungbox_p = acorr_ljungbox(pred_error, lags = lagnum)[1] # 返回的是数组，第二个为检验值
+jungbox_p2 = (jungbox_p < 0.05).sum() # p值小于0.05，认为是非白噪声,白噪声是相加的值
+if jungbox_p2 > 0:
+    print(u'模型ARIMA(%s,1,%s)不符合白噪声检验'% (p,q))
+else:
+    print(u'模型ARIMA(%s,1,%s)符合白噪声检验'% (p,q))
+    
+model = ARIMA(s, (p,1,q)).fit() #建立ARIMA(0, 1, 1)模型
+model.summary()
+model.forecast(5) #作为期5天的预测，返回预测结果、标准误差、置信区间
+
+
