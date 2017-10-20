@@ -7,9 +7,10 @@ http://pandas.pydata.org/pandas-docs/version/0.19.0/whatsnew.html
 
 lagnum = 12 残差延迟个数
 jungbox_p2 = (jungbox_p < 0.05).sum() # p值小于0.05，认为是非白噪声,白噪声是相加的值
+餐饮的白噪声检验和磁盘的不一样
 
 # 
-BIC最小的p值和q值为：0、1 有时候为1、1 与数据有关；与BIC编写代码是否正确有关；代码的反应速度
+BIC最小的p值和q值为：0、1 有时候为1、1 与数据有关；与BIC编写代码是否正确有关；代码的反应速度；不明原因，有时计算的BIC信息不一样
 显著性水平 显著性水平是估计总体参数落在某一区间内，可能犯错误的概率，用α表示
 final_d = final_d.iloc[:len(final_d)-5] # 不使用最后5个数据是为了拿来预测
 LB 统计量 Ljung-Box LB检验，判断其是否是高斯白噪声 https://www.zhihu.com/question/22863169/answer/22937500
@@ -42,7 +43,8 @@ l2.extend(l1) # 将元素散开
 pd.DataFrame(l2).stack() 堆积起来，也就是去掉列
 d.plot(yticks=[10,11,12],xlim=-1) xlim原点的位置  yticks只显示轴上的某些点
 
-g_d.apply(lambda x : x['SYS_NAME'].iloc[0]) group类型dataframe 只能apply运用函数 是有索引的
+g_d.apply(lambda x : x['SYS_NAME'].iloc[0]) group类型dataframe 只能apply运用函数 每个分组是有索引的
+g_d.head Returns first n rows of each group 打印前n行
 pd.concat([select_d1,select_d2],axis=1) 会保留所有的列名
 pd.merge(left=select_d1, right=select_d2,on='ENTITY', how='left') merge必须要有对应列 有相同的元素
 s1 = pd.Series([1,2,3]) s2 = pd.Series([4,5,6]) pd.DataFrame([s1,s2])
