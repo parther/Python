@@ -11,12 +11,10 @@ w3school http://www.w3school.com.cn/sql/index.asp
 # 问题
 
 ===
-# 
-mysql 客户端操作
+
 mysql 导入csv表格数据：database-table-import 使用notepad，将文件转成 utf-8 格式
 使用count时，null 0或1都会纳入计数，所以要用null
 update 出现 1175错误：SET SQL_SAFE_UPDATES = 0
 注释。/* */
      
-
 
