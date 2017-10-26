@@ -1,10 +1,13 @@
 # 问题：
-     新建索引
+新建索引
      
-# 新建表格
-create table orders3 
+===
+
+# 表格的基本操作     
+新建表格
+create table orders
 (
-id_o3 int(11) auto_increment primary key ,
+id_o3 int(11) auto_increment  ,
 ordersno varchar(30),
 id_p int(11),
 birthday date default '2017-5-12'，
@@ -13,32 +16,33 @@ constraint FK_sid foreign key (id_p) references persons(id_p)
 )
 ENGINE = MyISAM DEFAULT CHARSET = gbk
 
-#
 查询数据库下有哪些表格
-     show tables
+show tables
 查看表的搜索引擎
-     show create table orders 
+show create table orders 
 查询表格下有哪些列
-     show columns from orders
+show columns from orders
+
+修改表格名称
+alter table orders2 rename orders3
+删除表
+drop table orders3
+复制表 
+create table orders2 select * from orders 
+http://www.cnblogs.com/zhangjpn/p/6231662.html
      
 插入列
-     alter table orders add column items varchar(45)
-修改表格名称
-     alter table orders2 rename orders3
+alter table orders add column items varchar(45)
 修改列名称及属性
-     alter table orders
-     change column items item varchar(20)
-删除表
-     drop table orders3
-复制表 
-     create table orders2 select * from orders http://www.cnblogs.com/zhangjpn/p/6231662.html
+alter table orders change column items item varchar(20)
 删除列
-     alter table orders drop column item
+alter table orders drop column item
  
  
-# 新建主键
+# 主键的基本操作
 声明not null，最好用约束命名主键，删除时用得到
 约束两个值作为主键，两个值不全一样就能插入
+创建主键：
  CREATE TABLE Persons
 (
 Id_P int NOT NULL,
@@ -49,18 +53,16 @@ City varchar(255),
 CONSTRAINT pk_PersonID PRIMARY KEY (Id_P,LastName)
 )
 
-#
 查询主键
-     show columns from persons
+show columns from persons
 更新主键
-     ALTER TABLE Persons
-     ADD CONSTRAINT pk_PersonID PRIMARY KEY (Id_P,LastName)
+ALTER TABLE Persons ADD CONSTRAINT pk_PersonID PRIMARY KEY (Id_P,LastName)
 删除主键
-     Alter table persons drop primary key
+Alter table persons drop primary key
 
-# 新建外键
-外键必须为主键。副键创建的地方：在本表是主键，在他表是副键，在他表创建
-副键必须是本表中存在的值
+# 外键的基本操作
+外键必须为主键
+新建外键：
 CREATE TABLE Orders
 (
 Id_O int NOT NULL,
@@ -71,21 +73,21 @@ CONSTRAINT fk_PerOrders FOREIGN KEY (Id_P)
 REFERENCES Persons(Id_P)
 )
 
-# 
 查询外键
-     show columns from persons
+show columns from persons
 更新外键
-     ALTER TABLE Orders
-     ADD CONSTRAINT fk_PerOrders FOREIGN KEY (Id_P) REFERENCES Persons(Id_P)
+ALTER TABLE Orders ADD CONSTRAINT fk_PerOrders FOREIGN KEY (Id_P) REFERENCES Persons(Id_P)
 删除外键
-     ALTER TABLE Orders DROP foreign key fk_id_p
- 
-# 触发器，自动执行关联动作。触发器也是一个存储过程。支持delete insert update。表才支持触发器
-# 删除已建立的trigger，否则无法使用update，insert，delete
-# 新建触发器
+ALTER TABLE Orders DROP foreign key fk_id_p
+
+# 触发器
+触发器，自动执行关联动作。触发器也是一个存储过程。支持delete insert update。表才支持触发器
+删除已建立的trigger，否则无法使用update，insert，delete
+http://www.cnblogs.com/nicholas_f/archive/2009/09/22/1572050.html
+新建触发器：
 create trigger tri_name after insert on persons
 for each row select 'person added'  into @args
-# 创建触发器 插入 new。delimiter //告诉服务器终止行
+创建触发器 插入 new：
 delimiter //
 CREATE TRIGGER t_afterinsert_on_tab1 
 AFTER INSERT ON tab1
@@ -94,7 +96,7 @@ BEGIN
      insert into tab2(tab2_id) values(new.tab1_id);
 END//
 delimiter
-#创建触发器 删除 old
+# 创建触发器 删除 old：
 delimiter //
 CREATE TRIGGER t_afterdelete_on_tab1
 AFTER DELETE ON tab1
@@ -103,30 +105,23 @@ BEGIN
       delete from tab2 where tab2_id=old.tab1_id;
 END//
 delimiter
-# 查询 
-# 更新 
-# 删除
-# 参考
-http://www.cnblogs.com/nicholas_f/archive/2009/09/22/1572050.html
 
-# 事件也称为临时性触发器，对数据定时性操作，周期性调动或执行某个动作
-# 开启事件
+
+# 事件
+事件也称为临时性触发器，对数据定时性操作，周期性调动或执行某个动作
+http://blog.csdn.net/jesseyoung/article/details/35257527
+开启事件：
 SET GLOBAL event_scheduler = ON;
-# 查看事件
+查看事件：
 SHOW VARIABLES LIKE 'event_scheduler'
-# 显示哪些线程正在运行
+显示哪些线程正在运行
 SHOW PROCESSLIST
-# 表示开启
+表示开启
 SELECT @@event_scheduler
-# 执行事件
+执行事件
 create event eventnow
 on schedule
 at now()
 do insert into persons values(4, 'peter2', 'london');
-# 查询 
-# 更新 
-# 删除
-# 参考
-http://blog.csdn.net/jesseyoung/article/details/35257527
 
 
