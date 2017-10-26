@@ -21,7 +21,6 @@ delete from orders where id_p=2
 select * from orders
 查询指定列
 select id_p from orders
-===
 
 # 清洗函数
 删除重复值
