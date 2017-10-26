@@ -17,5 +17,10 @@ mysql 导入csv表格数据：database-table-import 使用notepad，将文件转
 使用count时，null 0或1都会纳入计数，所以要用null
 update 出现 1175错误：SET SQL_SAFE_UPDATES = 0
 注释。/* */
+
+select id from t1,t2 where t1.id = t2.id
+Error Code: 1052. Column 'id' in field list is ambiguous
+没有指明哪个表的id
+select t1.id from t1,t2 where t1.id = t2.id
      
 
