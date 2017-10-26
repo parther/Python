@@ -10,6 +10,7 @@ w3school http://www.w3school.com.cn/sql/index.asp
 ===
 # 问题
 面试题，根据次数显示
+auto_increment
 
 #
 mysql 导入csv表格数据：database-table-import 使用notepad，将文件转成 utf-8 格式
