@@ -1,17 +1,17 @@
-# mysql 必知必会
-
-# 秦路mysql系列
+# 教程
+mysql 必知必会
+秦路mysql系列
 https://github.com/parther/Python/blob/master/%E7%A7%A6%E8%B7%AF%20mysql%20%E5%85%A5%E9%97%A8
 
-# 
 w3school http://www.w3school.com.cn/sql/index.asp
 练习网站 https://leetcode.com/problemset/database/
 菜鸟教程 http://www.runoob.com/mysql/mysql-tutorial.html
 
-# 问题
-
 ===
+# 问题
+面试题，根据次数显示
 
+#
 mysql 导入csv表格数据：database-table-import 使用notepad，将文件转成 utf-8 格式
 使用count时，null 0或1都会纳入计数，所以要用null
 update 出现 1175错误：SET SQL_SAFE_UPDATES = 0
