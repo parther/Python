@@ -10,6 +10,8 @@ w3school http://www.w3school.com.cn/sql/index.asp
 ===
 # 问题
 面试题，根据次数显示
+select name, count(case when amount >1 then name end), count(case when amount >2 then name end) from t1 group by name
+
 auto_increment
 
 #
