@@ -1,11 +1,13 @@
 # 问题：
 Error Code: 1052. Column 'city' in field list is ambiguous
+表的外联 类似于SQL的full join
 
 #
 插入值必须有 ' ' 符号
 联接查询尽量用 join 模式
 limit 1,1 前面的1表示排名，后面的1是显示几个
 SELECT * FROM Employee AS a a没有冒号的
+select t2.id_p 最好带上表的名字，以免有重名报错
 
 ===
 
@@ -68,11 +70,11 @@ select lastname, (select count(*) from orders where orders.id_p = persons.id_p) 
 where id_p in (select id_p from orders where orderno = 2000
 
 # 联结查询
-where
+1 where
 select persons.id_p, lastname from persons, orders  where persons.id_p= orders.id_p order by lastname
-join 分为join，left join，right join，union
-select persons.id_p, lastname from persons join orders on persons.id_p= orders.id_p order by lastname     
-union 列数相同 重复值过滤 加括号
+2 join 分为join，left join，right join，union
+select t2.id_p, t2.order_no, t1.id_p from t2 inner join t1 on t2.id_p = t1.id_p
+3 union 列数相同 重复值过滤 加括号
 (SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons left JOIN OrdersON Persons.Id_P=Orders.Id_P)
 union
 (SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons right JOIN Orders ON Persons.Id_P=Orders.Id_P)
