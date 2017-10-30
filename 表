@@ -40,8 +40,7 @@ alter table orders drop column item
  
  
 # 主键的基本操作
-声明not null，最好用约束命名主键，删除时用得到
-约束两个值作为主键，两个值不全一样就能插入
+主键的作用：每行数据的唯一标识
 创建主键：
  CREATE TABLE Persons
 (
@@ -61,7 +60,8 @@ ALTER TABLE Persons ADD CONSTRAINT pk_PersonID PRIMARY KEY (Id_P,LastName)
 Alter table persons drop primary key
 
 # 外键的基本操作
-外键必须为主键
+外键的作用：约束插入值
+外键必须为他表的主键
 新建外键：
 CREATE TABLE Orders
 (
