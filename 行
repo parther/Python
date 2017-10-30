@@ -1,6 +1,11 @@
 # 问题：
 Error Code: 1052. Column 'city' in field list is ambiguous
+
 表的外联 类似于SQL的full join
+MySQL 本身不支持full join，可以用union方式解决
+(select t2.id_p, t1.id_p from t2 right join t1 on t2.id_p = t1.id_p)
+union
+(select t2.id_p, t1.id_p from t2 left join t1 on t2.id_p = t1.id_p)
 
 #
 插入值必须有 ' ' 符号
