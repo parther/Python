@@ -4,6 +4,7 @@ Error Code: 1052. Column 'city' in field list is ambiguous
 #
 插入值必须有 ' ' 符号
 联接查询尽量用 join 模式
+limit 1,1 前面的1表示排名，后面的1是显示几个
 
 ===
 
@@ -105,8 +106,8 @@ t_article WHERE MATCH(body) AGAINST('php and other key word');
 
 ===
 # 实用案例
-排名筛选 select Salary as SecondHighestSalary FROM Employee order by Salary desc limit 1,1 
-limit 1,1 前面的1表示排名，后面的1是显示几个
+排名筛选 
+select Salary as SecondHighestSalary FROM Employee order by Salary desc limit 1,1 
 
 两表联和能解决很多查询的问题
 SELECT * FROM Employee AS a, Employee AS b 总共有 a 个数乘以 b 个数个结果
@@ -116,5 +117,8 @@ SELECT p1.* FROM Persons as p1, Persons as p2 总共有 a 个数乘以 b 个数�
 select id from t1 where id not in (select id from t2)
 union
 select id from t2 where id not in (select id from t1)          
+
+函数
+https://leetcode.com/problems/nth-highest-salary/discuss/
 
 
