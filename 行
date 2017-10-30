@@ -100,6 +100,11 @@ select id_p, lastname from persons where lastname regexp'[pe]{2}'
 转义特殊字符
 select id_o, orderno from orders where orderno regexp'\\.'
 
+# 通配符
+% 匹配多个字符 下例返回包含e的字符
+select id_p, lastname from persons where lastname like '%e%'
+下划线_ 匹配1个字符
+
 # 文本搜索查询 
 SELECT title, MATCH(body) AGAINST('php and other key word') AS score FROM 
 t_article WHERE MATCH(body) AGAINST('php and other key word');
