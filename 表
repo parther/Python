@@ -38,7 +38,6 @@ alter table orders change column items item varchar(20)
 删除列
 alter table orders drop column item
  
- 
 # 主键的基本操作
 主键的作用：每行数据的唯一标识
 创建主键：
@@ -105,7 +104,6 @@ BEGIN
       delete from tab2 where tab2_id=old.tab1_id;
 END//
 delimiter
-
 
 # 事件
 事件也称为临时性触发器，对数据定时性操作，周期性调动或执行某个动作
