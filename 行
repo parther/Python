@@ -94,21 +94,34 @@ having 过滤分组
 select class from courses group by class having count(student)>= 5 
 
 # 正则表达式
+是什么:
+匹配文本的特殊的字符的集合
+为什么：
+随着过滤条件的增加，普通操作符合通配符已经无法满足要求
+
+1 包含某些字符
 select id_p, lastname from persons where lastname regexp'e'
-以某字符开头或结尾
+select * from persons where lastname regexp '.a' 匹配任意a的字符
+2 或包含某些字符
+select * from persons where lastname regexp 'p|q' 匹配出现p或q的文本
+select * from persons where lastname regexp '[7|9]a' 批诶出现7a或9a的文本
+3 匹配字符类
+select * from persons where lastname regexp '[1-9]' 匹配在数字范围内的文本
+4 指定匹配的个数
+select * from persons where lastname regexp '0{2}' 匹配0出现两次的文本
+5 以某字符开头或结尾
 select id_p, lastname from persons where lastname regexp'r$'
 select * from persons where lastname regexp '^c'
-包含数字，字母
-select id_p, lastname from persons where lastname regexp'[1-4]'
-select id_p, lastname from persons where lastname regexp'[:alpha:]'
-任意字符
-select * from persons where lastname regexp '.a'
-重复个数
-select id_p, lastname from persons where lastname regexp'[pe]{2}'
+
 转义特殊字符
 select id_o, orderno from orders where orderno regexp'\\.'
 
 # 通配符
+是什么：
+用来匹配值的一部分的特殊字符
+必须使用like操作符，指示MySQL使用通配符匹配
+作用：
+过滤数据，返回只包含部分字符的数据，普通的操作符是做不到的
 % 匹配多个字符 下例返回包含e的字符
 select id_p, lastname from persons where lastname like '%e%'
 下划线_ 匹配1个字符
