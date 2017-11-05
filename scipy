@@ -1,10 +1,19 @@
+# 问题
+最优解怎样实现
 #
 https://www.scipy.org/
+https://docs.scipy.org/doc/scipy/reference/
+http://www.jianshu.com/p/1a3db06e786d
+
 
 #
 判断是否符合正态分布
 http://blog.csdn.net/QimaoRyan/article/details/72861387
 
+# 插值
 from scipy.interpolate import lagrange 拉格朗日插值法
+
+# 线性规划的问题
+http://www.cnblogs.com/zhilangtaosha/p/5745556.html
 
 
