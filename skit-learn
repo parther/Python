@@ -10,4 +10,13 @@ from sklearn.tree import DecisionTreeClassifier 决策树
 
 from sklearn.cluster import KMeans 聚类分析
 
+# 线性回归
+http://scikit-learn.org/stable/modules/linear_model.html
+python 线性回归示例 http://www.cnblogs.com/hhh5460/p/5786115.html
+基本代码：
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(d.as_matrix()[:,0:1],d.as_matrix()[:,1:])
+model.coef_, model.intercept_ 
+
 
