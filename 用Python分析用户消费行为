@@ -1,11 +1,17 @@
 # http://dwz.cn/6tu4AK
-商家 - 分析 -用户消费行为
+商家 - 分析 - 用户消费行为
 为什么：形成运营策略，提升销量
-分析是什么：量化用户消费行为的关键指标，形成运营策略提升关键指标
+分析是什么：分析是思维过程，目的是为了解决问题；分析是动词，可以理解为找答案（预测），找原因，找方法
 用户消费行为是什么：5W1H
-
+who - 用户分层
+when - 消费时间节点；消费周期
+where
+what - 消费金额；复购率和回购率；用户生命周期
+why
+how
 # 问题
 \s+表示匹配任意空白
+\ 在编程语言中一般是转义功能
 pandas中有专门的时间序列方法tseries
 plot.hist hist
 apply axis status_amount_pd2.replace('unreg',np.NaN).apply(pd.value_counts,axis=0) 以行为索引和以列为索引 0以列为索引
