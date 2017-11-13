@@ -9,7 +9,33 @@ where
 what - 消费金额；复购率和回购率；用户生命周期
 why
 how
-# 问题
+
+#　问题
+d['order_date'].values.astype('datetime64[D]') 返回的数据类型为 dtype='datetime64[ns]
+
+d['order_month'] = d['order_date'].astype('int')
+TypeError: cannot astype a datetimelike from [datetime64[ns]] to [int32]
+
+回购率是什么意思，与复购率的区别
+
+# 
+d.groupby('user_id').describe() 与 d.describe() 的表现形式不一样
+方差是与均值的平均距离，方差越大表示数据波动越大
+浅谈重复购买率：关于提升重复购买率的几点思考 http://www.woshipm.com/operate/790907.html
+复购率：某时间窗口内消费两次及以上的用户占总消费用户的比例
+意义：代表用户的忠诚度，复购率越高忠诚度越高
+
+d['order_date'].values.astype('datetime64[M]') 并没有改变d['order_date']的数据类型, 只是提取数据的月份
+d['order_month'].astype('str') 改变了d['order_date']的数据类型
+
+pivot_d.applymap(lambda x : 1 if x>1 else 0 if x==1 else None ) else 0 if x==1连在一起用 包含的关系
+
+len(d) d.count() count不计算空值
+help(d.count) 除非內建函数，否则查询函数的意义都需要跟上属性d
+
+回购率：某时间窗口中在上一个时间窗口有消费的人数占总消费人数的比例
+意义：也代表用户的忠诚度
+
 \s+表示匹配任意空白
 \ 在编程语言中一般是转义功能
 pandas中有专门的时间序列方法tseries
@@ -33,6 +59,7 @@ applymap针对DataFrame里的所有数据 counts_pd2 = counts_pd.applymap(lambda
 lambda没有elif的用法
 在运算中，None 当成了0处理，计数时不处理
 life_s.dt.days[life_s.dt.days>0].mean() 将days转换为数字
+csdn markdown 设置标题大小，插入TOC代码即可生成目录，代码层级依据标题大小而定
 
 留存率也是消费分析领域的经典应用。它指用户在第一次消费后，有多少比率进行第二次消费
 和回流率的区别是留存倾向于计算第一次消费，并且有多个时间窗口
