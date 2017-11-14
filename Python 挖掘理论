@@ -16,4 +16,23 @@
 2 机器学习 机器学习，统计学习方法，数据挖掘导论
 3 深度学习 吴恩达深度学习
 
+数据挖掘中Java的作用 http://www.jianshu.com/p/8845a83c22f9 ：
+性能优化
+apache家族项目java，Hadoop和Spark的底层实现使用Java
+Java写分布式的实现，如mr，graph，spark（scala），python写udf，数据处理，单机版，gpu版，脚本
+
+为什么很多数据挖掘过程中用C++来写算法 https://www.zhihu.com/question/20362988 ：
+改写算法，提高算法的效率
+底层Numpy Scipy 里面有很多代码是 c/cpp 写的啊。python作为胶水，把很多c/cpp代码构成的算法粘在一起
+
+unix https://www.zhihu.com/question/20117703 ：
+用户知道自己想要什么，也明白自己在做什么，并且会为自己的行为负责
+Unix和Linux操作系统有什么区别 https://www.zhihu.com/question/24217234/answer/45669979 ：
+Linux是Unix的开源实现
+
+hadoop和大数据的关系？和spark的关系？互补？并行？ https://www.zhihu.com/question/23036370/answer/24675452 ：
+分布式计算系统
+hadoop 和spark如何系统的学习？https://www.zhihu.com/question/39078198 ：
+Scala
+
 
