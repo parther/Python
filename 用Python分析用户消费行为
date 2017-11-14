@@ -17,6 +17,7 @@ d['order_month'] = d['order_date'].astype('int')
 TypeError: cannot astype a datetimelike from [datetime64[ns]] to [int32]
 
 回购率是什么意思，与复购率的区别
+stack()
 
 # 
 d.groupby('user_id').describe() 与 d.describe() 的表现形式不一样
@@ -33,8 +34,10 @@ pivot_d.applymap(lambda x : 1 if x>1 else 0 if x==1 else None ) else 0 if x==1�
 len(d) d.count() count不计算空值
 help(d.count) 除非內建函数，否则查询函数的意义都需要跟上属性d
 
-回购率：某时间窗口中在上一个时间窗口有消费的人数占总消费人数的比例
-意义：也代表用户的忠诚度
+回购率：在下一个时间窗口有消费的人数占本时间窗口总消费人数的比例
+意义：也代表用户的忠诚度，类似于消费用户的留存率
+
+g_d 和 d 的切片方式完全不一样，g_d需要用apply，不能直接使用iloc。条件筛选也不一样
 
 \s+表示匹配任意空白
 \ 在编程语言中一般是转义功能
