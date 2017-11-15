@@ -1,6 +1,4 @@
 # 问题：
-d.loc[>100]，当单索引为int类型，筛选>100的值
-
 #
 
 ===
@@ -9,49 +7,46 @@ f = open(path)
 d = pd.read_csv(f)
 
 # 单索引 切片：
-# loc 应付标签
-选取 索引列 两个值 筛选
+1 loc 应付标签：
+选取 索引列 两个值 筛选：
 d.loc[['Gore Verbinski','Sam Mendes']] #
 选取索引 选取纵列。此时索引需为有规律数字
 d.loc[1:4, ['director_name','duration']] # 
-条件索引
+条件索引：
 d.loc[d2['duration']>100, ['actor_2_name','duration']] #
 d.loc[~(d2['duration']>100), ['actor_2_name','duration']] # ~ 表示非
-赋值
+赋值：
 d.loc[~(d2['duration']>150), 'duration2'] = 0 # 根据条件，给duration列赋值
 
-# iloc 应付数字，基于位置，只能使用整数
-选取索引列
+2 iloc 应付数字，基于位置，只能使用整数：
+选取索引列：
 d.iloc[1:4]
-选取索引列 和 纵列
+选取索引列 和 纵列：
 d.iloc[1:4,:3] # 前闭后开
 
 =
 
-# 多重索引 切片：
-# 设置索引：
+# 多重索引
+设置索引：
 设置单列索引。此时数据本身没有变化，应用变化需要赋值，或者使用inplace
 d = d.set_index('director_name')
-设置多列索引
+设置多列索引：
 d = d.set_index(['director_name','duration'])
-将索引放回到列中。里面是中括号
-d.reset_index(['director_name'])
-对多重索引进行排序，是筛选多重索引的前提，append 保留之前的索引
+将索引放回到列中：
+d.reset_index(['director_name']) 里面是中括号
+对多重索引进行排序：
+筛选多重索引的前提，append 保留之前的索引
 d.sort_index(level = [0,1], inplace = True)
-筛选索引 多个值。后面的 : 一定跟上，不然报错。必须得先排序
-d.loc[('James Cameron',['UK','USA'],171),:]
-     
-# slice 筛选
-不做筛选
-d.loc[(slice(None),['UK','USA']), :]
-筛选范围
-d.loc[(slice(None), ['UK', 'USA'], slice(100,200)),:]
 
+多重索引切片：
+d.loc[('James Cameron',['UK','USA'],171),:]
+d.xs(('James Cameron',171),level=(0,2),drop_level = False)
+筛选范围：
+1
+d.loc[(slice(None), ['UK', 'USA'], slice(100,200)),:]
+2
 pd.IndexSlice 简化多重索引的操作，可替代slice。推荐
 idx = pd.IndexSlice
 d.loc[idx[:,['USA'],100:200],:]
-
-xs。也是自由选取索引列和纵列的方式
-d.xs(('James Cameron',171),level=(0,2),drop_level = False)
 
 
