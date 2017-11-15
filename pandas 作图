@@ -2,17 +2,15 @@
 饼图
 
 ===
+画分组箱线图 d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) 
+使用subplot画多个子图，比较不同维度 d.plot(kind='bar', subplots=True)
 
-#
-三种作图表达
+# 
+散点图：
+d.plot.scatter(x='a',y='b')
+直方图：
 d.hist()
 d.plot.hist()
 d.plot(kind ='hist')
-
-分组箱线图，仅适用于dataframe d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) 
-使用双坐标轴，适用于多个维度的比较，subplots只能用于plot d.plot(kind='bar', subplots=True)
-
-散点图
-d.plot.scatter(x='a',y='b')
 
 
