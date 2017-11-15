@@ -12,7 +12,8 @@ d.rolling(3).sum()
 将数据分成不同的范围组：
 pd.cut(s,3,labels=['a','b','c'])
 
-value_count计算series中每个值value的个数
+计算series中每个值value的个数：
+s.value_counts()
 
 将函数作用到数据集的函数：
 1 applymap 
@@ -25,5 +26,13 @@ d.apply(pd.value_counts)
 d.apply(lambda x: x.value_counts)
 agg，apply 都传入函数作用于dataframe，但agg只能作用在列
 apply中，第二个参数是所引入函数的第二个参数
+
+判断是否在列中:
+d['actor_2_name'].isin(['Orlando Bloom']) 
+判断空值返回布尔值：
+s.isnull() 
+
+偏移数据表：
+s.shift(1) 偏移函数，整个函数向下移动,和excel上的offset差不多
 
 
