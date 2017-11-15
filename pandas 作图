@@ -2,8 +2,9 @@
 饼图
 
 ===
-画分组箱线图 d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) 
-使用subplot画多个子图，比较不同维度 d.plot(kind='bar', subplots=True)
+
+使用subplot画多个子图，比较不同维度:
+d.plot(kind='bar', subplots=True)
 
 # 
 散点图：
@@ -12,5 +13,9 @@ d.plot.scatter(x='a',y='b')
 d.hist()
 d.plot.hist()
 d.plot(kind ='hist')
+面积图：
+d.plot.area()
+分组箱线图:
+d.boxplot(column = 'avg_salary', by = 'city',figsize = (9,7)) 
 
 
