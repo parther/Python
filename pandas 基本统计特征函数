@@ -1,16 +1,14 @@
 # 
-cumsum 累计求和
+累计求和：
 d.cumsum()
 s.cumsum()
-
-rolling(2).sum() 滚动求和
+滚动求和：
 s.rolling(3).sum() # 3 表示相邻三行 
 d.rolling(3).sum()
 
-判断是否符合正态分布
-http://blog.csdn.net/QimaoRyan/article/details/72861387
-p值要大于0.05
+将数据分成不同的范围组：
+pd.cut(s,3,labels=['a','b','c'])
 
-value_count计算series中每个数据的个数 count记录有多少行数据
-s.value_counts()
-pd.value_counts 将数据变为索引，对应位置显示1
+value_count计算series中每个值value的个数
+
+
