@@ -62,4 +62,9 @@ g_d.agg(f)
 g_d.agg('max')
 g_d.apply(lambda x: x.max()) 
 
+===
+# 数据透视表：
+d.pivot_table(values='order_amount', index='user_id', columns='order_month',aggfunc='count')
+
+
 
