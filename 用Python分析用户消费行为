@@ -19,6 +19,8 @@ TypeError: cannot astype a datetimelike from [datetime64[ns]] to [int32]
 回购率是什么意思，与复购率的区别
 stack()
 
+面积图
+
 # 
 d.groupby('user_id').describe() 与 d.describe() 的表现形式不一样
 方差是与均值的平均距离，方差越大表示数据波动越大
@@ -39,6 +41,7 @@ help(d.count) 除非內建函数，否则查询函数的意义都需要跟上属
 
 g_d 和 d 的切片方式完全不一样，g_d需要用apply，不能直接使用iloc。条件筛选也不一样
 
+group_user_d.replace('unreg',np.NaN) 和 group_user_d.replace('unreg',None) 只能是使用前一种
 \s+表示匹配任意空白
 \ 在编程语言中一般是转义功能
 pandas中有专门的时间序列方法tseries
