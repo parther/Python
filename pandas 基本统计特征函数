@@ -46,4 +46,7 @@ s.values.astype('datetime64[M]')
 创建时间数据
 np.datetime64('2005-02-25')
 
+#　替换数据
+group_user_d.replace('unreg',np.NaN) 
+
 
