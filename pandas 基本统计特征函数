@@ -14,4 +14,16 @@ pd.cut(s,3,labels=['a','b','c'])
 
 value_count计算series中每个值value的个数
 
+将函数作用到数据集的函数：
+1 applymap 
+针对DataFrame里的所有单个数据起作用 
+d.applymap(lambda x : 1 if x>1 else None if x==0 else 0)
+
+2 apply,agg 
+d.apply('std')
+d.apply(pd.value_counts)
+d.apply(lambda x: x.value_counts)
+agg，apply 都传入函数作用于dataframe，但agg只能作用在列
+apply中，第二个参数是所引入函数的第二个参数
+
 
