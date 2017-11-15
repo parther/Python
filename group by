@@ -1,40 +1,40 @@
-# 参考：
-groupby,聚合，分组级运算 http://blog.csdn.net/youngbit007/article/details/54288603
-
 # 问题：
-多重索引 进行分组
 g_d.transform(lambda x: x.max()) # 传入函数，返回的是整个列表
 
 #
-g_d2[['HP']].sum() # [] 返回数据框
-g_d2['HP'].sum() # 返回series g_d2.agg(np.sum)[['HP']] 效果一样
-columns=list('abcde')
-groupby 一般与数据聚合搭配使用
+分组聚合 http://blog.csdn.net/youngbit007/article/details/54288603
 unstack() 将分组展开
 
 ===
-
 path = '数据源\\soton\\Pokemon.csv' 
 f = open(path)
 d = pd.read_csv(f)
 
-# 
-单个分组
+# group by 分组
+分组方法：
 g_d = d.groupby(['Type 1'])     
-多个分组
+多个分组：
 g_d = d.groupby(['Type 1','Type 2'])
-     
-# 基本使用方法
-g_d2.first() # 获得分组的第一个值
-g_d2.size() # 获得每个分组值 的数量
-g_d2.describe() # 获得基本统计量
-g_d2[['data1']].mean() # 选择某列求均值
-          
-g_d2.groups # 获得分组数据对应的索引
-g_d2.get_group('Bug') # 获得单个分组数据对应的索引 及 其他 值
-g_d.get_group(('Fire', 'Flying')) 获得多个分组数据对应的索引 及 其他 值
 
-# 一个分组的情况。name,group 一般配合一起使用，打印出整个数据表。name 是分组值相当于索引，group 是分组对应的内容
+指定 列分组：
+http://blog.csdn.net/youngbit007/article/details/54288603
+dic = {'a':'red','b':'red','c':'blue','d':'blue','e':'red'} 将列分组
+g_d = d.groupby(dic,axis=1)
+g_d.count()
+
+传入函数 进行分组：
+http://blog.csdn.net/youngbit007/article/details/54288603
+g_d.groupby(len) 以索引名的长度进行分组 dict(list(g_d.groupby(len)))
+g_d.groupby([len,'a']) 函数 与列名 搭配分组
+
+多重索引 进行分组：
+http://blog.csdn.net/youngbit007/article/details/54288603
+columns = pd.MultiIndex.from_arrays([['US','US','US','JP','JP'],[1,3,5,1,3]],names=['cty','tenor'])
+d = pd.DataFrame(np.random.randn(4,5),columns=columns)
+d.groupby(level='cty',axis=1).count()
+
+显示分组：
+一个分组的情况。name,group 一般配合一起使用，打印出整个数据表。name 是分组值相当于索引，group 是分组对应的内容
 for name,group in g_d1: 
     print(name)
     print(group)
@@ -44,42 +44,22 @@ for (k1,k2),group in g_d2: # 两个分组的情况。内容同上，主要是用
     print (group)
 
 dict(list(g_d)) # 将分组用dict的形式 显示出来
-dict(list(g_d))['a'] # 将某个分组值 用表格打印出来
+g_d.first() # 显示每个分组的第一个值
+g_d.size() # 显示每个分组值 的数量
+
+获得指定分组数据：
+g_d2.groups # 获得分组数据对应的索引
+g_d2.get_group('Bug') # 获得单个分组数据对应的索引 及 其他 值
+g_d.get_group(('Fire', 'Flying')) 获得多个分组数据对应的索引 及 其他 值
 
 =
+分组数据聚合：
+g_d2.describe() # 获得基本统计量
+g_d2[['data1']].mean() # 选择某列求均值
 
-# 分组方式
-# 指定 列分组
-http://blog.csdn.net/youngbit007/article/details/54288603
-dic = {'a':'red','b':'red','c':'blue','d':'blue','e':'red'} 将列分组
-g_d = d.groupby(dic,axis=1)
-g_d.count()
-
-# 传入函数 进行分组
-http://blog.csdn.net/youngbit007/article/details/54288603
-g_d.groupby(len) 以索引名的长度进行分组 dict(list(g_d.groupby(len)))
-g_d.groupby([len,'a']) 函数 与列名 搭配分组
-
-# 多重索引 进行分组
-http://blog.csdn.net/youngbit007/article/details/54288603
-columns = pd.MultiIndex.from_arrays([['US','US','US','JP','JP'],[1,3,5,1,3]],names=['cty','tenor'])
-d = pd.DataFrame(np.random.randn(4,5),columns=columns)
-d.groupby(level='cty',axis=1).count()
-
-=
-
-# 分组运用函数
-def f(a):
-    return a.max()
+运用函数：
 g_d.agg(f) 
 g_d.agg('max')
-g_d.apply(top) # apply 传入的是最一般化的 函数，也是最常用的
-
-g_d.transform(lambda x: x.max()) # 传入函数，返回的是整个列表
-
-=
-
-pd.cut 将数据分组
-pd.cut(s,3,labels=['a','b','c'])
+g_d.apply(lambda x: x.max()) 
 
 
