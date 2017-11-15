@@ -1,4 +1,7 @@
 # 
+基本统计量函数：
+d.describe()
+
 累计求和：
 d.cumsum()
 s.cumsum()
