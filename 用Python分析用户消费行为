@@ -15,14 +15,14 @@
 在下一个时间窗口有消费的人数占本时间窗口总消费人数的比例
 意义：也代表用户的忠诚度，类似于消费用户的留存率
 
+# 问题
 三个月作为时间窗口统计
-
-===
-#　问题
 d['order_date'].values.astype('datetime64[D]') 返回的数据类型为 dtype='datetime64[ns]，数据类型没有变，变的是value
+
 d['order_month'] = d['order_date'].astype('int')：
 TypeError: cannot astype a datetimelike from [datetime64[ns]] to [int32]
 
+# 
 stack() 是堆积的意思，将列变成索引
 d.groupby('user_id').describe() 与 d.describe() 的表现形式不一样：
 g_d 和 d 的切片方式完全不一样，g_d需要用apply，不能直接使用iloc。条件筛选也不一样
