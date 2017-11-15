@@ -1,39 +1,12 @@
-# 参考
-pandas 基础 http://www.open-open.com/lib/view/open1402477162868.html
-使用pandas进行数据清洗 http://www.cnblogs.com/stream886/p/6021743.html
-http://pandas.pydata.org/
-
 # 问题
 无法直接读取csv文件
 向dataframe插入数据
 pandas中有专门的时间序列方法tseries
-
-#
-一般来说，对比Excel，csv的数据都是干净的
-
 时间函数
-Datetimes and Timedeltas https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html
-转换成时间格式     
-pd.to_datetime(s, format='%Y%m%d')
-获取天数
-s.dt.days
-获取月份
-s.values.astype('datetime64[M]')
-创建时间数据
-np.datetime64('2005-02-25')
-转为int类型
-s1 - s2 array([88, 85, 85, ..., 44, 15, 35], dtype='timedelta64[M]') 转为int类型 (s1-s2).astype('int')
-     
-d.query('director_name == "Gore Verbinski"') # 只对列条件进行筛选，注意单引号双引号的问题
-s.unique
-d['month'].astype('str').sort_values().unique() 修改数据类型，series后面直接跟修改函数。unique跟在最后
-np.NaN None 是一样的
 
-d['actor_2_name'].isin(['Orlando Bloom']) # 判断是否在列中
-d.isnull()
-pd.notnull(s) s.notnull() 是一样的，都返回布尔值series
-
-s.shift(1) 偏移函数，整个函数向下移动,和excel上的offset差不多
-基本统计量与分布结合起来看
+# 
+pandas 基础 http://www.open-open.com/lib/view/open1402477162868.html
+使用pandas进行数据清洗 http://www.cnblogs.com/stream886/p/6021743.html
+http://pandas.pydata.org/
 
 
