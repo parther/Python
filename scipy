@@ -1,19 +1,18 @@
-# 问题
-最优解怎样实现
 #
 https://www.scipy.org/
 https://docs.scipy.org/doc/scipy/reference/
 http://www.jianshu.com/p/1a3db06e786d
 
-
 #
-判断是否符合正态分布
+判断是否符合正态分布：
 http://blog.csdn.net/QimaoRyan/article/details/72861387
 
-# 插值
+拉格朗日插值：
 from scipy.interpolate import lagrange 拉格朗日插值法
+scipy.interpolate.lagrange https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.lagrange.html
+Python 实现拉格朗日插值 http://www.jianshu.com/p/c7d6b9db8b56
 
-# 线性规划的问题
-http://www.cnblogs.com/zhilangtaosha/p/5745556.html
+寻找最优解：
+线性规划最大值最小值 http://www.cnblogs.com/zhilangtaosha/p/5745556.html
 
 
