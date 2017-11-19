@@ -1,22 +1,13 @@
-# 问题
-apply 运用到列表 return放在最后面，归根结底是语法错误
-def lagrange(x):
-    for i in range(len(x)):
-        if (x.isnull())[i]:
-            x1 = x[list(range(i-5,i)) + list(range(i+1,i+6))]
-            x2 = x1[x1.notnull()]
-            x[i]=lagrange(list(x2.index),list(x2))(i)
-            return x
-        else:
-            return x
+# 问题：
+if is None ==None 是一样的，与拉格朗日插值无法配合也无法运用到函数，但数字却可以
 
 #
 scipy.interpolate.lagrange https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.lagrange.html
-Python 实现拉格朗日插值 http://www.jianshu.com/p/c7d6b9db8b56
+Python 实现拉格朗日插值 http://www.jianshu.com/p/c7d6b9db8b56 ：
 拉格朗日插值的稳定性不太好，出现不稳定的现象称为龙格现象，解决的办法就是分段用较低次数的插值多项式
 其实就是解方程组
-s[[1, 2, 3, 4, 5, 6]] 筛选索引
-if is None ==None 是一样的，与拉格朗日插值无法配合也无法运用到函数，但数字却可以
+
+lagrange 插值的参数 必须是非空的
 
 ===
 import pandas as pd
@@ -27,9 +18,8 @@ f = '数据源\\图书配套数据、代码\\chapter6\\test\\data\\missing_data.
 d = pd.read_excel(f, header = None)
 
 def lag_range(x):
-    from scipy.interpolate import lagrange
     for i in range(len(x)):
-        if (x.isnull())[i]:
+        if (x.isnull())[i]: 
             x1 = x[list(range(i-5,i)) + list(range(i+1,i+6))]
             x2 = x1[x1.notnull()]
             x[i]=lagrange(list(x2.index),list(x2))(i)
@@ -37,3 +27,5 @@ def lag_range(x):
             pass
     return x
 d.apply(lag_range)
+
+
