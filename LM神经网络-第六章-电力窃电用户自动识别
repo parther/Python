@@ -3,25 +3,26 @@
 WARNING (theano.configdefaults): g++ not available, if using conda: `conda install m2w64-toolchain`
 2 ValueError: Invalid argument "metric" passed to K.function with Theano backend
 This error means that you are running Keras version 0 (e.g. 0.3.2) but running code that was written for Keras version 1. 
-You can upgrade to Keras 1, or remove metrics=['accuracy'] from the function call to model.compile()
+You can upgrade to Keras 1, or remove metrics=['accuracy'] from the function call to model.compile() ：
 net.compile(loss = 'binary_crossentropy', optimizer = 'adam')
 3 d.as_matrix() d.as_matrix 的区别 一般d.as_matrix()
 4 plt.colorbar() 
 5 保存模型有什么用
+6 batch_size 如何设定
  
 #
 修改Keras.jason 解决backend 问题
-import math
+训练样本需为array类型
+
+import math：
 1 math.floor(2.3) 向前取整
 2 math.ceil(2.3) 向后取整 
 3 round(2.3) 四舍五入
 Sequential model The simplest type of model  a linear stack of layers
 https://keras.io/#getting-started-30-seconds-to-keras
-信号的正向传播和误差的逆向传播两个过程组成
-训练样本需为array类型
 matshow Plot a matrix or array as an image http://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.matshow.html?
 a = array([[124,  10],[  6,  92]] a[0,1] 显示0行1列
-
+深度机器学习中的batch的大小对学习效果有何影响 https://www.zhihu.com/question/32673260/answer/71137399
 ===
 代码
 import numpy as np
