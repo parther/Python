@@ -1,20 +1,16 @@
 # 问题：
-s1 - s2 array([88, 85, 85, ..., 44, 15, 35], dtype='timedelta64[M]') 转为int类型 (s1-s2).astype('int')
-https://zhuanlan.zhihu.com/p/27990382 如何在jupyter中显示 https://zhuanlan.zhihu.com/p/28157126
-Polar.render_notebook() 貌似也不行
+1 s1 - s2 array([88, 85, 85, ..., 44, 15, 35], dtype='timedelta64[M]') 转为int类型 (s1-s2).astype('int')
+2 如何在jupyter中显示图表 https://zhuanlan.zhihu.com/p/27990382  https://zhuanlan.zhihu.com/p/28157126
 
 #
-(target_d['LOAD_TIME'] - target_d['FFP_DATE']).dt.days 将时间格式转为浮点型数字
-函数的不同顺序造成速度不同 target_d.describe().T
-target_d.describe().loc[['max','min'],:]
-为何数据标准化 数据符合均值为0，标准差为1的正态分布；消除不同单位的差别，数值可以进行比较了
-标准差标准化数据 与 计算出来的不一致 可能是条件筛选的原因
-['count'] + list(target_d.columns) list函数不能作用于str，用[]替代将之转换为列表
-画图 echart https://zhuanlan.zhihu.com/p/27990382
-d.items()
-radar schema = [ ("L", 2.5), ("R", 2.5), ("F", 2.5), ("M", 2.5), ("C", 2.5)] 需确保不能出现负数
-画雷达图
-radar_d.rank() 数值排名
+1 (target_d['LOAD_TIME'] - target_d['FFP_DATE']).dt.days 将时间格式转为浮点型数字
+2 为何数据标准化 数据符合均值为0，标准差为1的正态分布；消除不同单位的差别，数值可以进行比较了
+3 标准差标准化数据 与 计算出来的不一致 可能是条件筛选的原因
+4 list 将str转换为list格式
+5 画图 echart https://zhuanlan.zhihu.com/p/27990382
+6 d.items()
+7 radar schema = [ ("L", 2.5), ("R", 2.5), ("F", 2.5), ("M", 2.5), ("C", 2.5)] 需确保不能出现负数
+8 radar_d.rank() 数值排名
 
 ===
 
