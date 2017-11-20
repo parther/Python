@@ -2,9 +2,10 @@
 保存的模型如何使用
 
 #
-http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier
-决策树算法的Python实现 https://zhuanlan.zhihu.com/p/20794583
-confusion_matrix(y, yp) 混淆矩阵参数，前面是y，后面是预测值
+1 http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier
+2 决策树算法的Python实现 https://zhuanlan.zhihu.com/p/20794583
+3 confusion_matrix(y, yp) 混淆矩阵参数，前面是实际值y，后面是预测值
+4 混淆矩阵的含义
 
 ===
 
