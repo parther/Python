@@ -49,4 +49,7 @@ np.datetime64('2005-02-25')
 #　替换数据
 group_user_d.replace('unreg',np.NaN) 
 
+排名：
+radar_d.rank() 
+
 
