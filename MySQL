@@ -1,28 +1,23 @@
 # 教程
 mysql 必知必会
-秦路mysql系列
-https://github.com/parther/Python/blob/master/%E7%A7%A6%E8%B7%AF%20mysql%20%E5%85%A5%E9%97%A8
-
+秦路mysql系列 https://github.com/parther/Python/blob/master/%E7%A7%A6%E8%B7%AF%20mysql%20%E5%85%A5%E9%97%A8
 w3school http://www.w3school.com.cn/sql/index.asp
 练习网站 https://leetcode.com/problemset/database/
 菜鸟教程 http://www.runoob.com/mysql/mysql-tutorial.html
 
 ===
 # 问题
-面试题，根据次数显示
+1 面试题，根据次数显示
 select name, count(case when amount >1 then name end), count(case when amount >2 then name end) from t1 group by name
-
-auto_increment
+2 auto_increment
 当插入指定的列或者行时，主键自动增加
 
-
 #
-mysql 导入csv表格数据：database-table-import 使用notepad，将文件转成 utf-8 格式
-使用count时，null 0或1都会纳入计数，所以要用null
-update 出现 1175错误：SET SQL_SAFE_UPDATES = 0
-注释。/* */
-
-select id from t1,t2 where t1.id = t2.id
+1 mysql 导入csv表格数据：database-table-import 使用notepad，将文件转成 utf-8 格式
+2 使用count时，null 0或1都会纳入计数，所以要用null
+3 update 出现 1175错误：SET SQL_SAFE_UPDATES = 0
+4 注释。/* */
+5 select id from t1,t2 where t1.id = t2.id
 Error Code: 1052. Column 'id' in field list is ambiguous
 没有指明哪个表的id
 select t1.id from t1,t2 where t1.id = t2.id
