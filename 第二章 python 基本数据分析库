@@ -7,6 +7,10 @@
      
 数据挖掘的基本流程：
 明确挖掘的目标 - 数据探索 - 数据预处理 - 建立模型 - 模型评价和应用
+===
+
+# 明确挖掘目标
+业务目标确定，模型确定，业务指标确定
      
 # 数据探索
 是什么：
@@ -17,4 +21,38 @@
 数据特征分析能够有助于发现合适的建模指标
 
 数据质量分析：
-分为缺失值分析，异常值
+分为缺失值分析，异常值分析，重复数据、无关数据及特殊符号
+
+数据特征分析：
+基本统计量分析和分布分析，相关性分析和对比分析，帕累托分析和周期性分析
+
+# 数据预处理
+是什么：
+清洗数据，选择建模指标，数据规范化和数据降维
+为什么：
+保证数据完整和准确，适应建模要求，提高数据建模的效率
+
+数据规范化：
+数据标准化处理，连续属性离散化，小波变换等
+
+数据降维：
+主成分降维:
+用新的特征代替旧的特征，取得更少的特征向量
+
+
+===
+# 主成分降维：
+f = '数据源/图书配套数据、代码/chapter4/demo/data/principal_component.xls'
+d = pd.read_excel(f, header=None)
+
+import pandas as pd
+from sklearn.decomposition import PCA,FactorAnalysis
+pca = PCA()
+pca.fit(d)
+pca.explained_variance_ratio_  # 查看贡献率
+
+pca2=PCA(n_components=2) # 取前两个特征向量
+reduce_X = pca2.fit_transform(d) # 数据降维 
+reduce_X # 降维后的数据
+
+
