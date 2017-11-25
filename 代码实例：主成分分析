@@ -1,8 +1,9 @@
-#
-主成分降维，取得特征向量
-主成分降维 用新的数据代替旧的数据
-     
 # 提取主成分
+  
+f = '数据源/图书配套数据、代码/chapter4/demo/data/principal_component.xls'
+d = pd.read_excel(f, header=None)
+
+import pandas as pd
 from sklearn.decomposition import PCA,FactorAnalysis
 pca = PCA()
 pca.fit(d)
@@ -10,3 +11,6 @@ pca.explained_variance_ratio_  # 查看贡献率
 
 pca2=PCA(n_components=2) # 取前两个特征向量
 reduce_X = pca2.fit_transform(d) # 数据降维 
+reduce_X # 降维后的数据
+
+
