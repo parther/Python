@@ -1,38 +1,98 @@
-#
-《数据分析与挖掘实战》
-
-#
-特征工程到底是什么？ https://www.zhihu.com/question/29316149
-一张图看懂AI、机器学习和深度学习的区别 http://blog.csdn.net/dukai392/article/details/70271574
-
+# 数据挖掘
+是什么：
+从大量数据中挖掘出隐含的，未知的，对决策有潜在价值的关系、模式和趋势，并用这些知识建立用于决策支持的模型，提供预测性决策支持的方法，工具和过程
+利用各种分析工具在大量数据中寻找其规律和发现模型与数据之间关系的过程，是统计学，数据库技术和人工智能技术的综合
+为什么：
+避免人治的随意性，避免企业管理仅仅依赖个人领导力的风险和不确定性，实现精细化营销和经营管理
+     
+数据挖掘的基本流程：
+明确挖掘的目标 - 数据探索 - 数据预处理 - 建立模型 - 模型评价和应用
 ===
 
-数据挖掘入门基础知识疑惑 https://www.zhihu.com/question/35055219/answer/61201204
-如何系统地学习数据挖掘 https://www.zhihu.com/question/20751219/answer/24345252
-零基础入门数据挖掘 http://dwz.cn/6Mbah9
-正确理解业务问题，才能正确把业务问题转化成挖掘问题
-所以跟着项目学挖掘是最有效的捷径
-1 代码的实现 《集体智慧编程》 《机器学习实战》
-2 机器学习 机器学习，统计学习方法，数据挖掘导论
-3 深度学习 吴恩达深度学习
+# 明确挖掘目标
+业务目标确定，模型确定，业务指标确定
+     
+# 数据探索
+是什么：
+检查数据质量，了解数据的规律
+分为 数据质量分析 和 数据特征分析
+为什么：
+数据的准确性是数据挖掘的前提
+数据特征分析能够有助于发现合适的建模指标
 
-数据挖掘中Java的作用 http://www.jianshu.com/p/8845a83c22f9 ：
-性能优化
-apache家族项目java，Hadoop和Spark的底层实现使用Java
-Java写分布式的实现，如mr，graph，spark（scala），python写udf，数据处理，单机版，gpu版，脚本
+1 数据质量分析：
+分为缺失值分析，异常值分析，重复数据、无关数据及特殊符号
 
-为什么很多数据挖掘过程中用C++来写算法 https://www.zhihu.com/question/20362988 ：
-改写算法，提高算法的效率
-底层Numpy Scipy 里面有很多代码是 c/cpp 写的啊。python作为胶水，把很多c/cpp代码构成的算法粘在一起
+2 数据特征分析：
+基本统计量分析和分布分析，相关性分析和对比分析，帕累托分析和周期性分析
 
-unix https://www.zhihu.com/question/20117703 ：
-用户知道自己想要什么，也明白自己在做什么，并且会为自己的行为负责
-Unix和Linux操作系统有什么区别 https://www.zhihu.com/question/24217234/answer/45669979 ：
-Linux是Unix的开源实现
+# 数据预处理
+是什么：
+清洗数据，选择建模指标，数据规范化和数据降维
+为什么：
+保证数据完整和准确，适应建模要求，提高数据建模的效率
 
-hadoop和大数据的关系？和spark的关系？互补？并行？ https://www.zhihu.com/question/23036370/answer/24675452 ：
-分布式计算系统
-hadoop 和spark如何系统的学习？https://www.zhihu.com/question/39078198 ：
-Scala
+数据规范化：
+数据标准化处理，连续属性离散化，小波变换等
+
+数据降维：
+主成分降维:
+用新的特征代替旧的特征，取得更少的特征向量
+
+# 常用挖掘类型
+1 分类与预测：
+01 logistic 回归分类
+代码实例：
+logistic回归 https://github.com/parther/Python/blob/master/logistic%20%E5%9B%9E%E5%BD%92
+灰色预测 https://github.com/parther/Python/blob/master/%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B
+
+02 决策树
+代码实例：
+https://github.com/parther/Python/blob/master/%E5%AE%9E%E4%BE%8B%20%E5%86%B3%E7%AD%96%E6%A0%91
+
+03 人工神经网络
+代码实例：
+https://github.com/parther/Python/blob/master/%E9%A2%84%E6%B5%8By%E5%80%BC
+https://github.com/parther/Python/blob/master/%E9%A2%84%E6%B5%8By%E5%80%BC
+
+04 时序模式
+ARIMA 算法介绍：https://github.com/parther/Python/blob/master/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97
+代码实例：
+http://dwz.cn/6VM55r
+
+2 聚类分析：
+是什么：
+在没有给定分类的情况下，按照数据的相似度进行样本分组的方法
+分类模型需要使用有类别标记构成的训练数据，聚类模型可以建立在无类标记的数据上，是一种非监督的学习算法
+作用：
+细分领域特别有效；可以将连续数据离散
+代码实例：
+http://dwz.cn/6VM6DW
+http://dwz.cn/6VM7i2
+
+3 关联规则：
+https://github.com/parther/Python/blob/master/%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99
+代码实例：
+https://github.com/parther/Python/blob/master/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%85%B3%E8%81%94
+
+4 离群点检测：
+是什么：
+检测数据集中的异常数据。主要应用于信用、安全领域
+代码实例：
+
+===
+# 主成分降维：
+f = '数据源/图书配套数据、代码/chapter4/demo/data/principal_component.xls'
+d = pd.read_excel(f, header=None)
+
+import pandas as pd
+from sklearn.decomposition import PCA,FactorAnalysis
+pca = PCA()
+pca.fit(d)
+pca.explained_variance_ratio_  # 查看贡献率
+
+pca2=PCA(n_components=2) # 取前两个特征向量
+reduce_X = pca2.fit_transform(d) # 数据降维 
+reduce_X # 降维后的数据
 
 
