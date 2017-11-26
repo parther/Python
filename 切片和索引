@@ -35,7 +35,7 @@ d = d.set_index(['director_name','duration'])
 将索引放回到列中：
 d.reset_index(['director_name']) 里面是中括号
 对多重索引进行排序：
-筛选多重索引的前提，append 保留之前的索引
+筛选多重索引的前提
 d.sort_index(level = [0,1], inplace = True)
 
 多重索引切片：
