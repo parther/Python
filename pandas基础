@@ -75,8 +75,11 @@ d['LOAD_TIME'] = pd.to_datetime(d['LOAD_TIME'])# 将 列d['LOAD_TIME']的类型 
 d['a'] = [1,2,3] # 新建列并且赋值
 d.['a2']=[13, 14, 15] #修改整列数据，但索引不能修改
 d.columns = ['id', 'year', 'boys', 'girls', 'animals']#修改列名
-          
-del d['animals'] # 删除列          
+删除列:          
+del d['animals']
+d.drop('Generation',axis=1)
+增加表格：
+d2.append(d1)
 d.fillna(-1) # 填充空值
 d.dropna() # 删除空值行   
 d.dropna(axis=1) # 分删除纵的横的空值
