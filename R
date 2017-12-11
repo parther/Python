@@ -3,5 +3,11 @@ R语言数据分析与挖掘实战
 soton https://pan.baidu.com/s/1gfIRgKr
 
 像Python一样优雅的用R https://zhuanlan.zhihu.com/p/27592751
+找涂淼聊一下R怎么学的问题
+
+R：
+是什么：专门用于统计分析的编程语言
+具体可以做什么：做分析，可视化，建模
+目的是为了提高工作效率
 
 
