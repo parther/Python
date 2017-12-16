@@ -1,10 +1,9 @@
+https://www.r-project.org/
 r语言实战
 R语言数据分析与挖掘实战
-soton https://pan.baidu.com/s/1gfIRgKr
-
+# 
 像Python一样优雅的用R https://zhuanlan.zhihu.com/p/27592751
-找涂淼聊一下R怎么学的问题
-
+# 
 R：
 是什么：专门用于统计分析的编程语言
 具体可以做什么：数据清洗，数据分析，可视化，建模，编程能力
@@ -13,18 +12,15 @@ R：
 常量
 单引号，双引号是一样的
 class(a) 查看数据类型
-r 没有str类型
 <- 与 = 没有区别，但推荐<-
-a <- 1;b <- 2  分割运算
-mf <- function(x){x+5}
-mf(1)
-
-
+函数 mf <- function(x){x+5} mf(1)
 判断语句
 循环语句
 函数
+
 数据结构
 数据读取与存储
+数据处理
  
 1:4 打印1到4
 向量 v <- c(1,2,3,'a') c是combine的意思，生成vector
