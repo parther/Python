@@ -47,5 +47,53 @@ apply
 reshape
 dplyr
 data.table
+===
+combine[, c(1, 4)])
+=
+抽取数据
+向服务器数据库写数据
+require(RPostgreSQL) 
+drv <- dbDriver("PostgreSQL")
+con <- dbConnect(drv,host="192.168.0.10",port="5432",dbname="database1",user="postgres",password="root")
+dbWriteTable(con, "table_name", data) 
+从数据库读取数据
+require(RPostgreSQL) 
+drv <- dbDriver("PostgreSQL")
+con <- dbConnect(drv,host="192.168.0.10",port="5432",dbname="database1",user="postgres",password="root")
+postgresqlpqExec(con, "SET client_encoding = 'gbk'") # 解决数据显示乱码的问题
+con_query <- dbSendQuery(con, "select * from table_name") 
+data <- dbFetch(con_query, n = -1)
+=
+从表格读取数据
+df <- read.csv("data.csv", header = T, stringsAsFactors = F)
+=
+抽样
+df_sample <- df[sample(nrow(df),10000),]
+=
+预处理
+数据清洗
+1 去重去空
+unique(df)
+df[!duplicated(df$x1), ]
+ddply(df, .(x1,x2), tail, n = 1)
+-
+df[(df$x2 != ''), ] 
+-
+df[df$x1 < 2,]
+df[-which(df$x1 < 2),] 
+2 规范字符和去异常
+去除特定字符
+gsub("[a-zA-Z]", "", df$x1) 替换
+取出特定字符
+strsplit(df[,x1], "/", fixed = TRUE) 分列
+3 转换数据类型
+as.Date(df$x1)
+数据变换
+1 列和列操作
+2 多表操作
+特征列 - 多列处理 - 单列处理
+特征列
+删减
+变换
 
 
