@@ -1,8 +1,21 @@
 # 参考：
-     Excel 函数篇 https://zhuanlan.zhihu.com/p/23345231
-     Excel 技巧篇 https://zhuanlan.zhihu.com/p/23618955    
-     实战篇 汇总招聘数据 https://zhuanlan.zhihu.com/p/24084300
-    
+Excel 函数篇 https://zhuanlan.zhihu.com/p/23345231
+Excel 技巧篇 https://zhuanlan.zhihu.com/p/23618955    
+实战篇 汇总招聘数据 https://zhuanlan.zhihu.com/p/24084300
+===
+
+# 实战累计
+判断一组数据的重复次数
+ifcount
+从指定单元格开始选取某列
+ctrl + shift + 箭头
+
+===
+
+# 技巧
+Excel技巧篇 http://dwz.cn/73Kbm6
+=
+# 函数
 # 清洗处理类函数
      清理脏数据，很多数据不能直接拿来分析
      
