@@ -3,8 +3,8 @@
 # 
 描述性的语言来给字符串定义一个规则，凡是符合规则的字符串，我们就认为它“匹配”了
 用\d可以匹配一个数字，\w可以匹配一个字母或数字，\s可以匹配一个空格 
-.可以匹配任意字符
 
+.可以匹配任意字符
 *表示任意个字符
 +表示至少一个字符
 ?表示0个或1个字符
@@ -28,3 +28,8 @@ split 用法 http://www.runoob.com/python/att-string-split.html
 re.split(r'[\s\,\;]+', 'a,b;; c  d') 或
 正则表达式还有提取子串的强大功能。用()表示的就是要提取的分组（Group）
 加个?就可以让\d+采用非贪婪匹配
+
+正则匹配的表：
+http://www.runoob.com/python/python-reg-expressions.html
+
+
