@@ -19,6 +19,16 @@ python 学习手册
 Python数据分析与挖掘实战
 https://www.python.org/
 
+# 安装anaconda
+是Python数据分析的发行版本，集成大量第三方的包，再也不用担心安装包的问题了 https://www.jianshu.com/p/169403f7e40c
+打开jupyter： anaconda prompt-jupyter notebook
+更改jupyter路径： anaconda - cd c:\on -jupyter notebook
+安装包：
+1 anaconda prompt-anaconda install package_name
+2 anaconda navigator
+3 pip install
+包只会安装最新的
+
 #
 1 查询工作路径或修改工作路径
 import os
