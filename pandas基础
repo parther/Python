@@ -1,8 +1,4 @@
 # 问题：
-#
-一般来说，对比Excel，csv的数据都是干净的
-pd.read_csv(inputfile, encoding = 'utf-8') OSError: Initializing from file failed :
-使用 open(inputfile,encoding='utf-8') 过渡
 
 
 ===
@@ -78,15 +74,17 @@ d['LOAD_TIME'] = pd.to_datetime(d['LOAD_TIME'])# 将 列d['LOAD_TIME']的类型 
 d['a'] = [1,2,3] # 新建列并且赋值
 d.['a2']=[13, 14, 15] #修改整列数据，但索引不能修改
 d.columns = ['id', 'year', 'boys', 'girls', 'animals']#修改列名
+df.rename(columns={'user_id': 'homepage'}, inplace=True) 
 删除列:          
 del d['animals']
-d.drop('Generation',axis=1)
+df2.drop(['post_id'],axis=1,inplace=True)
 增加表格：
 d2.append(d1)
 d.fillna(-1) # 填充空值
 d.dropna() # 删除空值行   
 d.dropna(axis=1) # 分删除纵的横的空值
 d.drop_duplicates(subset = [1,2]) # 删除重复值
+df3 = df2.drop_duplicates(['post_id'])
     
 pd.DataFrame.from_dict(dic, orient='index') # 建立dataframe 时 转换行列
 
