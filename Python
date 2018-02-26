@@ -47,4 +47,12 @@ print( 'b', end='\t')
 print( 'c', end='')
 print( 'd')
 
-
+===
+# 与Python相关知识点
+class Student(object)，object类，这是所有类最终都会继承的类
+文件读取与写入 http://dwz.cn/7bnhGl
+read http://www.runoob.com/python/python-file-read.html
+yield 变成迭代器 http://dwz.cn/6CFZJh
+回调函数  把主函数的参数传入另一函数处理 https://en.wikipedia.org/wiki/Callback_(computer_programming)#Python
+yield 只能在function里面使用
+if not a ;if a=='' ;if a 判断为空
