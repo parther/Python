@@ -1,0 +1,7 @@
+字符串脑图 https://woaielf.github.io/2017/06/13/python3-all/#字符串
+replace("\xa0", " ")
+使用find定位数字 last_login_time[i].find('录')+2
+re.findall(r'(\d+)&params', s)[0]
+"".join(l) 将list转为str
+
+
