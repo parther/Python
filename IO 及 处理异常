@@ -7,5 +7,5 @@ net.compile(loss = 'binary_crossentropy', optimizer = 'adam')
 KeyError: '热毒蕴结证型系数' # 一般是不存在这个值
 TypeError # 一般是数据类型错了，比如中括号代表的list
 AttributeError # 一般是方法或属性错了或者不存在
-
+'float' object is not subscriptable 传入的数据类型可能为空值
 
