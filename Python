@@ -56,3 +56,7 @@ yield 变成迭代器 http://dwz.cn/6CFZJh
 回调函数  把主函数的参数传入另一函数处理 https://en.wikipedia.org/wiki/Callback_(computer_programming)#Python
 yield 只能在function里面使用
 if not a ;if a=='' ;if a 判断为空
+英文名csv能用pd.read_csv直接读出，中文名却不行
+使用Python读取的表格的列名尽量用英文
+
+
