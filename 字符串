@@ -1,9 +1,26 @@
 字符串脑图 https://woaielf.github.io/2017/06/13/python3-all/#字符串
+
 replace("\xa0", " ")
+s[s.str.contains('身份证')].apply(lambda x : (re.findall('\d{15,18}',x)))
 使用find定位数字 last_login_time[i].find('录')+2
 import re 
 re.findall(r'(\d+)&params', s)[0]
 "".join(l) 将list转为str
 查找指定字符在字符串中第二次出现的位置 
 a = [m.start() for m in re.finditer(word, str)]  
+s[s.str.contains('身份证')].apply(lambda x : (re.findall('\d{15,18}',x)))
+
+notepad 减少缩进:Shift+Tab v
+查看header的方法 审查元素-Ctrl+r刷新-all-name-header
+PyCharm http://www.sohu.com/a/130930939_468739
+Python中操作mysql的pymysql模块详解 http://www.cnblogs.com/wt11/p/6141225.html
+将nan 换成none df_remove_nan = df.where(df.notnull(), None)
+df_post[df_post['post_id']==5060943 |df_post['post_id']==6767600] 提示 
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+df[(df.nickname =='退伍军人在上访') | (df.nickname =='准许我上访')] http://bluewhale.cc/2016-08-06/use-pandas-filter-and-sort.html
+i.xpath('div[2]/div[2]/div[2]/a[contains(@href, "http://www.tianya.cn/mobile/")]/text()').extract() list无法用[0]还原
+只能用"".join(user_id)
+筛选30个数据 df[(df.post_id ==5060943) | (df.post_id ==602781)|
+df_reply_post[df_reply_post['reply_id'].isin(l)]
+
 
