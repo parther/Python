@@ -23,4 +23,5 @@ i.xpath('div[2]/div[2]/div[2]/a[contains(@href, "http://www.tianya.cn/mobile/")]
 筛选30个数据 df[(df.post_id ==5060943) | (df.post_id ==602781)|
 df_reply_post[df_reply_post['reply_id'].isin(l)]
 
+pandas文本处理 http://www.cnblogs.com/stream886/p/6021743.html
 
