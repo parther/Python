@@ -25,3 +25,8 @@ df_reply_post[df_reply_post['reply_id'].isin(l)]
 
 pandas文本处理 http://www.cnblogs.com/stream886/p/6021743.html
 
+换行
+sql_update = "update user_info set follow_number = %s \
+where user_id = %s"
+
+pymysql库的使用 http://www.cnblogs.com/wt11/p/6141225.html
