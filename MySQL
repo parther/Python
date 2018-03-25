@@ -24,6 +24,13 @@ workbench 导入数据多列变成一列。设置seperate
 SET SQL_SAFE_UPDATES = 0
 把Preference中的标签由General切换到SQL Queries标签，然后支去掉safe updates前的选项框
 
+推荐使用python向MySQL导入csv数据。
+df_post.to_csv('df_post.csv',index=False) 避免生出第一列
+import pandas as pd  
+from sqlalchemy import create_engine
+engine = create_engine('mysql+pymysql://root:12345@127.0.0.1:3306/tianya_scrapy?charset=utf8')  
+df_post.to_sql(name='df_post', con=engine, if_exists='append',index=False,index_label=False) 
+
 大段注释用/* */
 将查询结果导出成sql文件。 select * from article limit 150 into outfile '//test//article.sql' 双引号
 The MySQL server is running with the --secure-file-priv option。导出至安全路径 show variables like '%secure%';
@@ -34,3 +41,6 @@ delete from user_list where user_id in (select t.user_id from (select * from use
 MySQL server version for the right syntax to use near 。就是语法错误，不管是否返回正确结果
 
 select name, count(case when amount >1 then name end), count(case when amount >2 then name end) from t1 group by name     
+
+nan not a number 非空，占字符
+
