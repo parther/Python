@@ -33,4 +33,8 @@ yield 变成迭代器 http://dwz.cn/6CFZJh，yield 只能在function里面使用
 if not a ;if a=='' ;if a 判断为空
 使用pandas读取csv文件的名字应为英文，方便使用pd.read_csv直接读出，中文名不能直接读出。csv文件的列名尽量使用英文
 
-
+良好的代码习惯：
+"""
+Created on Thu Mar  1 11:23:53 2018
+@author: ZB
+"""
