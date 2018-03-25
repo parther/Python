@@ -35,6 +35,7 @@ df_post.to_sql(name='df_post', con=engine, if_exists='append',index=False,index_
 大段注释用/* */
 将查询结果导出成sql文件。 select * from article limit 150 into outfile '//test//article.sql' 双引号
 The MySQL server is running with the --secure-file-priv option。导出至安全路径 show variables like '%secure%';
+workbench导出表和表结构。server - dataexport
 
 Error Code: 1235. This version of MySQL doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery'
 delete from user_list where user_id in (select t.user_id from (select * from user_list limit 1,570) as t )
@@ -44,4 +45,7 @@ MySQL server version for the right syntax to use near 。就是语法错误，�
 select name, count(case when amount >1 then name end), count(case when amount >2 then name end) from t1 group by name     
 
 nan not a number 非空，占字符
+
+使用auto_increment，主键唯一且非空，即使主键删除也不会生成同样的值
+
 
