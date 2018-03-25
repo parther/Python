@@ -15,10 +15,6 @@ DBMS 数据库管理系统：
 
 ===
 # 问题
-1 面试题，根据次数显示
-select name, count(case when amount >1 then name end), count(case when amount >2 then name end) from t1 group by name
-2 auto_increment
-当插入指定的列或者行时，主键自动增加
 
 # 积累
 mysql 导入csv表格数据：database-table-import 使用notepad，将文件转成 utf-8 格式
@@ -37,4 +33,4 @@ delete from user_list where user_id in (select t.user_id from (select * from use
 
 MySQL server version for the right syntax to use near 。就是语法错误，不管是否返回正确结果
 
-     
+select name, count(case when amount >1 then name end), count(case when amount >2 then name end) from t1 group by name     
