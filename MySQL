@@ -4,7 +4,7 @@ mysql 必知必会
 w3school http://www.w3school.com.cn/sql/index.asp
 MySQL练习网站 https://leetcode.com/problemset/database/
 
-===
+=
 # MySQL概述
 数据库：
 保存有组织的数据的容器
@@ -16,6 +16,7 @@ DBMS 数据库管理系统：
 ===
 # 问题
 
+=
 # 积累
 mysql 导入csv表格数据：database-table-import 使用notepad，将文件转成 utf-8 格式
 workbench 导入数据多列变成一列。设置seperate
