@@ -56,4 +56,13 @@ print("网站名：{name}, 地址 {url}".format(name="菜鸟教程", url="www.ru
 .strip('_|.') strip() 只移除字符串头尾指定的字符，中间部分不会移除
 replace('df',' ') 将字符替换成空格，''让字符为空消失 aaaassddf'.replace('df',' ')
 
+pandas join 类似于 merge 按照index进行拼接
+使用join表组合 https://zhuanlan.zhihu.com/p/28337202
+给表格增加行 b_law_1.append(b_law[0:1],ignore_index=True)
+插入列 insert
+s.str.split('/', expand=True) expand=True返回dataframe
+series的字符串处理 https://www.jianshu.com/p/31daa943cd2b
+spilt将str变成list
+
+
 
