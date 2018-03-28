@@ -40,5 +40,7 @@ Created on Thu Mar  1 11:23:53 2018
 """
 
 使用func 尽量不要接受两个 return
-
+使用中文序号排序的方法：
+https://www.cnblogs.com/appler/archive/2012/02/02/2335832.html
+https://segmentfault.com/q/1010000007810240?_ea=1461087
 
