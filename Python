@@ -38,3 +38,7 @@ if not a ;if a=='' ;if a 判断为空
 Created on Thu Mar  1 11:23:53 2018
 @author: ZB
 """
+
+使用func 尽量不要接受两个 return
+
+
