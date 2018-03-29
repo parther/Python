@@ -64,5 +64,5 @@ s.str.split('/', expand=True) expand=True返回dataframe
 series的字符串处理 https://www.jianshu.com/p/31daa943cd2b
 spilt将str变成list
 
-
+apply 的用法 作用于单列或单行 或所有行或者列
 
