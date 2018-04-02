@@ -48,4 +48,5 @@ nan not a number 非空，占字符
 
 使用auto_increment，主键唯一且非空，即使主键删除也不会生成同样的值
 
-
+cmd 操作mysql 语句后加上;
+navicat for mysql
