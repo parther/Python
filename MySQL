@@ -50,3 +50,22 @@ nan not a number 非空，占字符
 
 cmd 操作mysql 语句后加上;
 navicat for mysql
+
+Error 1366: Incorrect string value: '\xF0\x9F\x91\xBD\xF0\x9F...' for column 'content' 
+ALTER TABLE b_law CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+
+修改my.ini https://www.cnblogs.com/shihaiming/p/5855616.html
+MySQL中my.ini的位置 promgranData被隐藏了
+更改了配置文件my.ini，首先将原始文件存档，然后按照配置文件的描述，将配置文件放在指定的目录下
+
+windows下重启mysql的方法 
+http://www.jb51.net/article/58890.htm
+
+Mysql 服务无法启动 服务没有报告任何错误
+https://www.cnblogs.com/wangjunyan/p/5183366.html
+
+Mysql 服务连接本地服务器 Access denied for user 'root'@'localhost' (using password: YES)' 
+https://blog.csdn.net/qingyuanluofeng/article/details/48679903
+
+
+
