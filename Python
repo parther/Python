@@ -44,3 +44,14 @@ Created on Thu Mar  1 11:23:53 2018
 https://www.cnblogs.com/appler/archive/2012/02/02/2335832.html
 https://segmentfault.com/q/1010000007810240?_ea=1461087
 
+try except 除了捕捉错误之外，还能够允许错误继续运行代码
+if __name__ == '__main__' 的理解，当写上此代码的文件被import时，代码里的函数不运行 
+http://blog.konghy.cn/2017/04/24/python-entry-program/ 
+python把函数作为参数 def fuc(x,y,fuc)
+使用外部py文件存储代码，notebook只作为测试
+弄清楚问题，不要经验性的将问题对号入座，从问题的实际出发
+SyntaxError: invalid or missing encoding declaration for 'c:\\on\\parse_law.py' 尽量使用notepad，还是编码的问题
+被import的py文件需要像普通代码运行一样带上引入的模块
+jupyter 性能并不稳定
+
+\u3000\u3000 是两个字符 表示的是空白符
