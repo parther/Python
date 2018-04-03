@@ -65,4 +65,9 @@ series的字符串处理 https://www.jianshu.com/p/31daa943cd2b
 spilt将str变成list
 
 apply 的用法 作用于单列或单行 或所有行或者列
+b_law['text'].apply(lambda x:1 if '第一条 ' and '第二条 ' in x else 2 if '一、' and '二、'in x else 3)
+apply函数的参数使用 b_law_2['text'].apply(content_2,y=b_law_2) 
+https://blog.csdn.net/qq_19528953/article/details/79348929
 
+expand=True str.split(',', expand=True).stack() 将series转成dataframe
+Series 使用str进行字符串匹配 https://www.jianshu.com/p/31daa943cd2b
