@@ -46,7 +46,7 @@ select name, count(case when amount >1 then name end), count(case when amount >2
 
 nan not a number 非空，占字符
 
-使用auto_increment，主键唯一且非空，即使主键删除也不会生成同样的值
+使用auto_increment，主键唯一且非空，即使删除字段也不会生成同样的值
 
 cmd 操作mysql 语句后加上;
 navicat for mysql
@@ -67,5 +67,6 @@ https://www.cnblogs.com/wangjunyan/p/5183366.html
 Mysql 服务连接本地服务器 Access denied for user 'root'@'localhost' (using password: YES)' 
 https://blog.csdn.net/qingyuanluofeng/article/details/48679903
 
-
+自动生成时间
+alter table b_law add column create_time datetime NOT NULL DEFAULT NOW()
 
