@@ -55,3 +55,9 @@ SyntaxError: invalid or missing encoding declaration for 'c:\\on\\parse_law.py' 
 jupyter 性能并不稳定
 
 \u3000\u3000 是两个字符 表示的是空白符
+
+UnboundLocalError: local variable 'province' referenced before assignment 
+一般是else未做说明
+
+测试func，先带入参数
+
