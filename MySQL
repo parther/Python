@@ -70,3 +70,7 @@ https://blog.csdn.net/qingyuanluofeng/article/details/48679903
 自动生成时间
 alter table b_law add column create_time datetime NOT NULL DEFAULT NOW()
 
+mysql b-tree是索引
+索引介绍 https://blog.csdn.net/ithomer/article/details/6589651
+
+
