@@ -71,3 +71,7 @@ https://blog.csdn.net/qq_19528953/article/details/79348929
 
 expand=True str.split(',', expand=True).stack() 将series转成dataframe
 Series 使用str进行字符串匹配 https://www.jianshu.com/p/31daa943cd2b
+
+去掉最后一个字符 
+string1[:-1]
+
