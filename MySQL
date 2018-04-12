@@ -73,4 +73,15 @@ alter table b_law add column create_time datetime NOT NULL DEFAULT NOW()
 mysql b-tree是索引
 索引介绍 https://blog.csdn.net/ithomer/article/details/6589651
 
+Error Code: 2013. Lost connection to MySQL server during query
+【Edit】->【Preference】->【SQL Editor】将下图DBMS connection read time out (in seconds)适当调大：
+
+1110 specified twice
+某个column被使用了两次 mysql大写会转为小写
+
+ERROR 1205: Lock wait timeout exceeded
+https://blog.csdn.net/wp1603710463/article/details/51721894
+
+数据的更新操作都是放在最后的
+
 
