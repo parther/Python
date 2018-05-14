@@ -55,4 +55,78 @@ python:
 R入门简单，统计方面操作优势明显。但大数据处理能力较弱，学习曲线陡峭，入门难？
 python万能胶水语言，各种包足以应付数据分析的任务
 
+=
+# 参考：
+Excel 函数篇 https://zhuanlan.zhihu.com/p/23345231
+Excel 技巧篇 https://zhuanlan.zhihu.com/p/23618955    
+实战篇 汇总招聘数据 https://zhuanlan.zhihu.com/p/24084300
+===
+
+# 实战累计
+判断一组数据的重复次数
+ifcount
+从指定单元格开始选取某列
+ctrl + shift + 箭头
+
+===
+
+# 技巧
+Excel技巧篇 http://dwz.cn/73Kbm6
+=
+# 函数
+# 清洗处理类函数
+     清理脏数据，很多数据不能直接拿来分析
+     
+     trim 对应 trim strip 消除单元格字符两边的空格
+     concatenate 对应concat 合并单元格数据，另一种用&
+     replace 对应 replace replace 替换单元格数据中的字符
+     substitute 同replace替换。substitute 指定字符 全部替换，replace 指定位置替换字符
+     left ，right ，mid 其中mid对应sql中的substr 截取单元格中指定位置的字符
+     len 获取单元格中数据的字符长度
+     find 对应sql find_in_set, python 同名函数。 寻找单元格中的数据某个字符出现的位置，常与 left等结合完成问题提取
+     search 类似于find，但不区分大小，并且支持某些通配符
+     text 将数值转化为指定格式的文本格式，合并文本时很有用
+     round 将数值四舍五入，并且指定小数点位数
+
+# 关联匹配类函数
+     目的是减少此类函数的使用，多表关联和行列比对时用的比较多
+     
+     lookup 是查找函数，给定所在列的值，查找指定列对应行的值
+     由于使用 二分法匹配，数据必须 升序排列。不支持精确匹配
+     vlookup 是查找函数，给定所在区域首列的值，查找区域内指定列对应行的值
+     使用 二分法匹配，近似查询时首列需升序排列。支持精确查找，精确查找首列不需要升序排列
+     index 查找函数，返回区域指定行指定列的数据。通常与match配合使用
+     match 返回指定数据的位置，一般是行
+     row 返回所在行
+     column 返回所在列
+     offset 返回相对某区域偏移位置的值
+
+# 计算统计类函数
+     sum sumif sumifs  求和函数
+     sumproduct 求积求和函数
+     count countif countifs 统计个数
+     rank 返回指定数据在列中的排名
+     rand randbetween 返回随机数
+     round 返回指定小数点位数的数字
+     int 返回整数
+     subtotal 返回数据的基本统计量，包括均值方差等
+     correl 返回相关系数
+     mod 取余数 
+     
+# 时间序列函数
+     专门处理时间格式及转换，主要用于金融财务等数据分析
+     
+     year month day 返回日期中的 年 月日
+     date 将年月日合并，转换为具体日期
+     today 返回当前日期
+     now 返回当前时间
+     weekday 返回当前日期 星期几
+     weeknum 返回当年 的 第几周
+     dateif 返回 两个日期的 时间差
+     
+# 逻辑运算函数
+     if
+     and
+     or
+     is 系列，返回布尔值。iserror，isna，istext， is_BLAN 常用，与if搭配使用
 
