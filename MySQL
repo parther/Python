@@ -1,74 +1,74 @@
 # 教程
 mysql 必知必会
-菜鸟教程 http://www.runoob.com/mysql/mysql-tutorial.html
 w3school http://www.w3school.com.cn/sql/index.asp
+菜鸟教程 http://www.runoob.com/mysql/mysql-tutorial.html
 MySQL练习网站 https://leetcode.com/problemset/database/
 
 =
 # MySQL概述
-数据库：
-保存有组织的数据的容器
-DBMS 数据库管理系统：
-与数据库通信的语言 MySQL是语言
-数据库容器的基本组成：
-表 - 列 - 行
-
-===
-# 问题
+数据库是保存有组织的数据的容器
+mysql软件是DBMS，是数据库管理系统
+mysql语言是DBMS系统与数据库通信的语言
 
 =
-# 积累
-mysql 导入csv表格数据：database-table-import 使用notepad，将文件转成 utf-8 格式
-workbench 导入数据多列变成一列。设置seperate
-使用count时，null 0或1都会纳入计数，所以要用null
-1175错误。
-SET SQL_SAFE_UPDATES = 0
-把Preference中的标签由General切换到SQL Queries标签，然后支去掉safe updates前的选项框
+# 实践中碰到的问题
+mysql 导入csv表格数据
+database-table-import 使用notepad，将文件转成 utf-8 格式
 
-推荐使用python向MySQL导入csv数据。
+workbench 导入数据多列变成一列
+设置seperate
+
+推荐使用python向MySQL导入csv数据
 df_post.to_csv('df_post.csv',index=False) 避免生出第一列
 import pandas as pd  
 from sqlalchemy import create_engine
 engine = create_engine('mysql+pymysql://root:12345@127.0.0.1:3306/tianya_scrapy?charset=utf8')  
 df_post.to_sql(name='df_post', con=engine, if_exists='append',index=False,index_label=False) 
 
+1175错误
+SET SQL_SAFE_UPDATES = 0
+把Preference中的标签由General切换到SQL Queries标签，然后支去掉safe updates前的选项框
+
 大段注释用/* */
-将查询结果导出成sql文件。 select * from article limit 150 into outfile '//test//article.sql' 双引号
-The MySQL server is running with the --secure-file-priv option。导出至安全路径 show variables like '%secure%';
-workbench导出表和表结构。server - dataexport
 
-Error Code: 1235. This version of MySQL doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery'
-delete from user_list where user_id in (select t.user_id from (select * from user_list limit 1,570) as t )
+将查询结果导出成sql文件。
+select * from article limit 150 into outfile '//test//article.sql' 双引号
+The MySQL server is running with the --secure-file-priv option。
+导出至安全路径 show variables like '%secure%';
 
-MySQL server version for the right syntax to use near 。就是语法错误，不管是否返回正确结果
+使用workbench导出表和表结构
+server - dataexport
 
-select name, count(case when amount >1 then name end), count(case when amount >2 then name end) from t1 group by name     
+MySQL server version for the right syntax to use near 。
+语法错误    
 
-nan not a number 非空，占字符
+nan not a number 
+非空，占字符
 
-使用auto_increment，主键唯一且非空，即使删除字段也不会生成同样的值
-
-cmd 操作mysql 语句后加上;
-navicat for mysql
+auto_increment
+主键唯一且非空，即使删除字段也不会生成同样的值
 
 Error 1366: Incorrect string value: '\xF0\x9F\x91\xBD\xF0\x9F...' for column 'content' 
 ALTER TABLE b_law CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 
-修改my.ini https://www.cnblogs.com/shihaiming/p/5855616.html
+修改my.ini 
+https://www.cnblogs.com/shihaiming/p/5855616.html
 MySQL中my.ini的位置 promgranData被隐藏了
 更改了配置文件my.ini，首先将原始文件存档，然后按照配置文件的描述，将配置文件放在指定的目录下
 
 windows下重启mysql的方法 
 http://www.jb51.net/article/58890.htm
-
 Mysql 服务无法启动 服务没有报告任何错误
 https://www.cnblogs.com/wangjunyan/p/5183366.html
-
 Mysql 服务连接本地服务器 Access denied for user 'root'@'localhost' (using password: YES)' 
 https://blog.csdn.net/qingyuanluofeng/article/details/48679903
 
-自动生成时间
+自动字段添加时间
 alter table b_law add column create_time datetime NOT NULL DEFAULT NOW()
+
+自动字段修改时间
+ADD COLUMN `UpdateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间' 
+https://www.cnblogs.com/lhj588/p/4245719.html
 
 mysql b-tree是索引
 索引介绍 https://blog.csdn.net/ithomer/article/details/6589651
@@ -82,6 +82,109 @@ Error Code: 2013. Lost connection to MySQL server during query
 ERROR 1205: Lock wait timeout exceeded
 https://blog.csdn.net/wp1603710463/article/details/51721894
 
-数据的更新操作都是放在最后的
+=
+# 操作数据库
+新建数据库
+create database db
+指定数据库
+use db
+查询服务器下有哪些数据库
+show databases
+修改数据库名称
+CREATE DATABASE new_db_name;
+RENAME TABLE db_name.table1 TO new_db_name.table1;
+DROP DATABASE db_name;
+删除数据库
+drop database test2 数据库
 
+=
+# 表和行操作     
+新建表格
+create table orders
+(
+id_o3 int(11) auto_increment  ,
+ordersno varchar(30),
+id_p int(11),
+birthday date default '2017-5-12'，
+CONSTRAINT pk_PersonID PRIMARY KEY (Id_P,LastName)
+constraint FK_sid foreign key (id_p) references persons(id_p)
+)
+ENGINE = MyISAM DEFAULT CHARSET = gbk
 
+查询数据库下有哪些表格
+show tables
+查看表的搜索引擎
+show create table orders 
+查询表格下有哪些列
+show columns from orders
+修改表格名称
+alter table orders2 rename orders3
+删除表
+drop table orders3
+复制表 
+create table orders2 select * from orders 
+http://www.cnblogs.com/zhangjpn/p/6231662.html     
+插入列
+alter table orders add column items varchar(45)
+修改列名称及属性
+alter table orders change column items item varchar(20)
+删除列
+alter table orders drop column item
+
+=
+# 行的操作
+插入行数据
+insert into orders(items) values('knife'）
+插入多行数据
+insert into persons values(2, 'Bush', 'BushGeorge', 'Fifth Avenue',	'New York'), 
+(3, 'Carter', 'Thomas', 'Changan Street', 'Beijing')
+更新行数据
+update orders set orderno= '100.' where id_o=1
+删除行
+delete from orders where id_p=2
+查询所有
+select * from orders
+查询指定列
+select id_p from orders
+
+删除重复值
+select distinct id_p from orders
+删除空格查询，分trim，ltrim和rtrim
+select ltrim(id_p) as 'all' from orders
+合并列
+select concat(id_p, ' yes ', OrderNo) as 'all' from orders
+取某几个字符，right（），left（）
+select left(lastname,3) as ll from persons
+取中间第几个字符，取几个
+select substr(lastname,3,2) as ll from persons
+取长度
+select length(id_p)  from orders
+取某个字符位置
+select locate('e', lastname) from persons
+替换
+select replace(lastname, 'a', 'b') as count_lastname from persons
+ 
+查询时间函数，类似函数 now，date，datediff
+返回当前日期
+select now() as d from orders
+select date(now()) as d from orders
+查询相隔天数，前面减去后面
+select datediff(date(now()), '2017-5-2') as d from orders
+ 
+查询计算函数，类似函数 count，avg，min，max，sum 
+计数
+select count(id_p) from persons
+求和
+select sum(orderno) from orders
+
+排名筛选 
+select Salary as SecondHighestSalary FROM Employee order by Salary desc limit 1,1 
+
+两表联和能解决很多查询的问题 a 没有冒号
+SELECT * FROM Employee AS a, Employee AS b 总共有 a 个数乘以 b 个数个结果
+SELECT p1.* FROM Persons as p1, Persons as p2 总共有 a 个数乘以 b 个数个结果 省略显示横向，变换而已
+          
+数据存在与表1而不在表二
+select id from t1 where id not in (select id from t2)
+union
+select id from t2 where id not in (select id from t1)          
