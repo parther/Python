@@ -2,11 +2,8 @@
 廖雪峰系列 https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000
 菜鸟教程 http://www.runoob.com/python3/python3-tutorial.html
 
-===
-# 问题
-
 =
-# 积累
+# 实践中碰到的问题
 安装anaconda
 是Python数据分析的发行版本，集成大量第三方的包，再也不用担心安装包的问题了 
 打开jupyter： anaconda prompt-jupyter notebook
@@ -28,10 +25,18 @@ print( 'b', end='\t')
 print( 'c', end='')
 print( 'd')
 
-yield 变成迭代器 http://dwz.cn/6CFZJh，yield 只能在function里面使用
-回调函数  把主函数的参数传入另一函数处理 https://en.wikipedia.org/wiki/Callback_(computer_programming)#Python
-if not a ;if a=='' ;if a 判断为空
-使用pandas读取csv文件的名字应为英文，方便使用pd.read_csv直接读出，中文名不能直接读出。csv文件的列名尽量使用英文
+yield
+http://dwz.cn/6CFZJh
+变成迭代器 ，yield 只能在function里面使用
+
+回调函数
+把主函数的参数传入另一函数处理 https://en.wikipedia.org/wiki/Callback_(computer_programming)#Python
+
+判断为空
+if not a ;if a=='' ;if a 
+
+使用pandas读取csv文件
+文件应为英文，方便使用pd.read_csv直接读出，中文名不能直接读出。csv文件的列名尽量使用英文
 
 良好的代码习惯：
 """
@@ -44,13 +49,19 @@ Created on Thu Mar  1 11:23:53 2018
 https://www.cnblogs.com/appler/archive/2012/02/02/2335832.html
 https://segmentfault.com/q/1010000007810240?_ea=1461087
 
-try except 除了捕捉错误之外，还能够允许错误继续运行代码
-if __name__ == '__main__' 的理解，当写上此代码的文件被import时，代码里的函数不运行 
+try except 
+除了捕捉错误之外，还能够允许错误继续运行代码
+
+if __name__ == '__main__' 的理解
+在文件a中写上以上代码后，当文件a中的函数或变量被import到文件b中时，运行文件b时不会运行文件a中被执行的函数
 http://blog.konghy.cn/2017/04/24/python-entry-program/ 
-python把函数作为参数 def fuc(x,y,fuc)
-使用外部py文件存储代码，notebook只作为测试
-弄清楚问题，不要经验性的将问题对号入座，从问题的实际出发
-SyntaxError: invalid or missing encoding declaration for 'c:\\on\\parse_law.py' 尽量使用notepad，还是编码的问题
+
+python把函数作为参数
+def fuc(x,y,fuc)
+
+SyntaxError: invalid or missing encoding declaration for 'c:\\on\\parse_law.py' 
+尽量使用notepad，还是编码的问题
+
 被import的py文件需要像普通代码运行一样带上引入的模块
 jupyter 性能并不稳定
 
@@ -58,8 +69,6 @@ jupyter 性能并不稳定
 
 UnboundLocalError: local variable 'province' referenced before assignment 
 一般是else未做说明
-
-测试func，先带入参数
 
 类的实际应用 如果一个功能所需要的函数较多，建议使用类 两个以上的函数，之间有数据共享，就应该使用类来封装
 
