@@ -12,6 +12,11 @@ mysql语言是DBMS系统与数据库通信的语言
 
 =
 # 实践中碰到的问题
+使用pymysql操作数据库，当语句中使用in的时候
+sql_select = "select post_url from post_list where user_id in %s and post_url is not null"
+s = [['134780078','106991820']]
+cur.execute(sql_select,(s))
+
 mysql 导入csv表格数据
 database-table-import 使用notepad，将文件转成 utf-8 格式
 
