@@ -1,12 +1,10 @@
-# 问题
-无法直接读取csv文件
-向dataframe插入数据
-pandas中有专门的时间序列方法tseries
-时间函数
-
-# 
-pandas 基础 http://www.open-open.com/lib/view/open1402477162868.html
-使用pandas进行数据清洗 http://www.cnblogs.com/stream886/p/6021743.html
+# 参考 
+pandas 基础 
+http://www.open-open.com/lib/view/open1402477162868.html
+使用pandas进行数据清洗 
+http://www.cnblogs.com/stream886/p/6021743.html
+pandas官网
 http://pandas.pydata.org/
-
+pandas 脑图
+https://www.cnblogs.com/woaielf/p/5566820.html
 
