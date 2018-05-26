@@ -11,6 +11,12 @@ NumPy和Pandas工具包中的函数 http://blog.csdn.net/baoyan2015/article/deta
      
 数据挖掘的基本流程：
 明确挖掘的目标 - 数据探索 - 数据预处理 - 建立模型 - 模型评价和应用
+
+常用工具
+anaconda
+powerbi
+superset数据分析平台
+echart
 ===
 
 # 明确挖掘目标
