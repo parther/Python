@@ -1,6 +1,10 @@
-# 
-Numpy的详细教程 https://zhuanlan.zhihu.com/p/24988491
+# 参考
+Numpy的详细教程 
+https://zhuanlan.zhihu.com/p/24988491
+scipy官网
 https://docs.scipy.org/doc/
+numpy 脑图 
+http://www.cnblogs.com/woaielf/p/5556553.html
 
 # 
 numpy的基本用法：
