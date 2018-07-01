@@ -1,9 +1,12 @@
-# 教程
 廖雪峰系列 https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000
 菜鸟教程 http://www.runoob.com/python3/python3-tutorial.html
 
 =
-# 实践中碰到的问题
+用SQLAlchemy操作数据库 
+简单的说，ORM 将数据库中的表与面向对象语言中的类建立了一种对应关系
+https://www.cnblogs.com/mrchige/p/6389588.html
+廖雪峰的官方网站
+-
 安装anaconda
 是Python数据分析的发行版本，集成大量第三方的包，再也不用担心安装包的问题了 
 打开jupyter： anaconda prompt-jupyter notebook
