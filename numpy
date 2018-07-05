@@ -1,4 +1,4 @@
-# 参考
+利用Python进行数据分析.pdf
 Numpy的详细教程 
 https://zhuanlan.zhihu.com/p/24988491
 scipy官网
