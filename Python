@@ -3,8 +3,11 @@
 编写高质量代码 改善Python程序的91个建议.pdf
 
 =
+查询、更新、插入、删除
+切片类似于这种l[0:2]
+sort_index中level参数和multiindex的levels是不一样的
+-
 字符串脑图 https://woaielf.github.io/2017/06/13/python3-all/#字符串
-
 replace("\xa0", " ")
 s[s.str.contains('身份证')].apply(lambda x : (re.findall('\d{15,18}',x)))
 使用find定位数字 last_login_time[i].find('录')+2
