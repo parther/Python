@@ -11,7 +11,10 @@ mysql软件是DBMS，是数据库管理系统
 mysql语言是DBMS系统与数据库通信的语言
 
 =
-# 实践中碰到的问题
+shell 连接数据库的语法：
+mysql -h127.0.0.1 -uroot -proot
+使用命令操作mysql，每条语法后面必须携带分号;
+
 使用pymysql操作数据库，当语句中使用in的时候
 sql_select = "select post_url from post_list where user_id in %s and post_url is not null"
 s = [['134780078','106991820']]
