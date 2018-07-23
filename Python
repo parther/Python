@@ -3,6 +3,9 @@
 编写高质量代码 改善Python程序的91个建议.pdf
 
 =
+try except：
+遇到错误会继续执行代码
+
 查询、更新、插入、删除
 切片类似于这种l[0:2]
 sort_index中level参数和multiindex的levels是不一样的
