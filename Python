@@ -3,8 +3,37 @@
 编写高质量代码 改善Python程序的91个建议.pdf
 
 =
+s1 = '中国人'.encode('utf-8')
+s2 = b'\xe4\xb8\xad\xe5\x9b\xbd\xe4\xba\xba'.decode('utf-8')
+s3 = s1.decode('utf-8')
+print(s3)
+
+while与if结合
+i = 1
+while i:
+    i = i+1
+    if i>4:
+        break
+    print(i)
+    
+查看路径下的文件
+path = "data/"
+os.listdir(path)
+
+ValueError: If using all scalar values, you must pass an index
+d = {'id':[6],'product':['apple'],'price':[350]}
+df = pd.DataFrame(d)
+
+Python操作MySQL：pymysql和SQLAlchemy
+将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。
+https://www.cnblogs.com/xuyaping/p/7106443.html
+
 try except：
 遇到错误会继续执行代码
+try:
+    s = 1/0
+except Exception as e:
+    print(e)
 
 查询、更新、插入、删除
 切片类似于这种l[0:2]
