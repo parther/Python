@@ -5,6 +5,11 @@ MySQL练习网站 https://leetcode.com/problemset/database/
 MySQL的基本管理 https://mp.weixin.qq.com/s/P2d4bpLgKrfR7JzAeJI36A
 
 =
+Numeric value out of range: 1264 Out of range value for column
+最好解决方法是改变字段类型
+https://blog.csdn.net/coreyc/article/details/80281456
+https://blog.csdn.net/hanshangzhi/article/details/76177994
+
 # MySQL概述
 数据库是保存有组织的数据的容器
 mysql软件是DBMS，是数据库管理系统
