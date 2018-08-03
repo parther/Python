@@ -3,6 +3,45 @@
 编写高质量代码 改善Python程序的91个建议.pdf
 
 =
+join 替代+,连接列表里的字符串
+http://www.runoob.com/python3/python3-string-join.html
+
+pickle是Python特有的文件存储形式，可以存储任何数据类型，简单载入即可调用
+https://www.cnblogs.com/lincappu/p/8296078.html
+https://www.cnblogs.com/pannyvan/p/4439308.html
+
+转义和正则匹配一般是反斜杆，路径一般是正斜杠
+https://www.cnblogs.com/pxh-phper/p/6231294.html
+
+继承，从父类继承所有属性和方法，省去重写的麻烦
+https://www.cnblogs.com/bigberg/p/7182741.html
+类可以理解为数据类型，使用type查看，需通过对象来调用
+
+numpy的broadcast机制，对不同维度的数组进行运算，一般用在矩阵，将较小的array“广播”成更大的、可以计算的array
+
+正则三种主要匹配模式
+pattern = re.compile('23')
+string = '12345623'
+pattern.match(string,5).group(0) 从起始位匹配
+pattern.search(string,5).group(0) 匹配第1个
+pattern.findall(string)
+http://www.runoob.com/python3/python3-reg-expressions.html
+
+s.value_counts()每个值的个数
+s.count 返回非空值的个数
+len(s) 返回列表的长度
+
+pandas中表达式连接用& 或 |
+
+布尔值可以作为0或1
+s.df['two'].notnull()
+s.sum()
+
+np.arange([start,] stop[, step,], dtype=None)
+
+哑变量，将类别型数据转换为数值型数据，用于变量要求为数值型的回归模型，使用get_dum函数实现
+https://mp.weixin.qq.com/s/dTTC5WsZd3_bTWdIv0OfcQ
+
 s1 = '中国人'.encode('utf-8')
 s2 = b'\xe4\xb8\xad\xe5\x9b\xbd\xe4\xba\xba'.decode('utf-8')
 s3 = s1.decode('utf-8')
@@ -15,7 +54,12 @@ while i:
     if i>4:
         break
     print(i)
-    
+
+if 后接返回True or False的表达式
+
+continue 指不执行本次条件下的语句
+https://www.cnblogs.com/Plynn/p/6344341.html
+
 查看路径下的文件
 path = "data/"
 os.listdir(path)
