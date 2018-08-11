@@ -2,7 +2,17 @@
 菜鸟教程 http://www.runoob.com/python3/python3-tutorial.html
 编写高质量代码 改善Python程序的91个建议.pdf
 
-=
+===
+stack unstack 一般用于层次化索引，stack将列转为行，unstack正好相反，相当于索引级别的透视表
+
+时间操作 dt.days
+https://blog.csdn.net/qq_22238533/article/details/70050748
+http://pandas.pydata.org/pandas-docs/stable/api.html#string-handling
+
+df.loc[df['id']==2,:] 筛选条件所在的轴
+
+s.round(2) 将结果的科学计数转换为小数
+
 join 替代+,连接列表里的字符串
 http://www.runoob.com/python3/python3-string-join.html
 
