@@ -5,6 +5,9 @@ MySQL练习网站 https://leetcode.com/problemset/database/
 MySQL的基本管理 https://mp.weixin.qq.com/s/P2d4bpLgKrfR7JzAeJI36A
 
 =
+1265 - Data truncated for column错误
+是因为报错的字段的字节个数或者类型不正确
+
 Numeric value out of range: 1264 Out of range value for column
 最好解决方法是改变字段类型
 https://blog.csdn.net/coreyc/article/details/80281456
