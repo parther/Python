@@ -3,6 +3,22 @@
 编写高质量代码 改善Python程序的91个建议.pdf
 
 ===
+loging
+https://docs.python.org/3.6/howto/logging.html
+https://www.jianshu.com/p/29cb6a535e2d
+import logging
+logging.basicConfig(filename='example5.log',level=logging.DEBUG,filemode='w',format='%(asctime)s %(message)s')
+s = 0
+try:
+    print(10 / s)
+except Exception as e:
+    logging.error(e)
+
+try:
+    print(10 / s)
+except:
+    logging.exception("Exception Logged")
+
 np.percentile df.quantile 都能自定义分位数
 
 stack unstack 一般用于层次化索引，stack将列转为行，unstack正好相反，相当于索引级别的透视表
