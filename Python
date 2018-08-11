@@ -3,6 +3,8 @@
 编写高质量代码 改善Python程序的91个建议.pdf
 
 ===
+np.percentile df.quantile 都能自定义分位数
+
 stack unstack 一般用于层次化索引，stack将列转为行，unstack正好相反，相当于索引级别的透视表
 
 时间操作 dt.days
