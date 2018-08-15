@@ -265,3 +265,37 @@ UnboundLocalError: local variable 'province' referenced before assignment
 
 类的实际应用 如果一个功能所需要的函数较多，建议使用类 两个以上的函数，之间有数据共享，就应该使用类来封装
 
+# 用熵权法计算权重
+import pandas as pd
+from pandas import DataFrame,Series
+import numpy as np
+# import re
+# df = pd.read_csv('post_list.csv',encoding='utf-8')
+
+a1 = np.random.randint(1,10,size=(5))
+a2 = np.random.randint(100,1000,size=(5))
+a3 = np.array([1,1,1,1,0.999])
+
+df = pd.DataFrame([a1,a2,a3]).T
+df.columns=['x1','x2','x3']
+
+df_std = (df - df.min())/df.max()
+pij = df_std/df_std.sum()
+
+ej = -(1/np.log(5)) * (np.log(pij)*pij).sum()
+dj = 1 - ej
+wj = dj/dj.sum()
+
+score = (pij*wj).sum(axis=1)
+
+# 判断两列是否匹配
+import pandas as pd
+df_list = pd.read_csv('post_list.csv',encoding='gbk')
+df_content = pd.read_csv('post_content.csv',encoding='gbk')
+l1 = list(df_list[150:250]['post_id'])
+l2 = list(df_content[151:246]['post_id'])
+for i in l1:
+    if str(i) not in l2:
+        print(i)
+    else:
+        print('yes')
