@@ -6,6 +6,34 @@
 吴恩达深度学习
 
 ===
+numpy时间类
+Datetimes and Timedeltas https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html
+Python标准时间类
+https://docs.python.org/3/library/datetime.html
+pandas时间类
+http://pandas.pydata.org/pandas-docs/stable/timeseries.html
+http://pandas.pydata.org/pandas-docs/stable/timedeltas.html
+
+time是Python中最基本的时间模块，提供三种时间形式，即时间戳，时间元组、格式化时间
+import time
+# 时间戳
+time.time()
+# 时间元组
+time.localtime()
+# 时间元组转换为字符串
+time.asctime( time.localtime())
+# 格式化时间元组，将时间元组转换为字符串
+time.strftime("%Y-%m-%d", time.localtime())
+# 将字符串转换为元组
+time.srptime("2018-08-14", "%Y-%m-%d")
+import datetime
+
+区别Timedelta和Timestamp
+Timedelta('0 days 00:01:00')
+Timestamp('2016-08-01 11:11:46')
+
+pyecharts 输入值与对应标签保持一致
+
 loging
 https://docs.python.org/3.6/howto/logging.html
 https://www.jianshu.com/p/29cb6a535e2d
