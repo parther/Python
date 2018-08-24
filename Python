@@ -6,6 +6,15 @@
 吴恩达深度学习
 
 ===
+df.loc[idx[['bar'], con],:] 第一个输入如果是单个字符串也需要加中括号
+rolling，若窗口为3，则对包括本元素的前3个元素进行计算
+shift，若shift为3，则整个数组向下移动3个单位。diff和shift后相减类似
+Offset Aliases 用于频率
+http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases
+DateOffset Objects 表示频率的增长
+http://pandas.pydata.org/pandas-docs/stable/timeseries.html#dateoffset-objects
+df.set_index(pd.Index([0,1,2,8,9])) 设置索引
+
 numpy时间类
 Datetimes and Timedeltas https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html
 Python标准时间类
@@ -82,10 +91,13 @@ numpy的broadcast机制，对不同维度的数组进行运算，一般用在矩
 正则三种主要匹配模式
 pattern = re.compile('23')
 string = '12345623'
-pattern.match(string,5).group(0) 从起始位匹配
-pattern.search(string,5).group(0) 匹配第1个
-pattern.findall(string)
+pattern.match(string,5).group(0) 从起始位置匹配，返回匹配对象
+pattern.search(string,5).group(0) 匹配第1个，返回匹配对象
+pattern.findall(string) 匹配所有,返回一个列表
 http://www.runoob.com/python3/python3-reg-expressions.html
+pattern = re.compile('(?P<id>abc){2}') (?P<id>abc) 表示分组
+string = 'abcabc'
+http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html
 
 s.value_counts()每个值的个数
 s.count 返回非空值的个数
