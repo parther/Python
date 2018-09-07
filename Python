@@ -6,6 +6,8 @@
 吴恩达深度学习
 
 ===
+s1.isin(s2) 判断元素是在另一个Series中
+
 df.loc[idx[['bar'], con],:] 第一个输入如果是单个字符串也需要加中括号
 rolling，若窗口为3，则对包括本元素的前3个元素进行计算
 shift，若shift为3，则整个数组向下移动3个单位。diff和shift后相减类似
