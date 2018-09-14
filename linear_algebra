@@ -6,6 +6,9 @@
 单变量微积分 http://open.163.com/special/sp/singlevariablecalculus.html
 
 ===
+向量a.b的乘积相当于向量a在向量b上投影的大小
+向量a.b的叉积生成一个垂直于ab组成的平面的向量，也成为法向量，它的大小是平行四边形面积
+
 如何通俗地解释泰勒公式？ https://www.zhihu.com/question/21149770
 
 线性代数主要研究的是线性变换
