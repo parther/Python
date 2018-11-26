@@ -5,6 +5,9 @@ MySQL练习网站 https://leetcode.com/problemset/database/
 MySQL的基本管理 https://mp.weixin.qq.com/s/P2d4bpLgKrfR7JzAeJI36A
 
 =
+select amount from orders order by amount limit 2, 1;
+2代表从结果的第2行开始，不包括第2行；1表示返回1行结果
+
 1265 - Data truncated for column错误
 是因为报错的字段的字节个数或者类型不正确
 
